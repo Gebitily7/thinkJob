@@ -1,0 +1,430 @@
+header{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    opacity: .6;
+    z-index: 9;
+}
+.button {
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+	color: white;
+	border-radius: 3px;
+	background: rgba(0,0,0,.6);
+	-webkit-transition: background 0.3s ease
+}
+.button:hover {
+	text-decoration: none;
+    background: rgba(0,0,0,.4);
+}
+.main-wrap {
+	position: relative;
+	height: 100%;
+	min-height: 673px
+}
+
+.cloud-title {
+	width: 240px;
+	height: 140px;
+	margin: 0 auto 20px;
+	background-size: contain
+}
+.cloud-title span {
+	display: none
+}
+.login-box {
+	position: relative;
+	width: 500px;
+	margin: auto
+}
+.login-scene {
+	position: relative;
+	height: 330px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform:rotateY(0deg);
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}
+.login-scene .scene-cell {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}
+
+.scene-back{
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    backface-visibility: hidden;
+}
+.scene-front{
+    z-index: 2;
+    transform:rotateY(0deg);
+    -webkit-transform:rotateY(0deg);
+    backface-visibility: hidden;
+}
+.scene-reversal{
+    box-shadow: none;
+}
+.scene-reversal .scene-front {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+.scene-reversal .scene-back {
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+}
+.login-tab {
+	height: 50px;
+	overflow: hidden;
+	border-radius: 6px 5px 0 0
+}
+.login-tab a {
+	float: left;
+	width: 250px;
+	height: 18px;
+	padding: 16px 0;
+	line-height: 18px;
+	text-align: center;
+	font-size: 18px;
+	color: white;
+	background: #96aad3;
+	background: rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+	-webkit-user-drag: none
+}
+.login-tab a:hover {
+	text-decoration: none
+}
+.login-tab a:first-child {
+	border-top-left-radius: 5px;
+	box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.15)
+}
+.login-tab a:last-child {
+	border-top-right-radius: 5px;
+	box-shadow: inset 1px -1px 2px rgba(0, 0, 0, 0.15)
+}
+.login-tab a s, .login-tab a span {
+	display: inline-block;
+	vertical-align: top
+}
+.login-tab a .ilt-qrcode {
+	width: 18px;
+	height: 18px;
+	margin-right: 6px;
+	background-position: 0 -16px
+}
+.login-tab a.current {
+	color: #666;
+	background: #dbe2f0;
+	background: rgba(255, 255, 255, 0.83);
+	box-shadow: none;
+	cursor: default
+}
+.login-tab a.current .ilt-qrcode {
+	background-position: -18px -16px
+}
+.login-contents {
+	height: 280px;
+	border-radius: 0 0 5px 5px;
+	background: #dbe2f0;
+	background: rgba(255, 255, 255, 0.83)
+}
+.login-row {
+	position: relative;
+	height: 65px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	*padding-bottom: 0;
+	*border-bottom-color: #d5d5d5
+}
+.login-row:after {
+	content: "";
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 1px;
+	background: #d5d5d5;
+	background-color: rgba(0, 0, 0, 0.1)
+}
+.input-cell {
+	position: relative;
+	height: 65px
+}
+.input-cell label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0 20px;
+	line-height: 60px;
+	font-size: 20px;
+	color: #999
+}
+.input-cell input {
+	display: block;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 205px;
+	height: 26px;
+	padding: 18px 20px;
+	line-height: 36px;
+	font-size: 24px;
+	margin: 0;
+	border: 0 none;
+	background: none
+}
+
+.input-cell input:-webkit-autofill {
+    box-shadow: inset 0 0 0 50px rgba(200,200,200,.9);
+ }
+
+.lr-account .area-code {
+	float: left;
+	position: relative;
+	width: 65px;
+	margin-right: 15px;
+	padding-left: 20px;
+	line-height: 98px;
+	font-size: 20px;
+	color: #999
+}
+.lr-account .area-code:after {
+	content: "";
+	position: absolute;
+	top: 41px;
+	right: 0;
+	width: 1px;
+	height: 16px;
+	background: #cad5dc
+}
+
+.lr-account .input-cell input {
+	width: 93%;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+
+.lr-number {
+	padding-left: 20px
+}
+.lr-number .area-code {
+	display: none
+}
+.lr-number .input-cell {
+	width: 345px
+}
+.login-switch {
+	position: relative
+}
+.login-switch .button-wrap {
+	position: relative;
+	z-index: 1;
+	height: 60px;
+	padding: 10px;
+	*zoom: 1
+}
+.login-switch .button-wrap .button {
+	display: block;
+	height: 60px;
+	line-height: 60px;
+	font-size: 22px
+}
+.login-switch .button-wrap .btn-more {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 37px;
+	border-left: 1px solid #469de3;
+	border-radius: 0 3px 3px 0
+}
+.login-switch .button-wrap .btn-more s {
+	position: absolute;
+	top: 28px;
+	left: 14px;
+	width: 9px;
+	height: 5px;
+	line-height: 10;
+	overflow: hidden;
+	background-position: -36px -25px
+}
+
+.login-status {
+	width: 500px;
+	height: 20px;
+	margin: 15px auto;
+	line-height: 20px;
+	text-align: right;
+	color: white
+}
+.login-status a {
+	color: white
+}
+.login-status input {
+	float: left;
+	width: 14px;
+	height: 14px;
+	margin: 3px 8px 0 0;
+	opacity: 0.6
+}
+.login-status label {
+	float: left
+}
+.register-hint {
+	width: 500px;
+	height: 56px;
+	margin: auto;
+	line-height: 56px;
+	text-align: center;
+	color: white;
+}
+.register-hint a {
+	text-decoration: underline;
+	color: white
+}
+
+/* yzm */
+.control-group{
+    margin-top: 12px;
+    margin-left: 50px;
+}
+
+.text-warning{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    color: #EB2626;
+    background: rgba(255, 255, 255, 0);
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    visibility: hidden;
+    z-index: 0;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+
+
+[city="beijing"] {
+	background-color: #2d77e3;
+}
+[city="changchun"] {
+	background-color: #1f72c7;
+}
+[city="changsha"] {
+	background-color: #282b52;
+}
+[city="chengdu"] {
+	background-color: #8a8fb9;
+}
+[city="chongqing"] {
+	background-color: #446eb6;
+}
+[city="dongguan"] {
+	background-color: #1b7ece;
+}
+[city="fuzhou"] {
+	background-color: #30a4ec;
+}
+[city="guangzhou"] {
+	background-color: #7da4d2;
+}
+[city="guiyang"] {
+	background-color: #86b4e9;
+}
+[city="haikou"] {
+	background-color: #0b4f9e;
+}
+[city="hangzhou"] {
+	background-color: #72b4e2;
+}
+[city="harbin"] {
+	background-color: #145eaf;
+}
+[city="hefei"] {
+	background-color: #4696da;
+}
+[city="hohhot"] {
+	background-color: #2d9cdf;
+}
+[city="hongkong"] {
+	background-color: #02224f;
+}
+[city="jinan"] {
+	background-color: #060a15;
+}
+[city="kunming"] {
+	background-color: #6b9be2;}
+[city="lanzhou"] {
+	background-color: #a94c31;
+}
+[city="lhasa"] {
+	background-color: #678acd;
+}
+[city="macao"] {
+	background-color: #100f1d;
+}
+[city="meizhou"] {
+	background-color: #8aabeb;
+}
+[city="nanchang"] {
+	background-color: #1842a4;
+}
+[city="nanjing"] {
+	background-color: #5c8cd9;
+}
+[city="nanning"] {
+	background-color: #2a58dc;
+}
+[city="shanghai"] {
+	background-color: #203b7c;
+}
+[city="shenyang"] {
+	background-color: #91bef9;
+}
+[city="shenzhen"] {
+	background-color: #8bbee3;
+}
+[city="shijiazhuang"] {
+	background-color: #02223f;
+}
+[city="taipei"] {
+	background-color: #173474;
+}
+[city="taiyuan"] {
+	background-color: #010101;
+}
+[city="tianjin"] {
+	background-color: #42a5e8;
+}
+[city="urumqi"] {
+	background-color: #6f9ec3;
+}
+[city="wuhan"] {
+	background-color: #1a83be;
+}
+[city="xian"] {
+	background-color: #8e9ab1;
+}
+[city="xining"] {
+	background-color: #3f8bca;
+}
+[city="yinchuan"] {
+	background-color: #45b7f0;
+}
+[city="zhengzhou"] {
+    background: url("../../images/intro/10.jpg") no-repeat;
+    background-size: cover;
+	background-color: #1b8db0;
+}
+
+

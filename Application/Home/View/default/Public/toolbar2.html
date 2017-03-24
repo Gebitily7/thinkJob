@@ -1,0 +1,29 @@
+<section id="top" class="tool toolbar2">
+    <div class="toolbar2-box">
+    <i class="fa fa-chevron-up fa-2x"></i>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+        var _scrollTop = $(this).scrollTop();
+        this.addEventListener('scroll',function(){
+            _scrollTop = $(this).scrollTop();
+            backTop();
+            return false;
+        });
+        $("#top").on('click',function(){
+            $('html,body').animate({
+                scrollTop : 0
+            },'slow');
+            return false;
+        });
+        var backTop = function(){
+            if($(this).scrollTop() > 700){
+                $("#top").css('display','block');
+            }else{
+                $("#top").css('display','none');
+            }
+        };
+        backTop();
+    });
+</script>

@@ -1,0 +1,24 @@
+<extend name="Base/common"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/article/index.css"/>
+</block>
+
+
+
+
+
+
+
+
+
+<block name="script">
+    <script>
+        $(document).ready(function(){
+            $('#sidBar,#sidBarMain').hover(function(){
+                $('#sidBarMain').css('display','block');
+            },function(){
+                $('#sidBarMain').css('display','none');
+            });
+        });
+    </script>
+</block>

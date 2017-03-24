@@ -1,0 +1,16 @@
+.ad{
+    height: 60px;
+    background-color: #fff;
+}
+.adBox{
+    width: 1220px;
+    margin: 0 auto;
+}
+.adContent li{
+    float: left;
+    height: 60px;
+    width: 220px;
+    margin: 0 10px;
+    line-height: 60px;
+    font-size: 1.2em;
+}

@@ -1,0 +1,293 @@
+/* 列表页 */
+.filtrate{
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+
+
+/* 筛选 */
+.filtrate-box{
+    padding: 10px 20px;
+    font-size: 1.1em;
+}
+.select-del{
+
+}
+.select-del>span{
+    float: left;
+    height: 32px;
+    width: 7%;
+    margin-right: 20px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #666666;
+}
+.select-del>ul{
+    margin-top: 2px;
+    width: 80%;
+}
+.select-del>ul li{
+    float: left;
+    padding: 0 5px;
+    margin: 3px 7px;
+    cursor: pointer;
+    color: #666666;
+    transition: background ease .3s;
+}
+.select-del>ul li:first-child{
+    font-weight: 600;
+}
+.radio-selected,
+.select-del>ul li:hover{
+    color: #009C63 !important;
+    background: rgba(0, 156, 99, .3);
+}
+.sel-else-box>div{
+    margin: 5px 7px 0 7px;
+    line-height: 30px;
+}
+.sel-else-box .father{
+    position: relative;
+    width: 100px;
+    padding: 2px 5px 2px 10px;
+    margin-right: 20px;
+    border: 1px solid #CCCCCC;
+    line-height: 25px;
+    cursor: pointer;
+}
+.sel-else-box .father i{
+    float: right;
+    margin-top: 3px;
+    margin-right: 5px;
+}
+.sel-else-box .father ul{
+    position: absolute;
+    background: #FFFFFF;
+    width: 115px;
+    top: 30px;
+    left: -1px;
+    border: 1px solid #CCCCCC;
+    line-height: 28px;
+    z-index: 2;
+}
+.sel-else-box .father ul li{
+    padding-left: 7px;
+    -webkit-transition: padding .3s ease;
+    -moz-transition: padding .3s ease;
+    transition: padding .3s ease;
+}
+.sel-else-box .father ul li:hover{
+    color: #666666;
+    padding-left: 10px;
+    background: rgba(0, 156, 99, .3);
+}
+
+/* 职位列表 */
+.job-list{
+    margin-top: 14px;
+}
+.job-list ul{
+    float: left;
+}
+.job-tab{
+    width: 75%;
+    margin-right: 12px;
+}
+.job-item{
+    position: relative;
+    margin-bottom: 10px;
+    background: #FFFFFF;
+    overflow: hidden;
+}
+.job-item>a{
+    display: block;
+    height: 100px;
+    padding: 10px 15px;
+    border-left: 7px solid #B1A190;
+    color: #999999;
+}
+.job-item div{
+    line-height: 28px;
+}
+.job-item div span{
+    display: inline-block;
+    margin-right: 44px;
+}
+.job-item div span:last-child{
+    margin-right: 3px;
+}
+.job-right div span{
+    margin-right: 4px;
+}
+.job-left div:first-child{
+    font-size: 1.2em;
+    color: #009C63;
+}
+.job-right span i,
+.job-left span i{
+    color: #009C63;
+}
+.job-left,.job-right{
+    float: left;
+    width: 50%;
+}
+.job-right div:first-child{
+    font-size: 1.2em;
+}
+/* 标签 */
+.job-label{
+    clear: both;
+    padding-top: 5px;
+}
+.job-label span{
+    line-height: 22px;
+    margin-top: 5px;
+    margin-right: 10px !important;
+    padding: 0 5px;
+    background: rgba(0, 156, 99, .4);
+    color: #009C63;
+}
+/* 列表hover */
+.job-item>a:hover{
+    border-color: #00AAA1;
+    -webkit-animation: bgcolor 7s ease-in-out;
+    -moz-animation: bgcolor 7s ease-in-out;
+    animation: bgcolor 7s ease-in-out;
+    transition: border-color 2s ease;
+}
+.job-tip{
+    position:absolute;
+    top:0;
+    right:0;
+    transform: translate3D(240px,0,0);
+    width: 0;
+    cursor: pointer;
+    transition: transform 1s ease, width 1s ease;
+}
+.job-tip div{
+    width:50%;
+    line-height: 140px;
+    height:120px;
+    color: #FFFFFF;
+    text-align: center;
+}
+.job-tip div:first-child{
+    background: rgba(255,162,72,.9);
+}
+.job-tip div:last-child{
+    background: rgba(200,0,0,.8);
+}
+.job-item:hover .job-tip{
+    width: 240px;
+    transform: translate3D(0,0,0);
+}
+.job-tip .tip{
+    position: relative;
+}
+.tip span{
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 22px;
+    left: 0;
+}
+.job-top .job-nav{
+    width: 75%;
+    height: 40px;
+    background: #ffffff;
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 1px;
+    line-height: 40px;
+}
+.prev-ajax,.next-ajax{
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+}
+.prev-ajax:hover,.next-ajax:hover{
+    background: rgba(0,0,0,.1);
+}
+.job-nav .job-num{
+    font-size: 1.1em;
+    padding-left: 15px;
+}
+.job-num i{
+    font-size: 1.1em;
+    font-style: normal;
+    color: #009C63;
+}
+
+/* 推荐职位 */
+.re-job{
+    width: 24%;
+    margin-left: 12px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.2em;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid #CCCCCC;
+}
+.gs-tab{
+    width: 268px;
+}
+.gs-item{
+    width: 100%;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+.re-top{
+    padding-bottom: 7px;
+    font-size: .9em;
+    color: #777777;
+}
+.re-top h3{
+    color: #009C63;
+    font-weight: 500;
+    font-size: 1.4em;
+    line-height: 30px;
+}
+.re-top span{
+    display: inline-block;
+    margin-right: 5px;
+}
+.re-top span i{
+    color: #009C63;
+}
+.re-mid{
+    position: relative;
+    padding: 10px 2px;
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
+}
+.re-mid>div{
+    float: left;
+}
+.re-mid>div:first-child{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.re-mid span{
+    top: 76px;
+    left: 16px;
+}
+.re-mid>div:last-child{
+    font-size: .9em;
+    padding-left: 15px;
+    line-height: 27px;
+    color: #777777;
+}
+.re-mid>div img{
+    width: 80px;
+    height: 80px;
+}
+.re-bottom{
+    padding-right: 7px;
+    line-height: 27px;
+    text-align: right;
+    color: #777777;
+}

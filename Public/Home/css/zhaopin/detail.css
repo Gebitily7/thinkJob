@@ -1,0 +1,249 @@
+.top-search{
+    display: none;
+}
+.headbox{
+    box-shadow: 3px 2px 6px 0 #000000;
+}
+/* 职位详情页public */
+.detail>div{
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.detail-left{
+    width: 70%;
+}
+.detail-right{
+    width: 30%;
+}
+
+/* job-detail */
+.job-detail{
+    position: relative;
+    margin-top: 25px;
+    padding: 10px 10px 10px 20px;
+}
+.base-info,
+.job-label{
+    margin-right: 270px;
+    line-height: 30px;
+}
+.team-label span,
+.job-label span,
+.base-info span{
+    display: inline-block;
+    margin-right: 20px;
+    color: #666666;
+}
+.job-name,
+.base-info>div i{
+    color: #009C63;
+}
+.job-name{
+    padding-left: 15px;
+}
+.job-label,.team-label{
+    padding: 5px 0 7px 0;
+}
+.job-label span,.team-label span{
+    line-height: 22px;
+    padding: 2px 6px;
+    margin-right: 10px !important;
+    background: rgba(0, 156, 99, .3);
+    color: #009C63 !important;
+}
+.job-detail .update-time{
+    border-top: 1px dashed #CCCCCC;
+    text-align: right;
+    color: #666666;
+}
+
+.like{
+    position: absolute;
+    top: 36px;
+    right: 36px;
+    color: #CCCCCC;
+    cursor: pointer;
+}
+.like div{
+    position: relative;
+    margin-right: 5px;
+    float: left;
+    width: 60px;
+    text-align: center;
+}
+.like span{
+    position: absolute;
+    width: 60px;
+    top: 30px;
+    left: 0;
+}
+.like div:hover{
+    color: #C80000;
+}
+.nips{
+    position: absolute;
+    width: 40px;
+    height: 24px;
+    background: #009C60;
+    top: 13px;
+    left: -7px;
+    border-bottom-right-radius: 16px;
+    border-top-right-radius: 16px;
+}
+.nips span{
+    margin-right: 12px;
+    color: #FFFFFF;
+}
+.arrow{
+    border-width: 5px;
+}
+.arrow-right{
+    position: absolute;
+    border-left-color: #004B25;
+    transform: rotate3D(0,0,1,-45deg);
+    transform-origin: 50% 50%;
+    top: 19px;
+    left: 2px;
+}
+/* 联系人情况 */
+.link_man{
+    position: relative;
+    padding: 20px 20px 20px 30px;
+    line-height: 27px;
+    font-size: 1.1em;
+}
+.l-tx{
+    margin: 5px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.l-tx img{
+    display: block;
+    width: 90px;
+    height: 90px;
+}
+.nick{
+    padding: 10px 0 10px 15px;
+}
+.more-job{
+    position: absolute;
+    min-width: 100px;
+    padding: 0 5px;
+    height: 30px;
+    top: 30px;
+    right: 70px;
+    border: 1px solid #E3931C;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 29px;
+}
+.more-job a{
+    color: #E3931C;
+}
+
+/* 职位描述 */
+.team,
+.job-desc{
+    padding: 10px 20px;
+}
+.team-top,
+.jd-top{
+    font-size: 1.25em;
+    line-height: 30px;
+    color: #009C63;
+    border-bottom: 1px dashed #DDDDDD;
+}
+.jb-yq{
+    padding: 0 20px;
+    font-size: 1.1em;
+    color: #666666;
+}
+.jd-body,.team-body{
+    margin: 5px 20px;
+    padding: 2px 60px 2px 0;
+    color: #666666;
+    font-size: 1.1em;
+}
+.jd-body>div{
+    padding: 5px 15px;
+    color: #999999;
+    font-size: .9em;
+    line-height: 24px;
+    letter-spacing: 1px;
+}
+/* /职位描述 */
+
+/* team */
+.team-top{
+}
+.team-label{
+    padding: 5px 20px;
+    line-height: 30px;
+}
+/* /team */
+
+/* gs-desc */
+.gs-desc{
+    margin: 25px 0;
+}
+
+.re-mid{
+    position: relative;
+    padding: 12px 15px;
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
+}
+.re-mid a>div{
+    float: left;
+}
+.re-mid a>div:first-child{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.re-mid span{
+    top: 76px;
+    left: 28px;
+}
+.re-mid a>div:last-child{
+    font-size: .9em;
+    padding-left: 15px;
+    line-height: 27px;
+    color: #777777;
+}
+.re-mid a>div img{
+    width: 80px;
+    height: 80px;
+}
+.re-bottom{
+    padding-right: 7px;
+    line-height: 27px;
+    text-align: right;
+    color: #777777;
+}
+.gs-desc ul li{
+    height: 30px;
+    padding: 3px 12px;
+    line-height: 30px;
+    font-size: 1.1em;
+    color: #666666;
+}
+.gs-desc ul li:not(:last-child){
+    border-bottom: 1px solid #F0F0F0;
+}
+.gs-desc ul li span,
+.gs-desc ul li a{
+    padding-left: 17px;
+}
+.gs-desc ul li i{
+    color: #009C63;
+}
+
+/* /gs-desc */
+
+.comment{
+    width: 830px;
+    margin: 20px 0;
+}

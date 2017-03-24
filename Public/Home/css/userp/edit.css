@@ -1,0 +1,340 @@
+.content-box{
+    background-color: #fff;
+}
+.content-body{
+    position: relative;
+}
+
+/* 编辑 */
+.content-body-edit{
+    display: none;
+    position: relative;
+    background-color: #E9E9E9;
+}
+.angle{
+    position: absolute;
+    border: 10px solid #E9E9E9;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    transform: rotate3D(0,0,1,-45deg);
+    top: -9px;
+    left: 370px;
+}
+/* from */
+.user-edit{
+    padding: 65px 10px 30px 60px;
+}
+.from-box{
+    font-size: 1.2em;
+}
+.from-box>li{
+    padding-bottom: 10px;
+}
+.from-box li>div{
+    float: left;
+    width: 320px;
+}
+.input-item input{
+    height: 38px;
+    width: 240px;
+    padding: 0 36px 0 15px;
+    font-size: 18px;
+    color: #999999;
+    border: 1px solid #CCCCCC;
+}
+.i-mar{
+    margin-left: 20px;
+    color: #999999;
+}
+.input-title{
+    line-height: 32px;
+    font-weight: 300;
+}
+.input-title em{
+    display: inline-block;
+    margin-right: 8px;
+    font-style: normal;
+    font-weight: 600;
+    color: red;
+}
+.radio-box .radio-item{
+    display: inline-block;
+    height: 38px;
+    padding: 0 10px;
+    margin-right: 10px;
+    line-height: 38px;
+    border: 1px solid #F4F4F4;
+    background-color: #fff;
+    cursor: pointer;
+}
+.radio-box .radio-item-selected{
+    background: #6FBDA0;
+    color: #ffffff;
+    border: 1px solid #6FBDA0;
+}
+/* 身高cm */
+.cm{
+    position: absolute;
+    font-style: normal;
+    transform: translate3D(-34px,7px,0);
+    color: #CCCCCC;
+}
+.text-area .input-title{
+    font-size: 18px;
+}
+.textarea-group{
+    padding: 2px 20px;
+    font-size: 18px;
+}
+.textarea-group textarea{
+    color: #999999;
+    border: 1px solid #E9E9E9;
+}
+.num-limit{
+    color: #999999;
+    top: 122px !important;
+    right: 57px !important;
+}
+
+/* 分割条 */
+.del{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    font-size: 1.4em;
+    line-height: 40px;
+}
+.dashed{
+    height: 22px;
+    border-bottom: 1px dashed #E4E4E4;
+}
+.del span{
+    position: absolute;
+    padding: 0 7px;
+    background-color: #FFFFFF;
+    top: 0;
+    left: 335px;
+}
+/* add-box */
+.add-box{
+    margin: 10px 30px;
+    height: 42px;
+    line-height: 42px;
+    padding: 10px 10px;
+    background: rgba(180, 240, 180, .1);
+    font-size: 1.2em;
+    color: #0066CC;
+    text-align: center;
+    border: 1px dashed #CCCCCC;
+    cursor: pointer;
+}
+.add-box i{
+    font-style: normal;
+    font-size: 1.2em;
+}
+.add-box:hover{
+    background: rgba(180, 240, 180, .2);
+}
+/**/
+.edit-add{
+    height: 30px;
+    margin-bottom: 17px;
+    line-height: 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: #CCCCCC;
+}
+.add-left{
+    display: none;
+    margin-left: 490px;
+    font-size: .9em;
+}
+.add-right{
+    margin-right: 20px;
+    color: #009C63;
+}
+.add-right i{
+    font-style: normal;
+    font-size: 1.1em;
+}
+.add-right:hover{
+    color: #666666;
+}
+.edit-add:hover .add-left{
+    display: block;
+}
+
+/*  */
+h3{
+    font-weight: 500;
+    font-size: 1.2em;
+}
+em{
+    font-style: normal;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.circle{
+    background-color: #E4E4E4;
+    border-radius: 50%;
+}
+/* 工作经历 */
+.re-item{
+    padding-top: 40px;
+}
+.exp-box{
+    position: relative;
+    padding: 0 20px 2px 47px;
+    color: #999999;
+}
+.minCir{
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    transform: translate3D(-1px,0,0);
+    -webkit-transform: translate3D(-1px,0,0);
+    -moz-transform: translate3D(-1px,0,0);
+}
+.mods{
+
+}
+.exp-content{
+    position: relative;
+}
+.edit-group{
+    position: absolute;
+    right: 10px;
+    top: -6px;
+    z-index: 99;
+}
+.edit-group span{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 0 3px;
+    line-height: 30px;
+    color: #CCCCCC;
+    text-align: center;
+}
+.edit-group span:first-child{
+    font-size: 1.1em;
+}
+.edit-group span:hover{
+    color: #999999;
+}
+.title-name{
+    padding: 17px 0 14px 30px;
+    border-left: 2px solid #E4E4E4;
+    color: #666666;
+}
+.detail-box{
+    position: relative;
+    font-weight: 300;
+}
+.maxCir{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    transform: translate3D(-9px,4px,0);
+    -webkit-transform: translate3D(-9px,4px,0);
+    -moz-transform: translate3D(-9px,4px,0);
+}
+.maxCir span{
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+.detail-content{
+    padding: 2px 0 10px 23px;
+    border-left: 2px solid #E4E4E4;
+}
+.detail-time{
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+.detail-detail{
+
+}
+.detail-detail p{
+    line-height: 24px;
+}
+.detail-detail p em{
+    padding: 0 10px;
+}
+.detail-detail p.bor-em em{
+    border-right: 1px solid #CCCCCC;
+}
+p.pad-em em{
+    padding: 0 0 0 10px;
+}
+.detail-detail p em:last-child{
+    border: none;
+}
+.detail-desc{
+    padding: 4px 50px 4px 10px;
+}
+.self-desc{
+    margin-top: 20px;
+    padding: 0 50px 4px 10px;
+}
+.self-del{
+    margin-bottom: 30px;
+}
+
+/* 删除弹框 */
+/* editname */
+.delete-box{
+    display: none;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    width: 300px;
+    background: rgba(0,0,0,.5);
+    color: #ffffff;
+    box-shadow: 3px 2px 6px 0 #CCCCCC;
+    z-index: 99;
+}
+.name-top{
+    height: 36px;
+    line-height: 36px;
+    background-color: #6BC5A4;
+    color: #000000;
+    text-align: center;
+}
+.name-body{
+    padding: 5px 10px;
+}
+.name-input{
+    border: 1px solid #CCCCCC;
+    height: 32px;
+    line-height: 32px;
+    color: #666666;
+}
+.btn-group-name{
+    padding: 5px 10px;
+    text-align: center;
+    font-size: .9em;
+}
+.btn-group-name span{
+    display: inline-block;
+    padding: 3px 7px;
+    margin: 0 10px;
+    cursor: pointer;
+    color: #ffffff;
+}
+.btn-qr{
+    background: rgba(0,102,204,.7);
+}
+.btn-fr{
+    background: rgba(235,38,38,.7);
+}
+.btn-qr:hover{
+    background: rgba(0,102,204,.5);
+}
+.btn-fr:hover{
+    background: rgba(235,38,38,.5);
+}

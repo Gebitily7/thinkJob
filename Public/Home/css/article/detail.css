@@ -1,0 +1,26 @@
+.subhead{
+    width: 1000px;
+    margin: 0 auto;
+}
+.subhead h2{
+    color: #009C60;
+}
+.container{
+    margin-top: 20px;
+}
+.main-content{
+    width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+}
+#contents{
+    padding: 20px 60px 0 60px;
+}
+.nav-p{
+    padding: 5px 20px 10px 20px;
+    border-bottom: 1px solid #CCCCCC;
+}
+.comment{
+    width: 1000px;
+    margin: 40px auto;
+}

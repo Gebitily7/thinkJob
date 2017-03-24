@@ -1,0 +1,90 @@
+<block name="header"></block>
+<div id="main-container" class="container" city="zhengzhou">
+    <div class="row box clearfix">
+        <section class="side-bar">
+            <div class="user-base">
+                <div class="base-media js-url" data-url="">
+                    <figure>
+                        <neq name="user.u_tx" value="">
+                            <img src="{$user.u_tx|get_cover='path'}" alt=""/>
+                        <else/>
+                            <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                        </neq>
+                    </figure>
+                    <div class="media-item">
+                        <span class="d-b">昵称：Gebitily7</span>
+                        <span class="d-b">性别：<eq name="userInfo.sex" value="1">男<else/>女</eq></span>
+                        <span class="d-b">年龄：{$userInfo.birthday|get_age}岁</span>
+                    </div>
+                </div>
+                <div  class="base-info clearfix">
+                    <div class="info-item">
+                        <span>已投简历</span>
+                        <span>{$resumeCount1}</span>
+                    </div>
+                    <div class="info-item">
+                        <span>收到回复</span>
+                        <span>{$treatedCount1}</span>
+                    </div>
+                    <div class="info-item">
+                        <span>关注</span>
+                        <span>{$likeNum1}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- user-list -->
+            <div class="user-list">
+                <div>
+                    <ul class="list-setting">
+                        <li class="side-item js-url" data-url="{:U('center')}"><i class='fa fa-street-view <eq name="leftId" value="1">i-active</eq>'></i>个人中心</li>
+                        <li class="side-item js-url" data-url="{:U('resume')}"><i class='fa fa-pencil-square-o <eq name="leftId" value="2">i-active</eq>'></i>我的简历</li>
+                        <li class="side-item js-url" data-url="{:U('progress')}"><i class='fa fa-line-chart <eq name="leftId" value="3">i-active</eq>'></i></i>求职进展</li>
+                        <li class="side-item js-url" data-url="{:U('collect')}"><i class='fa fa-file-text-o <eq name="leftId" value="4">i-active</eq>'></i>收藏记录</li>
+                        <li class="side-item js-url" data-url="{:U('setting')}"><i class='fa fa-cog <eq name="leftId" value="5">i-active</eq>'></i>帐号设置</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- user-list -->
+        </section>
+        <block name="body">
+
+        </block>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $(window).resize(function(){
+            $("#main-container").css("min-height", $(window).height() - 100);
+        }).resize();
+
+
+
+        var singleTab = function(objEvent,selectClass){
+            $(objEvent).each(function(){
+                $(this).on('click',function(){
+                    var id = $(this).data(selectClass);
+                    $('.'+selectClass+'-item').removeClass(selectClass+'-selected');
+                    $(this).addClass(selectClass+'-selected');
+                    $(this).siblings('.'+selectClass).val(id);
+                });
+            });
+        };
+
+        singleTab('.single1','sex');
+        singleTab('.single2','drive');
+        singleTab('.single3','settle');
+
+        $('.single3').on('click',function(){
+            $unit = $(this).data('unit');
+            $unitValue = $(this).data('unitvalue');
+            $id = $(this).data('settle');
+            if($id == 0){
+                $('.salary').val('面议');
+            }else{
+                $('.salary').val('');
+            }
+            $('.'+$unit).html($unitValue);
+        });
+
+    })
+</script>

@@ -1,0 +1,50 @@
+/* 头像更改 */
+.u_tx figcaption:hover{
+    background: rgba(255, 255, 255, .5);
+    font-size: 16px;
+}
+.content-body{
+    position: relative;
+    min-height: 290px;
+}
+/* 编辑 */
+.edit-tool{
+    position: absolute;
+}
+.edit-tool{
+    top: -25px;
+    right: 77px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.edit-tool:hover{
+    color: #009C60;
+}
+.content-body-edit{
+    display: none;
+    position: relative;
+    background-color: #E9E9E9;
+}
+.angle{
+    position: absolute;
+    border: 10px solid #E9E9E9;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    transform: rotate3D(0,0,1,-45deg);
+    top: -9px;
+    left: 370px;
+}
+
+/* 个人用户上传头像 */
+.upload-content{
+    display: none;
+    position: fixed;
+    width: 712px;
+    top: 40%;
+    left: 50%;
+    transform: translate3D(-50%,-50%,0);
+    background: #ffffff;
+    box-shadow: 3px 2px 6px 0 #CCCCCC;
+    z-index: 999;
+}
+

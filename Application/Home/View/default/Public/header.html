@@ -1,0 +1,173 @@
+<!--<section class="ad"></section>-->
+<section class="replace"></section>
+<section class="top-search clearfix fixed" id="topSearch">
+    <div class="content clearfix">
+        <!-- logo区域 -->
+        <div class="logo fl clearfix">
+            <img src="__PUBLIC__/Home/images/job/logo.png" alt="logo"/>
+        </div>
+        <!-- 城市选择区域 -->
+        <div class="city fl clearfix">
+            <span>[<a href="javascript:void(0);">全国站</a>]</span>
+            <input type="hidden" name="c_city" value=""/>
+        </div>
+        <!-- 搜索区域 -->
+        <div class="fr pt_10">
+            <div class="clearfix fl">
+                <div class="search clearfix">
+                    <form action="" id="search" class="clearfix" method="post">
+
+                        <if condition="$iscate1 eq 2">
+                            <!--选择-->
+                            <div class="search-type fl clickFather">
+                                <span title="全职" data-val="2">兼职</span>
+                                <i class="fa fa-caret-down fa-lg"></i>
+                                <div class="clickChild">
+                                    <div class="child" data-val="2">兼职</div>
+                                    <div class="child" data-val="1">全职</div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="cate_id" id="jobType" value="2"/>
+                            <else />
+                            <!--选择-->
+                            <div class="search-type fl clickFather">
+                                <span title="全职" data-val="1">全职</span>
+                                <i class="fa fa-caret-down fa-lg"></i>
+                                <div class="clickChild">
+                                    <div class="child" data-val="2">兼职</div>
+                                    <div class="child" data-val="1">全职</div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="cate_id" id="jobType" value="1"/>
+                        </if>
+
+                        <!-- 输入框 -->
+                        <div class="search-box clearfix">
+                            <input type="text" class="search-input fl" placeholder="想搜索什么，输入关键词试试" name="search_input" value="{$inputTitle}"/>
+                        </div>
+                        <!-- 输入框 -->
+                    </form>
+                    <!-- 按钮 -->
+                    <div class="search-btn fl" data-form="search">
+                        <button>
+                            <i class="fa fa-search fa-lg"></i>
+                        </button>
+                    </div>
+                    <!-- 按钮 -->
+                </div>
+
+            </div>
+            <!-- 用户区域 -->
+            <if condition="is_login() and session('user_type') eq 1">
+                <div class="logintool entrance fl clearfix">
+                    <div class="user-detail user-menu">
+                        <ul>
+                            <a href="{:U('userp/center')}"><li><i class="fa fa-home fa-lg"></i>&emsp;用户中心</li></a>
+                            <a href="{:U('userp/resume')}"><li><i class="fa fa-bar-chart fa-lg"></i></i>&emsp;简历中心</li></a>
+                            <a href="{:U('user/logout')}"><li class="last"><i class="fa fa-sign-out fa-lg"></i></i>&emsp;退出</li></a>
+                        </ul>
+                    </div>
+                    <a href="">
+                        <figure class="userpic">
+                            <if condition="$user.id neq ''">
+                                <img src="{$user.u_tx|get_cover='path'}" alt=""/>
+                                <else/>
+                                <img src="__PUBLIC__/Home/images/user/defalheid.jpg" alt=""/>
+                            </if>
+                        </figure>
+                    </a>
+                    <a href="" class="fl"><span class="fl" title="Gebitily7" style="width: 100px; height: 42px;overflow:hidden;line-height: 42px;font-size: .9em;">{:session('user_auth.username')}</span><i style="margin-top: 15px;" class="fl fa fa-caret-down fa-lg"></i></a>
+                </div>
+
+            <elseif condition="is_login() and session('user_type') eq 2" />
+                <div class="logintool entrance fl clearfix">
+                    <div class="user-detail user-menu">
+                        <ul>
+                            <a href="{:U('user/center')}"><li><i class="fa fa-home fa-lg"></i>&emsp;企业中心</li></a>
+                            <a href=""><li><i class="fa fa-home fa-lg"></i>&emsp;职位中心</li></a>
+                            <a href="{:U('user/logout')}"><li class="last"><i class="fa fa-home fa-lg"></i>&emsp;退出</li></a>
+                        </ul>
+                    </div>
+                    <a href="">
+                        <figure class="userpic">
+                            <if condition="$user.id neq ''">
+                                <img src="{$user.u_tx|get_cover='path'}" alt=""/>
+                            <else/>
+                                <img src="__PUBLIC__/Home/images/user/defalheid.jpg" alt=""/>
+                            </if>
+                        </figure>
+                    </a>
+                    <a href="" class="fl"><span class="fl" title="Gebitily7" style="width: 100px; height: 42px;overflow:hidden;line-height: 42px;font-size: .9em;">{:session('user_auth.username')}</span><i style="margin-top: 15px;" class="fl fa fa-caret-down fa-lg"></i></a>
+                </div>
+            <else />
+                <div class="logintool fl clearfix">
+                    <a href="">
+                        <figure class="userpic">
+                            <img src="__PUBLIC__/Home/images/user/defalheid.jpg" alt=""/>
+                        </figure>
+                    </a>
+                    <a href="{:U('user/login')}" class="fl">用户/企业登陆</a>
+                </div>
+            </if>
+
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="navbox clearfix">
+    <div class="headbox">
+        <div class="headnav">
+            <div id="sidBar" class="sidbar clearfix fl">
+                <strong>职位分类</strong>
+                <i class="fr fa fa-caret-up fa-lg down" style="margin-top: 13px;"></i>
+            </div>
+            <div id="sidBarMain" class="sidbar_main">
+                <ul>
+                    <volist name="category" id="cate">
+                        <li>
+                            <div class="bar_pad">
+                                <div class="bar_tl">
+                                    <a href="{:U('home/zhaopin/index/pid/'.$cate['id'])}"><strong>{$cate.title}</strong></a>
+                                    <i class="fr fa fa-angle-right fa-lg" style="margin-top: 5px"></i>
+                                </div>
+                                <div class="bar_cal clearfix">
+                                    <volist name="cate['_']" id="cate_1" offset="1" length="2">
+                                        <span><a href="{:U('home/zhaopin/index/pid/'.$cate_1['id'])}">{$cate_1.title}</a></span>
+                                    </volist>
+                                </div>
+                            </div>
+                            <div class="catynavlist clearfix">
+                                <a href="javascript:void(0);" class="closenav">×</a>
+                                <div class="catigoroy clearfix">
+                                    <volist name="cate['_']" id="cate_1">
+                                        <div class="tinicatiy clearfix">
+                                            <div class="leftincaty">
+                                                <a href="{:U('home/zhaopin/index/pid/'.$cate_1['id'])}"><strong>{$cate_1.title}</strong></a>
+                                            </div>
+                                            <div class="letilistcaty">
+                                                <volist name="cate_1['_']" id="cate_2">
+                                                    <a href="{:U('home/zhaopin/index/pid/'.$cate_2['id'])}">{$cate_2.title}</a>
+                                                </volist>
+                                            </div>
+                                        </div>
+                                    </volist>
+                                </div>
+                                <div style="padding: 3px 20px;">本分类由Gebitily7提供,若有疑问可联系：13203912762</div>
+                            </div>
+                        </li>
+                    </volist>
+                </ul>
+                <div class="gxs1" style="background-color: #006026; text-align: center; color: #ffffff;">Gebitily7</div>
+            </div>
+            <div class="sidbarnav clearfix fl">
+                <volist name="nav" id="nav1">
+                    <span><a href="{:U($nav1['url'])}" data-id="{$nav1['id']}" >{$nav1.title}</a></span>
+                </volist>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,234 @@
+<extend name="Base/usercom" />
+<block name="style">
+    <link href="__CSS__/user/home.css" rel="stylesheet" type="text/css">
+</block>
+
+
+<block name="body">
+    <div class="main-wrap">
+        <div class="container" id="js_container_box">
+            <form autocomplete="off" actionp="{:U('home/userp/login')}"  action="__SELF__" id="js-login_form" method="post" data-type="1">
+                <div class="cloud-title"><span>job，全新的找工作方式</span></div>
+                <div class="login-box">
+                    <div id="js-login_box" class="login-scene">
+
+                        <!-- !帐号登录 -->
+                        <div class="scene-cell scene-front">
+                            <div class="login-tab">
+                                <a lgb-nav="login-scene" href="javascript:;" class="current">个人登录</a>
+                                <a lgb-nav="login-scene scene-reversal" href="javascript:;"><s class="ilt-qrcode"></s><span>企业登录</span></a>
+                            </div>
+                            <div class="login-contents login-1">
+                                <div id="" class="login-row lr-account">
+                                    <div class="input-cell">
+                                        <label for="js-account" style="">帐号</label>
+                                        <input type="text" id="js-account" tabindex="1" ajaxurl="/member/checkUserNameUnique.html" errormsg="请填写1-16位用户名" nullmsg="请填写用户名" datatype="*1-16" value="" name="username">
+                                    </div>
+                                    <div class="controls Validform_checktip1 text-warning"><i class="fa fa-exclamation-circle"></i></div>
+                                </div>
+                                <div class="login-row lr-account">
+                                    <div class="input-cell">
+                                        <label for="js-passwd">密码</label>
+                                        <input type="password" id="js-passwd" tabindex="1" errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
+                                    </div>
+                                    <div class="controls Validform_checktip2 text-warning"><i class="fa fa-exclamation-circle"></i></div>
+                                </div>
+                                <div class="login-row clearfix">
+                                    <div class="input-cell fl">
+                                        <label for="js-yzm">验证码</label>
+                                        <input type="text" id="js-yzm" tabindex="1" errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
+                                    </div>
+                                    <div class="control-group fl">
+                                        <div class="controls">
+                                            <img class="verifyimg reloadverify" title="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                                        </div>
+                                    </div>
+                                    <div class="controls Validform_checktip3 text-warning"><i class="fa fa-exclamation-circle"></i></div>
+                                </div>
+                                <div class="login-switch">
+                                    <div class="button-wrap">
+                                        <a href="javascript:;" class="button" id="js-submit">登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--//帐号登录-->
+
+                        <!-- !企业登陆 -->
+                        <div class="scene-cell scene-back">
+                            <div class="login-tab">
+                                <a lgb-nav="login-scene" href="javascript:;" class="current"><s class="ilt-qrcode"></s>企业登陆</a>
+                                <a lgb-nav="login-scene scene-reversal" href="javascript:;"><span>个人登录</span></a>
+                            </div>
+                            <div class="login-contents login-2">
+
+                                <div class="login-row lr-account">
+                                    <div class="input-cell">
+                                        <label for="js-account" style="">企业帐号</label>
+                                        <input type="text" name="username" id="js-account" tabindex="2" value="">
+                                    </div>
+                                    <div class="controls Validform_checktip1 text-warning"><i class="fa fa-exclamation-circle"></i></div>
+                                </div>
+
+                                <div class="login-row lr-account">
+                                    <div class="input-cell">
+                                        <label for="js-passwd">密码</label>
+                                        <input type="password" name="password" id="js-passwd" tabindex="2">
+                                    </div>
+                                    <div class="controls Validform_checktip2 text-warning"><i class="fa fa-exclamation-circle"></i></div>
+                                </div>
+
+                                <div class="login-row clearfix">
+                                    <div class="input-cell fl">
+                                        <label for="js-yzm">验证码</label>
+                                        <input type="text" name="verify" id="js-yzm" tabindex="2">
+                                    </div>
+                                    <div class="control-group fl">
+                                        <div class="controls">
+                                            <img class="verifyimg reloadverify" title="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                                        </div>
+                                    </div>
+                                    <div class="controls Validform_checktip3 text-warning"><i class="fa fa-exclamation-circle"></i></div>
+                                </div>
+
+                                <div class="login-switch">
+                                    <div class="button-wrap">
+                                        <a href="javascript:;" class="button" id="js-submit">登录</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/企业登陆-->
+                    </div>
+
+                </div>
+                <div class="login-status">
+                    <input type="checkbox" id="js-remember_pwd" tabindex="5">
+                    <label for="js-remember_pwd">5天内免登录</label>
+                    <a href="{:U('')}" id="js-forgot_passwd" tabindex="6">无法登录?</a>
+                </div>
+                <div class="register-hint">还没有帐号？<a rel="register" href="{:U('User/register')}" target="_blank">免费注册</a></div>
+            </form>
+        </div>
+
+        
+
+</div>
+</block>
+
+<block name="script">
+    <script>
+        $(document)
+                .ajaxStart(function(){
+                    $('.text-warning').each(function(){
+                        $(this).css({
+                            'visibility' : 'hidden',
+                            'zIndex'     : '0'
+                        });
+                    });
+                })
+                .ajaxStop(function(){
+                    $("button:submit").removeClass("log-in").attr("disabled", false);
+                });
+        $(document).ready(function(){
+            /* 初始化高度 */
+            $(window).resize(function(){
+                var height = $(window).height() > 641 ? $(window).height() : 673;
+                $('.main-wrap').css('height',height+"px");
+            }).resize();
+
+            $("a[lgb-nav='login-scene scene-reversal']").each(function(){
+                $(this).on('click',function(){
+                   $('.login-scene').toggleClass('scene-reversal');
+                   if($('.login-scene').hasClass('scene-reversal')){
+                       $("form").data('type','2');
+                   }else{
+                       $("form").data('type','1');
+                   }
+                });
+            });
+            /**/
+            $('.input-cell').each(function(){
+                var label = $(this).children('label');
+                var text = label.html();
+                $(this).find('input').on('focus',function(){
+                    label.html('');
+                });
+                $(this).find('input').on('blur',function(){
+                    if($(this).val() == ''){
+                        label.html(text);
+                    }
+                });
+            });
+        });
+
+        $(document).on('keydown',function(e){
+            if(e.keyCode == 13){
+                var self = $("form");
+                var index = self.data('type');
+                var data = self.find('input[tabindex="'+index+'"]').serialize();
+                if(index == 1){
+                    $.post(self.attr("actionp"), data, success, "json");
+                }else{
+                    $.post(self.attr("action"), data, success, "json");
+                }
+                return false;
+
+                function success(data){
+                    if(data.status){
+                        window.location.href = data.url;
+                    } else {
+                        self.find(".login-"+index+" .Validform_checktip"+data.info[0]).css({
+                            'visibility' : 'visible',
+                            'zIndex'     : '1'
+                        });
+                        self.find(".login-"+index+" .Validform_checktip"+data.info[0]).attr('title',data.info[1]);
+                        //刷新验证码
+                        $(".reloadverify").click();
+                    }
+                }
+            }
+        });
+
+        $('.button').click(function(){
+            var self = $("form");
+            var index = self.data('type');
+            var data = self.find('input[tabindex="'+index+'"]').serialize();
+            var time = self.find('input:checked').attr('tabindex');
+            if(index == 1){
+                $.post(self.attr("actionp"), data, success, "json");
+            }else if(index == 2){
+                $.post(self.attr("action"), data, success, "json");
+            }
+            return false;
+
+            function success(data){
+                if(data.status){
+                    if(typeof time != 'undefined'){
+                        console.log(data);
+                    }
+                    window.location.href = data.url;
+                } else {
+                    self.find(".login-"+index+" .Validform_checktip"+data.info[0]).css({
+                        'visibility' : 'visible',
+                        'zIndex'     : '1'
+                    });
+                    self.find(".login-"+index+" .Validform_checktip"+data.info[0]).attr('title',data.info[1]);
+                    //刷新验证码
+                    $(".reloadverify").click();
+                }
+            }
+        });
+        $(function(){
+            var verifyimg = $(".verifyimg").attr("src");
+            $(".reloadverify").click(function(){
+                if( verifyimg.indexOf('?')>0){
+                    $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+                }else{
+                    $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                }
+            });
+        });
+    </script>
+</block>
+

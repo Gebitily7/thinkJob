@@ -1,0 +1,189 @@
+<extend name="Public/base"/>
+<block name="style">
+<style type="text/css">
+	.upload-pre-item{
+		width:400px;
+		cursor: pointer;
+	}
+	.mask{
+		display: none;
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		background: rgba(0,0,0,.5);
+		z-index: 999;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.mask img{
+		display: block;
+		width: 1000px;
+        height: 650px;
+		margin: 52px auto; 
+	}
+	.no-pass{
+		display: none;
+		position: fixed;
+		padding: 20px 10px;
+		width: 580px;
+		height: 300px;
+		top: 50%;
+		left: 50%;
+		transform: translate3D(-50%,-50%,0);
+		background: rgba(0,0,0,.8);
+		text-align: center;
+	}
+</style>	
+</block>
+<block name="body">
+    <div class="main-title">
+        <h2>认证详情页</h2>
+    </div>
+    <div class="mask">
+    	<img src="{$userDetail['licence']|get_cover='path'}" alt="">
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">公司名称<span class="check-tips">（用于验证查询）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" disabled value="{$userDetail.c_name}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">公司规模<span class="check-tips">（公司规模即认证方式）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" disabled value="{$userDetail.c_range}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">公司行业<span class="check-tips">（公司所处行业）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" disabled value="{$userDetail.industry|get_category_title}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">公司性质<span class="check-tips">（0:国企 1:外商融资 2:代表处 3:合资 4:民营 5:股份制企业 6:事业单位 7:国家机关 8:其他）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" disabled value="{$userDetail.property}">
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">公司详细地址<span class="check-tips">（河南省焦作市创业园3楼202室）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" disabled value="{$userDetail.c_place_detail}">
+            </div>
+        </div>
+		
+		<div class="form-item">
+            <label class="item-label">法人姓名<span class="check-tips">（实名认证）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" disabled value="{$userDetail.corporation}">
+            </div>
+        </div>
+		
+		<div class="form-item">
+            <label class="item-label">法人身份证号(18位)<span class="check-tips">（验证身份证号）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" disabled value="{$userDetail.identity_num}">
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">法人联系方式(电话)<span class="check-tips">（最好是手机）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="cor_phone" disabled value="{$userDetail.cor_phone}">
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">法人手持身份证照片<span class="check-tips">（正面）</span></label>
+            <if condition="$userDetail['identity_x'] neq ''">
+	            <div class="upload-pre-item"><img src="{$userDetail['identity_x']|get_cover='path'}"/></div>
+	        </if>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">法人手持身份证照片<span class="check-tips">（反面）</span></label>
+            <if condition="$userDetail['identity_y'] neq ''">
+	            <div class="upload-pre-item"><img src="{$userDetail['identity_y']|get_cover='path'}"/></div>
+	        </if>
+        </div>
+		
+		<div class="form-item">
+            <label class="item-label">营业执照照片<span class="check-tips">（正面）</span></label>
+            <if condition="$userDetail['licence'] neq ''">
+	            <div class="upload-pre-item"><img src="{$userDetail['licence']|get_cover='path'}"/></div>
+	        </if>
+        </div>
+
+        <div class="form-item">
+            <label class="item-label">邮箱<span class="check-tips">（用户邮箱，用于返回验证是否正确）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="email" disabled value="{$userDetail.c_email}">
+            </div>
+        </div>
+    </form>
+
+    <form action="{:U('user/pre_identify')}" method="post" class="form-identify">
+    	<input type="hidden" name="cid" value="{$userDetail.id}">
+    	<input type="hidden" name="identify" value="2">
+    </form>
+	
+	<div class="no-pass">
+		<form action="{:U('user/pre_identify')}" method="post" class="form-identify-no">
+			<input type="hidden" name="cid" value="{$userDetail.id}">
+	    	<input type="hidden" name="identify" value="3">
+	    	<label class="item-label" style="font-size:16px; color:#fff;">不通过的理由<span class="check-tips"></span></label>
+            <div class="controls">
+                <textarea name="reason" cols="61" rows="12"></textarea>
+            </div>
+	    	<div class="form-item">
+		        <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-identify-no">确定</button>
+		        <div class="btn btn-return div-return">返 回</div>
+		    </div>
+	    </form>
+	</div>
+
+	<div class="form-item">
+        <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-identify">通过</button>
+        <div class="btn btn-return div-return-show">未通过</div>
+        <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+    </div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav('{:U("user/identify/id/$tid")}');
+
+        $(document).ready(function(){
+        	var $window = $(window);
+            $window.resize(function(){
+                $(".mask").css("min-height", $window.height()+60);
+            }).resize();
+
+            $('.upload-pre-item').on('click',function(){
+            	var src = $(this).find('img').attr('src');
+            	$('.mask').find('img').attr('src',src);
+            	$('.mask').css('display','block');
+            });
+
+            $('.mask').on('click',function(){
+            	$(this).css('display','none');
+            });
+
+            $('.div-return').on('click',function(){
+            	$('.no-pass').css('display','none');
+            });
+
+            $('.div-return-show').on('click',function(){
+            	$('.no-pass').css('display','block');
+            });
+
+        });
+
+    </script>
+</block>

@@ -1,0 +1,346 @@
+<extend name="Base/userpcom"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/userp/userp.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/resume.css"/>
+</block>
+
+<block name="body">
+    <div class="mask"></div>
+    <div class="ajax-tips">
+        <span>更新失败</span>
+    </div>
+    <div class="delete-box">
+        <div class="name-top">
+            <span>删除提示</span>
+        </div>
+        <div class="name-body">
+            确定要删除 <span class="delete-name"></span>
+        </div>
+        <div class="btn-group-name">
+            <span class="btn-qr btn-delete" data-url="{:U('userp/deleteById')}" data-id="">确认</span>
+            <span class="btn-fr">取消</span>
+        </div>
+    </div>
+    <section class="content-box">
+        <div class="content-item content-top">
+            <div class="top-bg">
+                <div class="spin-mask">
+                    <span class="top-back" onclick="self.location=document.referrer;"><i class="fa fa-angle-left"></i></span>
+                    <span class="side-title">我的简历</span>
+                </div>
+            </div>
+            <div class="tx_box">
+                <figure class="u_tx">
+                    <img src="{$user.u_tx|get_cover='path'}" alt=""/>
+                    <figcaption>
+                        <span>更改头像</span>
+                    </figcaption>
+                </figure>
+                <div class="u-tx-name">
+                    <span>{$userInfo.uname}</span>
+                </div>
+            </div>
+            <div class="gx_bq">
+                <span>{$userInfo.signature}</span>
+            </div>
+        </div>
+        <div class="resume-content">
+            <div class="resume-title clearfix pos-r">
+                <div class="title-content fl"><span>已有简历</span></div>
+                <div class="resume-num">{$resumeCount}</div>
+                <eq name="resumeCount" value="5">
+                <else/>
+                    <div class="resume-add resume-add-top fr"><i class="fa fa-plus"></i></div>
+                </eq>
+            </div>
+            <ul class="resume-box">
+                <eq name="resumeCount" value="1">
+                    <li class="top-tips">暂无简历，创建一个吧</li>
+                <else/>
+                    <li class="top-tips">你当前有 <span style="color: #EB2626;">{$resumeCount}</span> 个简历，一共能建立五个简历。你还能简历 <span style="color: #0066CC;">{$resumeCount|get_sy}</span> 个</li>
+                </eq>
+                <volist name="base" id="vo">
+                    <li class="resume-item">
+                        <div class="list-top pos-r clearfix">
+                            <div class="my-resume fl">
+                                <span>{$vo.jname}</span>
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                            <div id="time_{$vo.id}" class="update-time fl"><span>更新时间</span><time class="time">{$vo.create_time|date='Y-m-d H:i:s',###}</time></div>
+                            <div class="mo_ren fr clearfix">
+                                <eq name="vo.status" value="0">
+                                    <div class="switch" data-url="{:U('userp/setDefault')}" data-id="{$vo.id}" data-val='0'><span></span></div>
+                                    <span>设为默认</span>
+                                    <else/>
+                                    <div class="switch switch-selected" data-url="{:U('userp/setDefault')}" data-id="{$vo.id}" data-val='1'><span></span></div>
+                                    <span>取消默认</span>
+                                </eq>
+
+
+                            </div>
+                            <div class="edit-name">
+                                <div class="name-top">
+                                    <span>修改简历名称</span>
+                                </div>
+                                <div class="name-body">
+                                    <label for="jname">名称：</label>
+                                    <input type="text" id="jname" class="name-input" name="jname" value="{$vo.jname}"/>
+                                </div>
+                                <div class="btn-group-name">
+                                    <span class="btn-ok" data-url="{:U('userp/updateBase')}" data-id="{$vo.id}" data-name="jname">确认</span>
+                                    <span class="btn-qx">取消</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-content">
+                            <div class="circle-progress-wrapper ajax-circle" data-id="{$vo.id}" data-url="{:U('userp/percent')}">
+                                <div class="wrapper left">
+                                    <div class="circle-progress left-circle"></div>
+                                </div>
+                                <div class="wrapper right">
+                                    <div class="circle-progress right-circle"></div>
+                                </div>
+                                <div class="percent">
+                                    <p>完整度</p>
+                                    <span style="color: #6BC5A4;">100%</span>
+                                </div>
+                            </div>
+                            <div class="tool-box">
+                                <span class="tool-item tool-update refresh" data-url="{:U('userp/refresh')}" data-id="{$vo.id}" title="刷新时间"><i class="fa fa-refresh"></i>刷新</span>
+                                <span class="tool-item tool-edit js-url" data-url="{:U('home/userp/editresume/id/'.$vo['id'])}" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i>编辑</span>
+                                <span class="tool-item tool-view js-url" data-url="{:U('home/userp/viewj/id/'.$vo['id'])}" title="预览"><i class="fa fa-eye fa-lg"></i>预览</span>
+                                <span class="tool-item tool-delete" title="删除" data-url="{:U('userp/deleteById')}" data-id="{$vo.id}" data-name="{$vo.jname}"><i class="fa fa-trash fa-lg"></i>删除</span>
+                            </div>
+                        </div>
+                    </li>
+                </volist>
+
+            </ul>
+            <eq name="resumeCount" value="5">
+
+            <else/>
+                <div class="resume-add resume-add-content ajax-url" data-url="{:U('userp/addBase')}">
+                    <span>+</span>
+                </div>
+            </eq>
+
+        </div>
+    </section>
+</block>
+
+<block name="script">
+    <script>
+
+        (function($){
+            $('.ajax-circle').each(function(){
+                var $self = $(this);
+                var url = $self.data('url');
+                var id  = $self.data('id');
+                var $left = $self.find('.left-circle');
+                var $right = $self.find('.right-circle');
+                var $per    = $self.find(".percent span");
+                var angle  = 0;
+                var val    = 0;
+                $.post(url,{id:id},function(data){
+                    if(data > 0.5){
+                        angle =Math.round(-data*360 + 135);
+                        val = Math.round(data*100);
+                        $right.css({
+                            'transform' : 'rotate3D(0,0,1,45deg)'
+                        });
+                        $left.css({
+                            'transform' : 'rotate3D(0,0,1,'+angle+'deg)'
+                        });
+                        $per.html(val+'%');
+                    }else{
+                        angle =Math.round(data*360-135);
+                        val = Math.round(data*100);
+                        $right.css({
+                            'transform' : 'rotate3D(0,0,1,'+angle+'deg)'
+                        });
+                        $left.css({
+                            'transform' : 'rotate3D(0,0,1,-135deg)'
+                        });
+                        $per.html(val+'%');
+                    }
+                });
+            });
+        }(jQuery));
+
+        if(localStorage.getItem('resumeScroll') != null){
+            $(document).scrollTop(localStorage.getItem('resumeScroll'));
+        }
+
+        $(document).on('scroll',function(){
+            var resumeScroll = $(this).scrollTop();
+            localStorage.setItem('resumeScroll',resumeScroll);
+        });
+
+        /* 删除数据 */
+        /* 删除 */
+        $('.tool-delete').on('click',function(){
+            var id = $(this).data('id');
+            var sql = $(this).data('sql');
+            var name = $(this).data('name');
+            var $del = $('.delete-box');
+            $del.find('.btn-delete').data('id',id);
+            $del.find('.delete-name').html(name);
+            $del.css('display','block');
+        });
+        $('.btn-fr').on('click',function(){
+            $('.delete-box').css('display','none');
+        });
+        $('.btn-delete').on('click',function(){
+            var $self =$(this);
+            var id = $self.data('id');
+            var url = $self.data('url');
+            alert(url);
+            if(url != ''){
+                $.post(url,{id:id},function(data){
+                    if(data.status != 1){
+                        $('.ajax-tips span').html('删除失败');
+                    }else{
+                        $('.ajax-tips span').html('删除成功');
+                    }
+                    $self.parent().parent('.delete-box').css('display','none');
+                    $('.ajax-tips').animate({
+                        'opacity' : 1
+                    },1000).delay(1000).animate({
+                        'opacity' : 0
+                    },400,function(){
+                        location.href = "{:U('userp/resume')}";
+                    });
+                });
+            }
+        });
+
+        $('.switch').on('click',function(){
+            var $self = $(this);
+            var id = $self.data('id');
+            var url = $self.data('url');
+            var val = $self.data('val');
+            var data = {
+                'id' : id
+            };
+            if(val == 0){
+                data['status'] = 1;
+                $.post(url,data,function(data){
+                    if(data.status != 1){
+                        $('.ajax-tips span').html('设置失败');
+                    }else{
+                        $('.ajax-tips span').html('设置成功');
+                        if(!$self.hasClass('switch-selected')){
+                            $('.switch').removeClass('switch-selected');
+                            $self.addClass('switch-selected');
+                            $self.parent('.mo_ren').find('span').html('取消默认');
+                        }
+                        $self.data('val',1);
+                    }
+                    $('.ajax-tips').animate({
+                        'opacity' : 1
+                    },1000).delay(1000).animate({
+                        'opacity' : 0
+                    },400,function(){
+                        location.href = "{:U('')}";
+                    });
+                });
+            }else if(val == 1){
+                data['status'] = 0;
+                $.post(url,data,function(data){
+                    if(data.status != 1){
+                        $('.ajax-tips span').html('设置失败');
+                    }else{
+                        $('.ajax-tips span').html('设置成功');
+                        if($self.hasClass('switch-selected')){
+                            $self.removeClass('switch-selected');
+                            $self.parent('.mo_ren').find('span').html('设为默认');
+                        }
+                        $self.data('val',0);
+                    }
+                    $('.ajax-tips').animate({
+                        'opacity' : 1
+                    },1000).delay(1000).animate({
+                        'opacity' : 0
+                    },400,function(){
+                        location.href = "{:U('')}";
+                    });
+                });
+            }
+        });
+
+        /* 更新时间 */
+        $('.refresh').on('click',function(){
+            var $self = $(this);
+            var id = $self.data('id');
+            var url = $self.data('url');
+            $.post(url,{id : id},function(data){
+                if(data.status != 1){
+                    $('.ajax-tips span').html('更新失败');
+                }else{
+                    $('.ajax-tips span').html(data.info);
+                    $("#time_"+id).find('.time').html(data['time']);
+                }
+                $('.ajax-tips').animate({
+                    'opacity' : 1
+                },1000).delay(1000).animate({
+                    'opacity' : 0
+                },400);
+            });
+        });
+
+        /* 新增 */
+        $('.ajax-url').on('click',function(){
+            var url = $(this).data('url');
+            $.post(url,{},function(data){
+                $('.ajax-tips span').html(data.info);
+                $('.ajax-tips').animate({
+                    'opacity' : 1
+                },1000).delay(1000).animate({
+                    'opacity' : 0
+                },400,function(){
+                    location.href = "{:U('')}";
+                });
+            });
+        });
+
+        /* 修改简历名字 */
+        $('.my-resume').on('click',function(e){
+            e.stopPropagation();
+            var $editBox = $(this).siblings('.edit-name');
+            if($editBox.css('display') == 'block'){
+                $editBox.css('display','none');
+            }else{
+                $editBox.css('display','block');
+            }
+        });
+
+        $('.btn-qx').on('click',function(){
+            $(this).parent().parent('.edit-name').css('display','none');
+        });
+
+        $('.btn-ok').on('click',function(){
+            var $self = $(this);
+            var input = $self.data('name');
+            var value = $("input[name="+input+"]").val();
+            var url = $self.data('url');
+            var id = $self.data('id');
+            $.post(url,{
+                id    : id,
+                jname : value
+            },function(data){
+                if(data.status != 1){
+                    $('.ajax-tips span').html('更改出错');
+                }else{
+                    $('.ajax-tips span').html(data.info);
+                }
+                $('.ajax-tips').animate({
+                    'opacity' : 1
+                },1000).delay(1000).animate({
+                    'opacity' : 0
+                },400);
+                $self.parent().parent('.edit-name').css('display','none');
+            })
+        });
+
+    </script>
+</block>

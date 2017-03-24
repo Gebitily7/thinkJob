@@ -1,0 +1,183 @@
+<select name="province" id="J_province"></select>
+<select name="city" id="J_city" style="display:none;"></select>
+<span style="display:<if condition = '$param.s eq ""'>none</if>">
+	<select name="district" id="J_district" style="display:none;"></select>
+	<select name="community" id="J_community" style="display:none;"></select>
+</span>
+<input type="hidden" name="chinacity" id="chinacity" value="{$param.value}" />
+<input type="hidden" name="work_place" id="place" value="{$param.city}" />
+
+<script type="text/javascript">
+var $arr1 = [];
+var city = [];
+var id=<if condition="$param.value neq ''">{$param.value}<else />-1</if>;
+var status = <if condition="$param.status neq ''">{$param.status}<else />0</if>;
+var cityname   = <if condition="$param.cityname neq ''">'{$param.cityname}'<else />0</if>;
+if(status != 0){
+	///ajax请求
+	var data = {
+		id : id
+	};
+	//alert(data.id);
+	$.ajax({
+		url : "{:addons_url('ChinaCity://ChinaCity/getAll')}",
+		async : false,
+		data : "id="+id,
+		type : 'post',
+		dataType: 'json',
+		success : function(res){
+					$(res).each(function(i,item){
+						$arr1[i] = item['id'];
+					});
+				}
+	});
+	// $.post("{:addons_url('ChinaCity://ChinaCity/getAll')}",data,function(res){
+	// 	$(res).each(function(i,item){
+	// 		$arr1[i] = item['id'];
+	// 	});
+	// });
+}
+$(function(){
+	var $province = $("#J_province"),
+		$city     = $("#J_city"),
+		$district = $("#J_district"),
+		$community= $("#J_community"),
+		$chinacity= $('#chinacity'),
+		$place    = $('#place');
+
+
+		if(id == -1){
+			$chinacity.val(1);
+			$place.val('北京市');
+		}
+	//var $arr = [$province,$city,$district,$community];
+	//alert($arr1.length);
+	var pid=<if condition="$param.province neq ''">{$param.province}<else />0</if>;  //默认省份id
+	var cid=<if condition="$param.city neq ''">{$param.city}<else />0</if>;  //默认城市id
+	var did=<if condition="$param.district neq ''">{$param.district}<else />0</if>;  //默认区县市id
+	var coid=<if condition="$param.community neq ''">{$param.community}<else />0</if>;  //默认乡镇id
+	//alert(pid);
+	//alert($arr1.length);
+	if($arr1.length >= 1) pid = $arr1[0];
+	
+	// 省份
+	$.post("{:addons_url('ChinaCity://ChinaCity/getProvince')}", {pid: pid}, function(result){
+		city[0] = result['cityname'];
+		$province.html(result['content']);
+	});
+	if($arr1.length >= 2){
+		cid = $arr1[1];
+		// 市
+		$.post('{:addons_url("ChinaCity://ChinaCity/getCity")}', {pid: pid, cid: cid}, function(result){
+			city[1] = result['cityname'];
+			$city.show().html(result['content']);
+		},'json');
+	}
+	if($arr1.length >= 3){
+		did = $arr1[2];
+		// 县
+		$.post('{:addons_url("ChinaCity://ChinaCity/getDistrict")}', {cid: cid, did: did}, function(result){
+			city[2] = result['cityname'];
+			$district.show().html(result['content']);
+		});	
+	}
+	if($arr1.length >= 4){
+		coid = $arr1[3];
+		//console.log(coid);
+		// 县
+		$.post('{:addons_url("ChinaCity://ChinaCity/getCommunity")}', {did: did, coid: coid}, function(result){
+			city[3] = result['cityname'];
+			$community.show().html(result['content']);
+		});	
+	}
+	
+	
+
+	// 省份变动来调用市
+	$province.bind('change click',function(){
+		var pid = $(this).val();
+		var index = this.selectedIndex;
+		city[0] = this.options[index].innerHTML;
+		var cid1 = $city.val();
+		if(pid < 0){
+			$city.hide(300);
+			$district.hide();
+			$community.hide();
+			return false;
+		}	
+		$.post('{:addons_url("ChinaCity://ChinaCity/getCity")}', {pid: pid, cid: cid}, function(result){
+			$district.hide();
+			$community.hide();
+			$city.show().html(result['content']);
+			if(cid1 < 0){
+				$chinacity.val(pid);
+				$place.val(city[0]);
+			}
+		},'json');
+	});
+
+	// 县份变动来调用县区
+	$city.bind('change click',function(){
+		var pid1 = $province.val();
+		//city[0] = $province[0].options[pid1].innerHTML;
+		var cid = $(this).val();
+		var index = this.selectedIndex;
+		cid != -1 && (city[1] = this.options[index].innerHTML);
+		var did1 = $district .val();
+				
+		$.post('{:addons_url("ChinaCity://ChinaCity/getDistrict")}', {cid: cid, did: did}, function(result){
+			$community.hide();
+			$district.show().html(result['content']);
+			if((did1 == null || did1 < 0) && cid < 0){
+				$chinacity.val(pid1);
+				$place.val(city[0]);
+			}else if(did1 < 0 || did1 == null){
+				$chinacity.val(cid);
+				$place.val(city[1]);
+			}
+			if(cid < 0){
+				$district.hide();
+				$community.hide();
+			}
+		});
+	});
+	
+	$district.bind('change click',function(){
+		var cid1 = $city.val();
+		var did = $(this).val();
+		var index = this.selectedIndex;
+		did != -1 && (city[2] = this.options[index].innerHTML);
+		var coid1 = $community.val();
+		$.post('{:addons_url("ChinaCity://ChinaCity/getCommunity")}', {did: did, coid: coid}, function(result){
+			$community.show().html(result);
+			if((coid1 == null || coid1 < 0) && did < 0){
+				$chinacity.val(cid1);
+				$place.val(city[1]);
+			}else if(coid1 < 0 || coid1 == null){
+				$chinacity.val(did);
+				$place.val(city[2]);
+			}
+			if(result.length == 33){
+				$community.hide();
+			}
+			if(did < 0){
+				$community.hide();
+			}
+		});
+	});
+	$community.bind('change click',function(){
+		var did1 = $district .val();
+		var coid1 = $community.val();
+		var index = this.selectedIndex;
+		coid1 != -1 && (city[3] = this.options[index].innerHTML);
+		if (coid1 > 0){
+			$chinacity.val(coid1);
+			$place.val(city[3]);
+		}else{
+			$chinacity.val(did1);
+			$place.val(city[2]);
+		}
+	});
+	
+});
+</script>

@@ -1,0 +1,109 @@
+/* header */
+body{
+    background: url('../../images/intro/11.jpg') no-repeat;
+}
+.subhead{
+    padding: 10px 0;
+    background: rgba(255,255,255,.3);
+    color: #FFFFFF;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+/* body */
+.main-wrap{
+    padding: 20px 2px;
+}
+.form-bar{
+    width: 690px;
+    margin: 0 auto;
+    border-bottom: 2px solid #009C63;
+}
+.bar{
+    display: inline-block;
+    font-size: 1.3em;
+    padding: 7px 20px;
+    cursor: pointer;
+    background: rgba(255,255,255,.2);
+    color: #FFFFFF;
+}
+.bar-checked{
+    background: #009C63;
+    color: #FFFFFF;
+}
+.bar span{
+    text-align: center;
+}
+.controls{
+    display: inline-block;
+}
+
+.scene-back{
+    display: none;
+}
+/* input */
+.control-group{
+    margin: 10px 5px;
+    font-size: 1.2em;
+}
+.control-group label{
+    display: inline-block;
+    width: 70px;
+    padding-right: 15px;
+    line-height: 40px;
+    text-align: right;
+}
+.control-group input{
+    width: 300px;
+    height: 40px;
+    background: rgba(255,255,255,.5);
+    border: 1px solid #CCCCCC;
+}
+.control-group{
+    position: relative;
+}
+.control-group .tips{
+    position: absolute;
+    top: 12px;
+    left: 400px;
+    color: #41B91E;
+}
+.yzm input{
+    width: 120px;
+}
+.yzm .control-cap{
+    position: absolute;
+    top: -3px;
+    left: 228px;
+}
+/* button */
+.button-wrap{
+    width: 400px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 30px;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.4em;
+    line-height: 40px;
+}
+.button-wrap a{
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    background: #009C63;
+    color: #ffffff;
+}
+.button-wrap a:hover{
+    background: #0066CC;
+    color: #000;
+}
+.register-box{
+    width:690px;
+    margin: 10px auto;
+    padding-top: 10px;
+    background: rgba(255, 255, 255, .8);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 5px;
+}

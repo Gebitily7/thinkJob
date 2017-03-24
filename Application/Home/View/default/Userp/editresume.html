@@ -1,0 +1,1452 @@
+<extend name="Base/userpcom"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/userp/userp.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/edit.css"/>
+</block>
+
+<block name="body">
+    <div class="mask"></div>
+    <div class="delete-box">
+        <div class="name-top">
+            <span>删除提示</span>
+        </div>
+        <div class="name-body">
+            确定要删除 <span class="delete-name"></span>
+        </div>
+        <div class="btn-group-name">
+            <span class="btn-qr btn-delete" data-url="{:U('userp/deleteEdit')}" data-id="" data-sql="">确认</span>
+            <span class="btn-fr">取消</span>
+        </div>
+    </div>
+    <div class="ajax-tips">
+        <span>更新失败</span>
+    </div>
+    <section class="content-box">
+        <!-- 头部背景图 -->
+        <div class="content-item content-top">
+            <div class="top-bg">
+                <div class="spin-mask">
+                    <span class="top-back" onclick="self.location=document.referrer;"><i class="fa fa-angle-left"></i></span>
+                    <span class="side-title">编辑简历</span>
+                </div>
+            </div>
+            <div class="tx_box">
+                <figure class="u_tx">
+                    <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    <figcaption>
+                        <span>更改头像</span>
+                    </figcaption>
+                </figure>
+                <div class="u-tx-name">
+                    <span>{$userInfo.uname}</span>
+                </div>
+            </div>
+            <div class="gx_bq">
+                <span>{$userInfo.signature}</span>
+            </div>
+        </div>
+        <!-- /头部背景图 -->
+
+
+
+        <!-- 简介 -->
+        <div class="content-body clearfix">
+            <div class="body-item">
+                <ul>
+                    <li class="li-item">
+                        <i class="fa fa-user"></i>
+                        <div class="em-item">
+                            <p>
+                                <eq name="userInfo.sex" value="1">
+                                    <em>男</em>
+                                    <else/>
+                                    <em>女</em>
+                                </eq>
+                                <em>{$userInfo.birthday|get_age}岁</em>
+                            </p>
+                            <p>
+                                <em>身高：{$userInfo.height}cm</em>
+                                <eq name="userInfo.marry" value="1">
+                                    <em>已婚</em>
+                                    <else/>
+                                    <em>未婚</em>
+                                </eq>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-briefcase"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>{$userInfo.max_edu|get_max_edu}</em>
+                                <em>{$userInfo.work_experience|get_user_experience}</em>
+                            </p>
+                            <p>
+                                <em>驾照：{$userInfo.driver|get_user_drive}</em>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-tags"></i>
+                        <div class="skill-label-box">
+                            {$userInfo.skill|format_zw_label}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="body-item">
+                <ul>
+                    <li class="li-item">
+                        <i class="fa fa-bookmark"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>状态：{$userInfo.now_status|get_status}</em>
+                            </p>
+                            <p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-map-marker"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>现居：{$userInfo.present_addr|format_place}</em>
+                            </p>
+                            <p>
+                                <em>户口：{$userInfo.birth_place|format_place}</em>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-mobile fa-lg"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>{$userInfo.phone}</em>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-globe"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>Email：{$userInfo.email}</em>
+                            </p>
+                            <p>
+                                <em>QQ：{$userInfo.u_qq}</em>
+                            </p>
+                            <p>
+                                <em>微信：{$userInfo.u_weixin}</em>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 简介 -->
+
+        <!-- 工作经历 -->
+        <div class="re-item work-exp">
+            <!-- 分隔条 -->
+            <div class="del">
+                <div class="dashed"></div>
+                <span>工作经历</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <!-- addBox -->
+            <eq name="workNum" value="0">
+                <div class="add-box add-btn" data-this="" data-class="work-exp-edit">
+                    <i>+&ensp;</i>
+                    <span>添加工作经历</span>
+                </div>
+                <else/>
+                <div class="edit-add  clearfix">
+                    <div class="add-left fl">
+                        <span>最多添加5个工作经历</span>
+                    </div>
+                    <div class="fr add-right add-btn" data-this="" data-class="work-exp-edit">
+                        <i>+</i>
+                        <span>添加</span>
+                    </div>
+                </div>
+            </eq>
+            <!-- /addBox -->
+
+            <!-- 新增 -->
+            <div class="content-body-edit work-exp-edit">
+                <div class="user-edit">
+                    <form id="workExp" data-action="{:U('home/userp/updateWork')}">
+                        <input type="hidden" name="uid" value="{$base.id}"/>
+                        <ul class="from-box">
+                            <li class="clearfix pos-r">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>时间段</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="start_time" value=""/>
+                                    </div>
+                                </div>
+                                <span style="position: absolute;top:40px;"> 至 </span>
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em></em>
+                                        <span></span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="end_time" value=""/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>公司名称</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="company" value=""/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>公司行业</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="industry" value=""/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <input type="hidden" class="range" name="range" value=""/>
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>公司规模</span>
+                                    </div>
+                                    <div class="i-mar select-box pos-r">
+                                        <span class="ipt-span click-span" data-type="range">请选择</span>
+                                        <ul class="select-content">
+                                            <li class='select-item'  data-val="0" data-title="20人以下">20人以下</li>
+                                            <li class='select-item' data-val="1" data-title="20-40人">20-40人</li>
+                                            <li class='select-item' data-val="2" data-title="40-80人">40-80人</li>
+                                            <li class='select-item' data-val="3" data-title="80-150人">80-150人</li>
+                                            <li class='select-item' data-val="4" data-title="150-300人">150-300人</li>
+                                            <li class='select-item' data-val="5" data-title="300-500人">300-500人</li>
+                                            <li class='select-item' data-val="6" data-title="500人以上">500人以上</li>
+                                        </ul>
+                                        <i class="fa fa-angle-down select-down-icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <input type="hidden" class="property" name="property" value=""/>
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>公司性质</span>
+                                    </div>
+                                    <div class="i-mar select-box pos-r">
+                                        <span class="ipt-span degree click-span" data-type="property">请选择</span>
+                                        <ul class="select-content">
+                                            <li class='select-item' data-val="1" data-title="国企">国企</li>
+                                            <li class='select-item' data-val="2" data-title="外商融资">外商融资</li>
+                                            <li class='select-item' data-val="3" data-title="代表处">代表处</li>
+                                            <li class='select-item' data-val="4" data-title="合资">合资</li>
+                                            <li class='select-item' data-val="5" data-title="民营">民营</li>
+                                            <li class='select-item' data-val="6" data-title="股份制">股份制</li>
+                                            <li class='select-item' data-val="7" data-title="国家机关">:国家机关</li>
+                                            <li class='select-item' data-val="8" data-title="事业单位">事业单位</li>
+                                        </ul>
+                                        <i class="fa fa-angle-down select-down-icon"></i>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>职位名称</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="u_pos" value=""/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>职位类别</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="pos_cate" value=""/>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>部门</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="department" value=""/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>月薪(税前)(5000或4000-5000或 保密)</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="salary" value=""/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>&ensp;</em>
+                                <span>工作内容描述</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="work_content" cols="66" rows="6"></textarea>
+                                <div class="num-limit"><span>0</span>/1000</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="angle"></div>
+                <div class="btn-group">
+                    <span class="btn-item" data-type="submit" data-form="workExp" data-class1="work-exp-edit" data-class2="work-box">确定</span>
+                    <span class="btn-item" data-type="qx" data-class1="work-exp-edit" data-class2="work-box">取消</span>
+                </div>
+            </div>
+            <!-- /新增 -->
+            <volist name="work" id="vo">
+            <!-- content -->
+            <div class="exp-box work-box-{$vo.id}">
+                <div class="minCir circle"></div>
+                <div class="mods">
+                    <div class="exp-content">
+                        <div class="edit-group">
+                            <span class="tool-item tool-edit edit-btn" data-this="work-box" data-class="work-exp-edit" data-type="{$vo.id}" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></span>
+                            <span class="tool-item tool-delete" data-id="{$vo.id}" data-sql="sql_u_work" data-name="{$vo.u_pos}" title="删除"><i class="fa fa-trash fa-lg"></i></span>
+                        </div>
+                        <div class="title-name">
+                            <h3>{$vo.u_pos}</h3>
+                        </div>
+                        <div class="detail-box">
+                            <div class="maxCir">
+                                <span class="circle"></span>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-time"><time>{$vo.start_time|date='Y.m.d',###}</time>&ensp;&ensp;-&ensp;&ensp;<time>{$vo.end_time|date='Y.m.d',###}</time></div>
+                                <div class="detail-detail">
+                                    <p class="bor-em">
+                                        <em>{$vo.company}</em>
+                                        <em>{$vo.property|get_work_property}</em>
+                                        <em>{$vo.range|get_work_range}</em>
+                                    </p>
+                                    <p>
+                                        <em>所属行业：{$vo.industry}</em>
+                                        <em>{$vo.pos_cate}</em>
+                                    </p>
+                                    <p class="bor-em">
+                                        <em>{$vo.department}</em>
+                                        <em>{$vo.u_pos}</em>
+                                    </p>
+                                    <p>
+                                        <em>月薪：{$vo.salary}</em>
+                                    </p>
+                                </div>
+                                <div class="detail-desc">
+                                    {$vo.work_content}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="minCir circle"></div>
+            </div>
+            <!-- /content -->
+
+            <!-- 编辑 -->
+            <div class="content-body-edit work-exp-edit-{$vo.id}">
+                <div class="user-edit">
+                    <form id="workExp-{$vo.id}" data-action="{:U('userp/updateWork')}">
+                        <input type="hidden" name="uid" value="{$base.id}"/>
+                        <input type="hidden" name="id" value="{$vo.id}"/>
+                        <ul class="from-box">
+                            <li class="clearfix pos-r">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>时间</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="start_time" value="{$vo.start_time|date='Y-m-d',###}"/>
+                                    </div>
+                                </div>
+                                <span style="position: absolute;top:40px;"> 至 </span>
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em></em>
+                                        <span></span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="end_time" value="{$vo.end_time|date='Y-m-d',###}"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>公司名称</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="company" value="{$vo.company}"/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>公司行业</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="industry" value="{$vo.industry}"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <input type="hidden" class="range" name="range" value="{$vo.range}"/>
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>公司规模</span>
+                                    </div>
+                                    <div class="i-mar select-box pos-r">
+                                        <span class="ipt-span degree click-span" data-type="range">{$vo.range|get_work_range}</span>
+                                        <ul class="select-content">
+                                            <li class='select-item <eq name="vo.range" value="0">item-on</eq>' data-val="0" data-title="20人以下">20人以下</li>
+                                            <li class='select-item <eq name="vo.range" value="1">item-on</eq>' data-val="1" data-title="20-40人">20-40人</li>
+                                            <li class='select-item <eq name="vo.range" value="2">item-on</eq>' data-val="2" data-title="40-80人">40-80人</li>
+                                            <li class='select-item <eq name="vo.range" value="3">item-on</eq>' data-val="3" data-title="80-150人">80-150人</li>
+                                            <li class='select-item <eq name="vo.range" value="4">item-on</eq>' data-val="4" data-title="150-300人">150-300人</li>
+                                            <li class='select-item <eq name="vo.range" value="5">item-on</eq>' data-val="5" data-title="300-500人">300-500人</li>
+                                            <li class='select-item <eq name="vo.range" value="6">item-on</eq>' data-val="6" data-title="500人以上">500人以上</li>
+                                        </ul>
+                                        <i class="fa fa-angle-down select-down-icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <input type="hidden" class="property" name="property" value="{$vo.property}"/>
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>公司性质</span>
+                                    </div>
+                                    <div class="i-mar select-box pos-r">
+                                        <span class="ipt-span degree click-span" data-type="property">{$vo.property|get_work_property}</span>
+                                        <ul class="select-content">
+                                            <li class='select-item <eq name="vo.property" value="0">item-on</eq>' data-val="0" data-title="国企">国企</li>
+                                            <li class='select-item <eq name="vo.property" value="1">item-on</eq>' data-val="1" data-title="外商融资">外商融资</li>
+                                            <li class='select-item <eq name="vo.property" value="2">item-on</eq>' data-val="2" data-title="代表处">代表处</li>
+                                            <li class='select-item <eq name="vo.property" value="3">item-on</eq>' data-val="3" data-title="合资">合资</li>
+                                            <li class='select-item <eq name="vo.property" value="4">item-on</eq>' data-val="4" data-title="民营">民营</li>
+                                            <li class='select-item <eq name="vo.property" value="5">item-on</eq>' data-val="5" data-title="股份制">股份制</li>
+                                            <li class='select-item <eq name="vo.property" value="6">item-on</eq>' data-val="6" data-title="国家机关">国家机关</li>
+                                            <li class='select-item <eq name="vo.property" value="6">item-on</eq>' data-val="7" data-title="事业单位">事业单位</li>
+                                        </ul>
+                                        <i class="fa fa-angle-down select-down-icon"></i>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>职位名称</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="u_pos" value="{$vo.u_pos}"/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>职位类别</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="pos_cate" value="{$vo.pos_cate}"/>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>部门</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="department" value="{$vo.department}"/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>月薪(税前)</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="salary" value="{$vo.salary}"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>&ensp;</em>
+                                <span>工作内容描述</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="work_content" cols="66" rows="5">{$vo.work_content}</textarea>
+                                <div class="num-limit"><span>{$vo.work_content|mb_strlen='UTF8'}</span>/1000</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="angle"></div>
+                <div class="btn-group">
+                    <span class="btn-item" data-type="submit" data-form="workExp-{$vo.id}" data-class1="work-exp-edit-{$vo.id}" data-class2="work-box-{$vo.id}">确定</span>
+                    <span class="btn-item" data-type="qx" data-class1="work-exp-edit-{$vo.id}" data-class2="work-box-{$vo.id}">取消</span>
+                </div>
+            </div>
+            <!-- /编辑 -->
+            </volist>
+        </div>
+        <!-- /工作经历 -->
+
+        <!-- 教育经历 -->
+        <div class="re-item education-exp">
+            <!-- 分隔条 -->
+            <div class="del">
+                <div class="dashed"></div>
+                <span>教育经历</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <!-- addBox -->
+            <eq name="eduNum" value="0">
+                <div class="add-box add-btn" data-this="" data-class="education-exp-edit">
+                    <i>+&ensp;</i>
+                    <span>添加工作经历</span>
+                </div>
+                <else/>
+                <div class="edit-add clearfix">
+                    <div class="add-left fl">
+                        <span>最多添加5个教育经历</span>
+                    </div>
+                    <div class="fr add-right add-btn" data-this="" data-class="education-exp-edit">
+                        <i>+</i>
+                        <span>添加</span>
+                    </div>
+                </div>
+            </eq>
+
+
+            <!-- /addBox -->
+
+            <div class="content-body-edit education-exp-edit">
+                <div class="user-edit">
+                    <form id="eduExp" data-action="{:U('userp/updateEdu')}">
+                        <input type="hidden" name="uid" value="{$base.id}"/>
+                        <ul class="from-box">
+                            <li class="clearfix pos-r">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>就读时间</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="start_time" value=""/>
+                                    </div>
+                                </div>
+                                <span style="position: absolute;top:40px;"> 至 </span>
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em></em>
+                                        <span></span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="end_time" value=""/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>学校名称</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="school" value="{$userInfo.school}"/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <input type="hidden" class="academic" name="academic" value=""/>
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>所修学历</span>
+                                    </div>
+                                    <div class="i-mar select-box pos-r">
+                                        <span class="ipt-span degree click-span" data-type="academic"></span>
+                                        <ul class="select-content">
+                                            <li class='select-item' data-val="0" data-title="初中">初中</li>
+                                            <li class='select-item' data-val="1" data-title="高中">高中</li>
+                                            <li class='select-item' data-val="2" data-title="大专">大专</li>
+                                            <li class='select-item' data-val="3" data-title="本科">本科</li>
+                                            <li class='select-item' data-val="4" data-title="硕士">硕士</li>
+                                            <li class='select-item' data-val="5" data-title="博士">博士</li>
+                                            <li class='select-item' data-val="6" data-title="其他">其他</li>
+                                        </ul>
+                                        <i class="fa fa-angle-down select-down-icon"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>所修专业</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="major" value=""/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>&ensp;</em>
+                                <span>在校学习生活</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="school_exp" id="" cols="66" rows="5">{$edu.school_exp}</textarea>
+                                <div class="num-limit"><span>0</span>/1000</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="angle">
+
+                </div>
+                <div class="btn-group">
+                    <span class="btn-item" data-type="submit" data-form="eduExp" data-class1="education-exp-edit" data-class2="education-box">确定</span>
+                    <span class="btn-item" data-type="qx" data-class1="education-exp-edit" data-class2="education-box">取消</span>
+                </div>
+            </div>
+
+            <volist name="edu" id="vo">
+            <!-- content -->
+            <div class="exp-box education-box-{$vo.id}">
+                <div class="minCir circle"></div>
+                <div class="mods">
+                    <div class="exp-content">
+                        <div class="edit-group">
+                            <span class="tool-item tool-edit add-btn" data-this="education-box" data-class="education-exp-edit-{$vo.id}" data-type="{$vo.id}" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></span>
+                            <span class="tool-item tool-delete" data-id="{$vo.id}" data-sql="sql_u_work" data-name="{$vo.school}" title="删除"><i class="fa fa-trash fa-lg"></i></span>
+                        </div>
+                        <div class="title-name">
+                            <h3>{$vo.school}</h3>
+                        </div>
+                        <div class="detail-box">
+                            <div class="maxCir">
+                                <span class="circle"></span>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-time"><time>{$vo.start_time|date='Y.m.d',###}</time>&ensp;&ensp;-&ensp;&ensp;<time>{$vo.end_time|date='Y.m.d',###}</time></div>
+                                <div class="detail-detail">
+                                    <p class="pad-em">
+                                        <em>{$vo.academic|get_max_edu}</em>
+                                        <em>{$vo.major}</em>
+                                    </p>
+                                </div>
+                                <div class="detail-desc">
+                                    {$vo.school_exp}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="minCir circle"></div>
+            </div>
+            <!-- /content -->
+
+            <div class="content-body-edit education-exp-edit-{$vo.id}">
+                <div class="user-edit">
+                    <form id="eduExp-{$vo.id}" data-action="{:U('userp/updateEdu')}">
+                        <input type="hidden" name="uid" value="{$base.id}"/>
+                        <input type="hidden" name="id" value="{$vo.id}"/>
+                        <ul class="from-box">
+                            <li class="clearfix pos-r">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>就读时间</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="start_time" value="{$vo.start_time|date='Y-m-d',###}"/>
+                                    </div>
+                                </div>
+                                <span style="position: absolute;top:40px;"> 至 </span>
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em></em>
+                                        <span></span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="end_time" value="{$vo.end_time|date='Y-m-d',###}"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>学校名称</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="school" value="{$vo.school}"/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <input type="hidden" class="academic" name="academic" value="{$vo.academic}"/>
+                                    <div class="input-title">
+                                        <em>&ensp;</em>
+                                        <span>所修学历</span>
+                                    </div>
+                                    <div class="i-mar select-box pos-r">
+                                        <span class="ipt-span degree click-span" data-type="academic">{$vo.academic|get_max_edu}</span>
+                                        <ul class="select-content">
+                                            <li class='select-item <eq name="vo.academic" value="0">item-on</eq>' data-val="0" data-title="初中">初中</li>
+                                            <li class='select-item <eq name="vo.academic" value="1">item-on</eq>' data-val="1" data-title="高中">高中</li>
+                                            <li class='select-item <eq name="vo.academic" value="2">item-on</eq>' data-val="2" data-title="大专">大专</li>
+                                            <li class='select-item <eq name="vo.academic" value="3">item-on</eq>' data-val="3" data-title="本科">本科</li>
+                                            <li class='select-item <eq name="vo.academic" value="4">item-on</eq>' data-val="4" data-title="硕士">硕士</li>
+                                            <li class='select-item <eq name="vo.academic" value="5">item-on</eq>' data-val="5" data-title="博士">博士</li>
+                                            <li class='select-item <eq name="vo.academic" value="6">item-on</eq>' data-val="6" data-title="其他">其他</li>
+                                        </ul>
+                                        <i class="fa fa-angle-down select-down-icon"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>所修专业</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="major" value="{$vo.major}"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>&ensp;</em>
+                                <span>在校学习生活</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="school_exp" cols="66" rows="5">{$vo.school_exp}</textarea>
+                                <div class="num-limit"><span>{$vo.school_exp|mb_strlen='UTF8'}</span>/1000</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="angle">
+
+                </div>
+                <div class="btn-group">
+                    <span class="btn-item" data-type="submit" data-form="eduExp-{$vo.id}" data-class1="education-exp-edit-{$vo.id}" data-class2="education-box-{$vo.id}">确定</span>
+                    <span class="btn-item" data-type="qx" data-class1="education-exp-edit-{$vo.id}" data-class2="education-box-{$vo.id}">取消</span>
+                </div>
+            </div>
+            </volist>
+        </div>
+
+        <!-- /教育经历 -->
+
+        <!-- 项目经验 -->
+        <div class="re-item project-exp">
+            <!-- 分隔条 -->
+            <div class="del">
+                <div class="dashed"></div>
+                <span>项目经验</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <!-- addBox -->
+            <eq name="proNum" value="0">
+                <div class="add-box add-btn" data-this="project-box" data-class="project-exp-edit" data-type="0">
+                    <i>+&ensp;</i>
+                    <span>添加项目经验</span>
+                </div>
+            <else/>
+                <div class="edit-add clearfix">
+                    <div class="add-left fl">
+                        <span>最多添加5个项目经验</span>
+                    </div>
+                    <div class="fr add-right add-btn" data-this="project-box" data-class="project-exp-edit" data-type="0">
+                        <i>+</i>
+                        <span>添加</span>
+                    </div>
+                </div>
+            </eq>
+            <!-- /addBox -->
+
+            <div class="content-body-edit project-exp-edit">
+                <div class="user-edit">
+                    <form id="proExp" data-action="{:U('userp/updatePro')}">
+                        <input type="hidden" name="uid" value="{$base.id}"/>
+                        <ul class="from-box">
+                            <li class="clearfix pos-r">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>项目时间</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="start_time" value=""/>
+                                    </div>
+                                </div>
+                                <span style="position: absolute;top:40px;"> 至 </span>
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em></em>
+                                        <span></span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="end_time" value=""/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>项目名称</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="pro_name" value=""/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>*</em>
+                                <span>你的职责</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="pro_pos"  cols="66" rows="5"></textarea>
+                                <div class="num-limit"><span>0</span>/1000</div>
+                            </div>
+                        </div>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>&ensp;</em>
+                                <span>你的职责项目描述</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="pro_desc" cols="66" rows="5"></textarea>
+                                <div class="num-limit"><span>0</span>/1000</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="angle"></div>
+                <div class="btn-group">
+                    <span class="btn-item" data-type="submit" data-form="proExp" data-class1="project-exp-edit" data-class2="project-box">确定</span>
+                    <span class="btn-item" data-type="qx" data-class1="project-exp-edit" data-class2="project-box">取消</span>
+                </div>
+            </div>
+
+            <volist name="pro" id="vo">
+            <!-- content -->
+            <div class="exp-box project-box-{$vo.id}">
+                <div class="minCir circle"></div>
+                <div class="mods">
+                    <div class="exp-content">
+                        <div class="edit-group">
+                            <span class="tool-item tool-edit add-btn" data-this="project-box-{$vo.id}" data-class="project-exp-edit-{$vo.id}" data-type="{$vo.id}" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></span>
+                            <span class="tool-item tool-delete" title="删除"><i class="fa fa-trash fa-lg"></i></span>
+                        </div>
+                        <div class="title-name">
+                            <h3>{$vo.pro_name}</h3>
+                        </div>
+                        <div class="detail-box">
+                            <div class="maxCir">
+                                <span class="circle"></span>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-time"><time>{$vo.start_time|date='Y.m.d',###}</time>&ensp;&ensp;-&ensp;&ensp;<time>{$vo.end_time|date='Y.m.d',###}</time></div>
+                                <div class="detail-desc">
+                                    {$vo.pro_pos}
+                                </div>
+                                <div class="detail-desc">
+                                    {$vo.pro_desc}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="minCir circle"></div>
+            </div>
+            <!-- /content -->
+
+            <div class="content-body-edit project-exp-edit-{$vo.id}">
+                <div class="user-edit">
+                    <form id="proExp-{$vo.id}" data-action="{:U('userp/updatePro')}">
+                        <input type="hidden" name="uid" value="{$base.id}"/>
+                        <input type="hidden" name="id" value="{$vo.id}"/>
+                        <ul class="from-box">
+                            <li class="clearfix pos-r">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>项目时间</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="start_time" value="{$vo.start_time|date='Y-m-d',###}"/>
+                                    </div>
+                                </div>
+                                <span style="position: absolute;top:40px;"> 至 </span>
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em></em>
+                                        <span></span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="end_time" value="{$vo.end_time|date='Y-m-d',###}"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>项目名称</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="pro_name" value="{$vo.pro_name}"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>*</em>
+                                <span>你的职责</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="pro_pos" cols="66" rows="5">{$vo.pro_pos}</textarea>
+                                <div class="num-limit"><span>{$vo.pro_pos|mb_strlen='UTF8'}</span>/1000</div>
+                            </div>
+                        </div>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>&ensp;</em>
+                                <span>项目描述</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="signature" id="" cols="66" rows="5">{$vo.pro_desc}</textarea>
+                                <div class="num-limit"><span>{$vo.pro_desc|mb_strlen='UTF8'}</span>/1000</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="angle"></div>
+                <div class="btn-group">
+                    <span class="btn-item" data-type="submit" data-form="proExp-{$vo.id}" data-class1="project-exp-edit-{$vo.id}" data-class2="project-box-{$vo.id}">确定</span>
+                    <span class="btn-item" data-type="qx" data-class1="project-exp-edit-{$vo.id}" data-class2="project-box-{$vo.id}">取消</span>
+                </div>
+            </div>
+            </volist>
+        </div>
+        <!-- /项目经验 -->
+
+        <!-- 培训经历 -->
+        <div class="re-item train-exp">
+            <!-- 分隔条 -->
+            <div class="del">
+                <div class="dashed"></div>
+                <span>培训经历</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <!-- addBox -->
+            <eq name="trainNum" value="0">
+                <div class="add-box add-btn" data-this="train-box" data-class="train-exp-edit" data-type="0">
+                    <i>+&ensp;</i>
+                    <span>添加项目经验</span>
+                </div>
+                <else/>
+                <div class="edit-add clearfix">
+                    <div class="add-left fl">
+                        <span>最多添加3个培训经历</span>
+                    </div>
+                    <div class="fr add-right add-btn" data-this="train-box" data-class="train-exp-edit" data-type="0">
+                        <i>+</i>
+                        <span>添加</span>
+                    </div>
+                </div>
+            </eq>
+            <!-- /addBox -->
+
+            <div class="content-body-edit train-exp-edit" >
+                <div class="user-edit">
+                    <form id="trainExp" data-action="{:U('userp/updateTrain')}">
+                        <input type="hidden" name="uid" value="{$base.id}"/>
+                        <ul class="from-box">
+                            <li class="clearfix pos-r">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>培训时间</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="start_time" value=""/>
+                                    </div>
+                                </div>
+                                <span style="position: absolute;top:40px;"> 至 </span>
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em></em>
+                                        <span></span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="end_time" value=""/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>培训课程</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="train_name" value="{$vo.train_name}"/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>培训机构</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="train_company" value="{$vo.train_company}"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>&ensp;</em>
+                                <span>培训内容描述</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="train_content" cols="66" rows="5"></textarea>
+                                <div class="num-limit"><span>0</span>/1000</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="angle"></div>
+                <div class="btn-group">
+                    <span class="btn-item" data-type="submit" data-form="trainExp" data-class1="train-exp-edit" data-class2="train-box">确定</span>
+                    <span class="btn-item" data-type="qx" data-class1="train-exp-edit" data-class2="train-box">取消</span>
+                </div>
+            </div>
+
+            <volist name="train" id="vo">
+            <!-- content -->
+            <div class="exp-box train-box">
+                <div class="minCir circle"></div>
+                <div class="mods">
+                    <div class="exp-content">
+                        <div class="edit-group">
+                            <span class="tool-item add-btn" data-this="train-box-{$vo.id}" data-class="train-exp-edit-{$vo.id}" data-type="{$vo.id}" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></span>
+                            <span class="tool-item tool-delete" title="删除"><i class="fa fa-trash fa-lg"></i></span>
+                        </div>
+                        <div class="title-name">
+                            <h3>{$vo.train_name}</h3>
+                        </div>
+                        <div class="detail-box">
+                            <div class="maxCir">
+                                <span class="circle"></span>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-time"><time>{$vo.start_time|date='Y-m-d',###}</time>&ensp;&ensp;-&ensp;&ensp;<time>{$vo.end_time|date='Y-m-d',###}</time></div>
+                                <div class="detail-detail">
+                                    <p>
+                                        <em>{$vo.train_company}</em>
+                                    </p>
+                                </div>
+                                <div class="detail-desc">
+                                    {$vo.train_content}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="minCir circle"></div>
+            </div>
+            <!-- /content -->
+
+            <div class="content-body-edit train-exp-edit-{$vo.id}" >
+                <div class="user-edit">
+                    <form id="trainExp-{$vo.id}" data-action="{:U('userp/updateTrain')}">
+                        <input type="hidden" name="uid" value="{$base.id}"/>
+                        <input type="hidden" name="id" value="{$vo.id}"/>
+                        <ul class="from-box">
+                            <li class="clearfix pos-r">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>培训时间</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="{$vo.start_time}" value="{$vo.start_time|date='Y-m-d',###}"/>
+                                    </div>
+                                </div>
+                                <span style="position: absolute;top:40px;"> 至 </span>
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em></em>
+                                        <span></span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" class="date" autocomplete="off" name="end_time" value="{$vo.end_time|date='Y-m-d',###}"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>培训课程</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="train_name" value="{$vo.train_name}"/>
+                                    </div>
+                                </div>
+
+                                <div class="input-item">
+                                    <div class="input-title">
+                                        <em>*</em>
+                                        <span>培训机构</span>
+                                    </div>
+                                    <div class="i-mar">
+                                        <input type="text" name="train_company" value="{$vo.train_company}"/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="text-area">
+                            <div class="input-title">
+                                <em>&ensp;</em>
+                                <span>详细描述</span>
+                            </div>
+                            <div class="textarea-group">
+                                <textarea class="text-area1" name="train_content" cols="66" rows="5">{$vo.train_content}</textarea>
+                                <div class="num-limit"><span>{$vo.train_content|mb_strlen='UTF8'}</span>/1000</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="angle"></div>
+                <div class="btn-group">
+                    <span class="btn-item" data-type="submit" data-form="trainExp-{$vo.id}" data-class1="train-exp-edit-{$vo.id}" data-class2="train-box-{$vo.id}">确定</span>
+                    <span class="btn-item" data-type="qx" data-class1="train-exp-edit-{$vo.id}" data-class2="train-box-{$vo.id}">取消</span>
+                </div>
+            </div>
+            </volist>
+        </div>
+        <!-- /培训经历 -->
+
+        <!-- 自我评价 -->
+        <div class="re-item self-exp">
+            <!-- 分隔条 -->
+            <div class="del self-del">
+                <div class="dashed"></div>
+                <span>自我评价</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <!-- content -->
+            <div class="exp-box self-box">
+                <div class="mods">
+                    <div class="exp-content">
+                        <div class="edit-group">
+                            <span class="tool-item tool-edit edit-btn" data-this="self-box" data-class="self-exp-edit" data-type="1" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></span>
+                            <span class="tool-item tool-delete" title="删除"><i class="fa fa-trash fa-lg"></i></span>
+                        </div>
+                        <div class="detail-box">
+                            <div class="detail-content" style="border-color: transparent;">
+                                <div class="self-desc">
+                                    {$userInfo.self}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /content -->
+        </div>
+        <div class="content-body-edit self-exp-edit-1" >
+            <div class="user-edit">
+                <form id="userBase" data-action="{:U('userp/updateInfo')}">
+                    <div class="text-area">
+                        <div class="input-title">
+                            <em>&ensp;</em>
+                            <span>工作内容描述</span>
+                        </div>
+                        <div class="textarea-group">
+                            <textarea class="text-area1" name="self" cols="66" rows="5">{$userInfo.self}</textarea>
+                            <div class="num-limit"><span>{$userInfo.self|mb_strlen='UTF8'}</span>/1000</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="angle"></div>
+            <div class="btn-group">
+                <span class="btn-item" data-type="submit" data-form="userBase" data-class1="self-exp-edit-1" data-class2="self-box">确定</span>
+                <span class="btn-item" data-type="qx" data-class1="self-exp-edit-1" data-class2="self-box">取消</span>
+            </div>
+        </div>
+        <!-- /自我评价 -->
+
+    </section>
+</block>
+
+<block name="script">
+    <script src="__STATIC__/select/jquery.cityselect.js"></script>
+    <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <script src="__JS__/user/userp.js"></script>
+    <script>
+        /* 时间 */
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:"zh-CN",
+            minView:2,
+            autoclose:true
+        });
+
+        /* scroll */
+        if(localStorage.getItem('editRS') != null){
+            $(document).scrollTop(localStorage.getItem('editRS'));
+        }
+
+        $(document).on('scroll',function(){
+            var resumeScroll = $(this).scrollTop();
+            localStorage.setItem('editRS',resumeScroll);
+        });
+
+        /* 单选 */
+        $('.select-box').each(function(){
+            $(this).clickRadio();
+        });
+        $(".city_1").each(function(){
+            $(this).citySelect({
+                prov  : '北京',
+                city  : '西城区',
+                nodata: "none",
+                required: false
+            });
+        });
+        var label = {$label};
+        $('.skill-label').labelSelect({
+            url     : "__STATIC__/label/zwLabel.min.js",
+            required:false,
+            data    : label,
+            length  : 5,
+            label   : ['互联网','金融','语言','专业']
+        });
+
+        /* 城市 */
+        $('.place').each(function(){
+            var $self = $(this);
+            var $box = $(this).siblings('.city-box');
+            var $qr  = $box.find('.qr');
+            var $qx  = $box.find('.qx');
+            var $select = $box.find('select');
+            var place = [];
+            $(this).on('focus',function(e){
+                var evt = e || window.event;
+                evt.stopPropagation();
+                $box.css('display','block');
+            });
+            $qx.on('click',function(e){
+                var evt = e || window.event;
+                evt.stopPropagation();
+                $box.css('display','none');
+            });
+            $qr.on('click',function(e){
+                var evt = e || window.event;
+                evt.stopPropagation();
+                $select.each(function(i,item){
+                    if(item.value != ''){
+                        place[i] = item.value;
+                    }
+                });
+                var str = place.join(',');
+                $self.val(str);
+                $box.css('display','none');
+            });
+        });
+
+        /* 单选 */
+        $('.radio-box').each(function(){
+            var $click = $(this).find('.radio-item');
+            var input = $(this).data('class');
+            $click.on('click',function(){
+                var value = $(this).data('val');
+                $('.'+input).val(value);
+                $click.removeClass('radio-item-selected');
+                $(this).addClass('radio-item-selected');
+            });
+        });
+
+        /* 确认键 */
+        $('.btn-item').on('click',function(){
+            var hidden = $(this).data('class1');
+            var display = $(this).data('class2');
+            var type = $(this).data('type');
+
+            if(type == 'submit'){
+                var formId = $(this).data('form');
+                var $form = $('#'+formId);
+                var url = $form.data('action');
+                var data = $form.serialize();
+                $.post(url,data,function(data){
+                    if(data == null ||data.status){
+                        $('.'+hidden).css('display','none');
+                        $('.'+display).css('display','block');
+                        location.href = "{:U('home/userp/editresume/id/'.$base['id'])}";
+                    }else{
+                        alert('更改错误');
+                    }
+                });
+            }else{
+                $('.'+hidden).css('display','none');
+                $('.'+display).css('display','block');
+            }
+        });
+
+        /* teatarea */
+        $('.textarea-group').find('.text-area1').on('click keydown keyup',function(){
+            var self = $(this);
+            var str = self.val();
+            var $num = self.siblings('.num-limit').find('span');
+            $num.html(str.length);
+
+            if(str.length <= 80){
+                $num.css('color','#0066CC');
+                self.css('border-color','#0066CC');
+            }else if(str.length <= 85 && str.length >= 95){
+                $num.css('color','#F0D00B');
+                self.css('border-color','#F0D00B');
+            } else if(str.length >= 95 && str.length <= 100){
+                $num.css('color','#EB2626');
+                self.css('border-color','#EB2626');
+            }else{
+                str = self.val(str.substr(0,99));
+            }
+        }).blur(function(){
+            var self = $(this);
+            self.css('border-color','#CCCCCC');
+            var str = self.val();
+        });
+
+
+        /* 新增页 */
+        $('.add-btn').on('click',function(){
+            var $self  = $(this);
+            var show   = $self.data('class');
+            var $add = $('.'+show);
+
+            $('.'+show+'-1').css('display','none');
+            $add.css('display','block');
+
+        });
+        /* 编辑页的显示与阴藏 */
+        $('.edit-btn').on('click',function(){
+            var $self  = $(this);
+            var hidden = $self.data('this');
+            var show   = $self.data('class');
+            var type   = $self.data('type');
+            var $edit = $('.'+show+'-'+type);
+            var $hidden = $('.'+hidden+'-'+type);
+
+            $('.'+show).css('display','none');
+            $edit.css('display','block');
+            $hidden.css('display','none');
+        });
+
+        /* 删除 */
+        $('.tool-delete').on('click',function(){
+            var id = $(this).data('id');
+            var sql = $(this).data('sql');
+            var name = $(this).data('name');
+            var $del = $('.delete-box');
+            $del.find('.btn-delete').data('id',id);
+            $del.find('.btn-delete').data('sql',sql);
+            $del.find('.delete-name').html(name);
+            $del.css('display','block');
+        });
+
+        $('.btn-fr').on('click',function(){
+            $('.delete-box').css('display','none');
+        });
+        $('.btn-delete').on('click',function(){
+            var $self =$(this);
+            var id = $self.data('id');
+            var url = $self.data('url');
+            var sql = $self.data('sql');
+            if(url != ''){
+                $.post(url,{id:id,sql:sql},function(data){
+                    if(data.status != 1){
+                        $('.ajax-tips span').html('删除失败');
+                    }else{
+                        $('.ajax-tips span').html('删除成功');
+                    }
+                    $self.parent().parent('.delete-box').css('display','none');
+                    $('.ajax-tips').animate({
+                        'opacity' : 1
+                    },1000).delay(1000).animate({
+                        'opacity' : 0
+                    },1000);
+                });
+            }
+        });
+
+    </script>
+</block>

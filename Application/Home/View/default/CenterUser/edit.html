@@ -1,0 +1,553 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/center.css"/>
+    <link rel="stylesheet" href="__STATIC__/uploadify/uploadify.css"/>
+    <link rel="stylesheet" href="__STATIC__/uptx/css/style.css"/>
+    <style>
+        .content{
+            margin: 5px auto;
+        }
+        .new-job{
+            background: #FFFFFF;
+            padding: 10px 0 15px 50px;
+        }
+        .back{
+            width: 50px;
+            margin: 10px 0 0 20px;
+            line-height: 32px;
+            background: rgba(0,102,204,.5);
+            color: #ffffff;
+            cursor: pointer;
+            text-align: center;
+        }
+        .back:hover{
+            background: rgba(0,102,204,.9);
+        }
+        .top-title{
+            width: 500px;
+            margin: 10px 0 0 130px;
+        }
+    </style>
+</block>
+
+<block name="body">
+    <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/uptx/cropbox.js"></script>
+
+    <section class="top clearfix">
+        <div class="back fl js-url" data-url="{:U('user/center')}">
+            <span>返回</span>
+        </div>
+        <div class="top-title fl">
+            <h2>职位编辑</h2>
+            <span style="color:#009C63;">{$jobInfo.jobname}</span>
+        </div>
+    </section>
+    <section class="content">
+        <div class="mask"></div>
+        <div class="input-tip"><span></span></div>
+
+        <!-- 新建job -->
+        <div class="zw-item-4 new-job">
+            <!-- base -->
+            <form data-action="{:U('user/quanZhi')}" data-actionj="{:U('user/jianZhi')}" method="post" id="job" data-url="">
+                <input type="hidden" name="type" value="2" index="0">
+                <input type="hidden" name="id"  value="{$jobInfo.id}" index="0"/>
+                <div class="job-base">
+                    <h3>基础属性</h3>
+                    <ul class="content-group">
+
+                        <li class="input-group radio">
+                            <label>职位类别：</label>
+                            <input type="hidden" name="model_id" class="jobCate" value="{$jobInfo.model_id}" index="0">
+                            <span class="radio-item  radio-selected" data-id="1" data-value="5" data-menu="1">全职</span>
+                            <span class="radio-item" data-id="2" data-value="15" data-menu="-1">兼职</span>
+                        </li>
+
+                        <li class="input-group input-pos clearfix">
+                            <label class="fl" for="jobHy">所属行业：</label>
+                            <input type="hidden" class="detection-name" id="jobHy" name="category_id" index="0" value="{$jobInfo.category_id}" />
+                            <span class="fl c_1"><p style="color:#AAAAAA;">{$jobInfo.category_id|get_category_title}</p></span>
+                            <i class="fa fa-pencil-square-o fa-lg fl"></i>
+                            <div class="hy-cate"></div>
+                            <div class="tips1" style="position:absolute;top:5px;left:200px;top:0px;left:390px;color:#EB2626;"><span></span></div>
+                        </li>
+
+                        <li class="input-group pos-r">
+                            <label for="jobName">职位名称：</label>
+                            <input type="text" class="detection-name" id="jobName" name="jobname" index="0" value="{$jobInfo.jobname}" />
+                            <div class="tips1" style="position:absolute;top:5px;left:200px;top:0px;left:390px;color:#EB2626;"><span></span></div>
+                        </li>
+
+                        <li class="input-group pos-r">
+                            <label for="put-time">发布时间：</label>
+                            <input id="put-time" type="text" name="put_time" class="text date detection-name" index="0" value="{$jobInfo.update_time|date='Y-m-d',###}" placeholder="请选择日期" />
+                            <div class="tips1" style="position:absolute;top:5px;left:200px;top:0px;left:390px;color:#EB2626;"><span></span></div>
+                        </li>
+
+                        <li class="input-group">
+                            <label for="deadline">截止时间：</label>
+                            <if condition="$jobInfo.deadline eq 0">
+                                <input id="deadline" type="text" name="deadline" class="text date" index="0" value="" placeholder="请选择日期，不选择就是长期有效" />
+                            <else/>
+                                <input id="deadline" type="text" name="deadline" class="text date" index="0" value="{$jobInfo.deadline|date='Y-m-d',###}" placeholder="请选择日期，不选择就是长期有效" />
+                            </if>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 全职 -->
+                <div class="pos-diff diff-item-1">
+                    <h3>全职信息</h3>
+                    <ul class="content-group">
+
+                        <li class="input-group pos-r">
+                            <label for="recruit">招聘人数：</label>
+                            <input type="text" id="recruit" class="detection-name" name="recruit_people_num" index="1" value="{$jobInfo.recruit_people_num}" placeholder="eg：10-20"/>
+                            <div class="tips1" style="position:absolute;top:5px;left:200px;top:0px;left:390px;color:#EB2626;"><span></span></div>
+                        </li>
+
+                        <li class="input-group">
+                            <label for="jobSalary">薪&ensp;&ensp;&ensp;&ensp;资：</label>
+                            <select name="salary_range" id="jobSalary" index="1">
+                                <option value="0" <eq name="jobInfo.salary_range" value="0">selected</eq>>面议</option>
+                                <option value="1" <eq name="jobInfo.salary_range" value="1">selected</eq>>1000及以下</option>
+                                <option value="2" <eq name="jobInfo.salary_range" value="2">selected</eq>>1000-2000</option>
+                                <option value="3" <eq name="jobInfo.salary_range" value="3">selected</eq>>2000-4000</option>
+                                <option value="4" <eq name="jobInfo.salary_range" value="4">selected</eq>>4000-8000</option>
+                                <option value="5" <eq name="jobInfo.salary_range" value="5">selected</eq>>8K-10K</option>
+                                <option value="6" <eq name="jobInfo.salary_range" value="6">selected</eq>>10K-15K</option>
+                                <option value="7" <eq name="jobInfo.salary_range" value="7">selected</eq>>15K-20K</option>
+                                <option value="8" <eq name="jobInfo.salary_range" value="8">selected</eq>>20K-30K</option>
+                                <option value="9" <eq name="jobInfo.salary_range" value="9">selected</eq>>30K-40K</option>
+                                <option value="10" <eq name="jobInfo.salary_range" value="10">selected</eq>>40K-50K</option>
+                                <option value="11" <eq name="jobInfo.salary_range" value="11">selected</eq>>50K以上</option>
+                            </select>
+                        </li>
+
+                        <li class="input-group clearfix">
+                            <label class="fl" for="jobPlace">工作地点：</label>
+                            <div id="city_2">
+                                <select class="prov" name="prov" index="1" data-url=""></select>
+                                <select class="city" name="work_place" index="1" data-url="" disabled="disabled"></select>
+                            </div>
+                        </li>
+
+                        <li class="input-group">
+                            <label for="work_experience">工作经验：</label>
+                            <select name="work_experience" index="1" id="work_experience">
+                                <option value="0" <eq name="jobInfo.work_experience" value="0">selected</eq>>不限</option>
+                                <option value="1" <eq name="jobInfo.work_experience" value="1">selected</eq>>应届毕业生</option>
+                                <option value="2" <eq name="jobInfo.work_experience" value="2">selected</eq>>1年以下</option>
+                                <option value="3" <eq name="jobInfo.work_experience" value="3">selected</eq>>1-3年</option>
+                                <option value="4" <eq name="jobInfo.work_experience" value="4">selected</eq>>3-5年</option>
+                                <option value="5" <eq name="jobInfo.work_experience" value="5">selected</eq>>5-7年</option>
+                                <option value="6" <eq name="jobInfo.work_experience" value="6">selected</eq>>7-10年</option>
+                                <option value="7" <eq name="jobInfo.work_experience" value="7">selected</eq>>10年以上</option>
+                            </select>
+                        </li>
+
+                        <li class="input-group skill-label">
+                            <label for="drive">技能要求：</label>
+                            <div class="showtagcheck input_check gs-label-box"></div>
+
+                            <div class="clear"></div>
+                            <i class="tagAdd fa fa-pencil-square-o" title="点击修改"></i>
+                            <input type="hidden" name="skill" id="nature" class="nature" data-url="" index="1" value="" >
+                            <div class="tagBox" id="tagBox">
+                                <div class="resume_tc">
+                                    <div class="resume_tc_header">
+                                        <h3>请选择技能</h3>
+                                        <a class="close wd_close" href="javascript:;" title="关闭"><i class="fa fa-times"></i></a>
+                                    </div>
+                                    <div class="sx-yx">
+                                        <span class="fnt-b">已选: </span>
+                                        <span id="box_checkedTag" class="box_checkedTag"></span>
+                                    </div>
+                                    <div class="showTag">
+                                        <div class="sx-cnt sx-cnt2">
+                                            <div style="padding-bottom: 0;" class="sx-normal">
+                                                <ul style="width:760px;" class="cf label_0"></ul>
+                                                <ul style="width:760px;" class="cf label_1"></ul>
+                                                <ul style="width:760px;" class="cf label_2"></ul>
+                                                <ul style="width:760px;" class="cf label_3"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sx-action clearfix">
+                                        <a id="btn_tagsave" class="btn-label">确定</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /全职 -->
+
+                <!-- 兼职 -->
+                <div class="pos-diff diff-item-2">
+                    <h3>兼职信息</h3>
+                    <ul class="content-group">
+                        <li class="input-group">
+                            <label for="settle">结算方式：</label>
+                            <input type="hidden" id="settle" index="2" name="settle_type" class="settle" value="0" />
+                            <span class='single-item single3 settle-item <eq name="jobInfo.settle_type" value="0">settle-selected</eq>' data-settle="0" data-unit="jzU" data-unitvalue="">面议</span>
+                            <span class='single-item single3 settle-item <eq name="jobInfo.settle_type" value="1">settle-selected</eq>' data-settle="1" data-unit="jzU" data-unitvalue="元/天">日结</span>
+                            <span class='single-item single3 settle-item <eq name="jobInfo.settle_type" value="2">settle-selected</eq>' data-settle="2" data-unit="jzU" data-unitvalue="元/周">周结</span>
+                            <span class='single-item single3 settle-item <eq name="jobInfo.settle_type" value="3">settle-selected</eq>' data-settle="3" data-unit="jzU" data-unitvalue="元/月">月结</span>
+                        </li>
+
+                        <li class="input-group pos-r">
+                            <label for="salary">薪&ensp;&ensp;&ensp;&ensp;资：</label>
+                            <input type="text" id="salary" class="salary" index="2" name="salary" value="{$jobInfo.salary}" />
+                            <span class="settle-unit jzU">
+                                <eq name="jobInfo.settle_type" value="0"></eq>
+                                <eq name="jobInfo.settle_type" value="1">元/天</eq>
+                                <eq name="jobInfo.settle_type" value="2">周/天</eq>
+                                <eq name="jobInfo.settle_type" value="3">月/天</eq>
+                            </span>
+                        </li>
+
+                        <li class="input-group clearfix pos-r">
+                            <label class="fl" for="jobPlace">工作地点：</label>
+                            <input type="text" class="detection-name" id="jobPlace" index="2" name="work_place" value="{$jobInfo.work_place}" placeholder="eg:上海、北京、郑州、焦作..."/>
+                            <div class="tips1" style="position:absolute;top:5px;left:200px;top:0px;left:390px;color:#EB2626;"><span></span></div>
+                        </li>
+
+                        <li class="input-group clearfix pos-r">
+                            <label class="fl" for="workDay">哪天工作：</label>
+                            <input type="text" id="workDay" class="detection-name" index="2" name="work_day" value="{$jobInfo.work_day}" placeholder="eg：周一、周二、周三、周四..、双休"/>
+                            <div class="tips1" style="position:absolute;top:5px;left:200px;top:0px;left:390px;color:#EB2626;"><span></span></div>
+                        </li>
+
+                        <li class="input-group clearfix pos-r">
+                            <label class="fl" for="workTime">工作时间：</label>
+                            <input type="text" id="workTime" class="detection-name" index="2" name="work_time" value="{$jobInfo.work_time}" placeholder="eg：上午、下午、8:00-10:00、16:00-18:00.."/>
+                            <div class="tips1" style="position:absolute;top:5px;left:200px;top:0px;left:390px;color:#EB2626;"><span></span></div>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /兼职 -->
+
+                <!-- 职位描述 -->
+                <div class="job-desc">
+                    <h3>职位描述</h3>
+                    <ul class="content-group">
+                        <li class="input-group">
+                            <label for="jobSex">性别要求：</label>
+                            <input type="hidden" id="jobSex" name="sex" index="0" value="{$jobInfo.sex}" class="sex"  />
+                            <span class='single-item single1 sex-item <eq name="jobInfo.sex" value="2">sex-selected</eq>' data-sex="2">不限&ensp;<i class="fa fa-circle-thin"></i></span>
+                            <span class='single-item single1 sex-item <eq name="jobInfo.sex" value="1">sex-selected</eq>' data-sex="1">男&ensp;<i class="fa fa-mars"></i></span>
+                            <span class='single-item single1 sex-item <eq name="jobInfo.sex" value="0">sex-selected</eq>' data-sex="0">女&ensp;<i class="fa fa-venus"></i></span>
+                        </li>
+
+                        <li class="input-group">
+                            <label for="drive">驾照要求：</label>
+                            <input type="hidden" id="drive" name="drive" index="0" value="{$jobInfo.drive}" class="drive"  />
+                            <span class='single-item single2 drive-item <eq name="jobInfo.settle_type" value="0">drive-selected</eq>' data-drive="0">不限</span>
+                            <span class='single-item single2 drive-item <eq name="jobInfo.settle_type" value="1">drive-selected</eq>' data-drive="1">A照</span>
+                            <span class='single-item single2 drive-item <eq name="jobInfo.settle_type" value="2">drive-selected</eq>' data-drive="2">B照</span>
+                            <span class='single-item single2 drive-item <eq name="jobInfo.settle_type" value="3">drive-selected</eq>' data-drive="3">C照</span>
+                        </li>
+
+                        <li class="input-group">
+                            <label for="academic">学历要求：</label>
+                            <select name="academic_career" index="0" id="academic">
+                                <option value="0" <eq name="jobInfo.academic_career" value="0">selected</eq>>不限</option>
+                                <option value="1" <eq name="jobInfo.academic_career" value="1">selected</eq>>初中</option>
+                                <option value="2" <eq name="jobInfo.academic_career" value="2">selected</eq>>高中及同等</option>
+                                <option value="3" <eq name="jobInfo.academic_career" value="3">selected</eq>>大专及同等</option>
+                                <option value="4" <eq name="jobInfo.academic_career" value="4">selected</eq>>本科及同等</option>
+                                <option value="5" <eq name="jobInfo.academic_career" value="5">selected</eq>>硕士及同等</option>
+                                <option value="6" <eq name="jobInfo.academic_career" value="6">selected</eq>>博士及以上</option>
+                                <option value="7" <eq name="jobInfo.academic_career" value="7">selected</eq>>其他</option>
+                            </select>
+                        </li>
+
+                        <li class="input-group">
+                            <label for="age">年龄要求：</label>
+                            <select name="age" id="age" index="0">
+                                <option value="0" <eq name="jobInfo.age" value="0">selected</eq>>不限</option>
+                                <option value="1" <eq name="jobInfo.age" value="1">selected</eq>>18-25</option>
+                                <option value="2" <eq name="jobInfo.age" value="2">selected</eq>>20-36</option>
+                                <option value="3" <eq name="jobInfo.age" value="3">selected</eq>>24-60</option>
+                                <option value="4" <eq name="jobInfo.age" value="4">selected</eq>>30-60</option>
+                                <option value="5" <eq name="jobInfo.age" value="5">selected</eq>>50岁以下</option>
+                            </select>
+                        </li>
+
+                        <li class="input-group input-textarea">
+                            <label for="jobDesc">岗位职责：</label>
+                            <div class="textarea-group">
+                                <textarea id="jobDesc" class="text-area1" name="job_desc" index="0" cols="61" rows="10">{$jobInfo.job_desc}</textarea>
+                                <div class="num-limit"><span>{$jobInfo.job_desc|mb_strlen='UTF8'}</span>/500</div>
+                            </div>
+                        </li>
+
+                        <li class="input-group input-textarea">
+                            <label for="job_condition">任职条件：</label>
+                            <div class="textarea-group">
+                                <textarea id="job_condition" class="text-area1" name="job_condition" index="0" cols="61" rows="10">{$jobInfo.job_condition}</textarea>
+                                <div class="num-limit"><span>{$jobInfo.job_condition|mb_strlen='UTF8'}</span>/500</div>
+                            </div>
+                        </li>
+
+                        <li class="input-group input-textarea">
+                            <label for="other_information">其他条件：</label>
+                            <div class="textarea-group">
+                                <textarea id="other_information" class="text-area1" name="other_information" index="0" cols="61" rows="10">{$jobInfo.other_information}</textarea>
+                                <div class="num-limit"><span>{$jobInfo.other_information|mb_strlen='UTF8'}</span>/500</div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /职位描述 -->
+
+                <!-- 职位联系方式 -->
+                <div class="job-link">
+                    <h3>联系方式</h3>
+                    <ul class="content-group">
+                        <li class="input-group pos-r">
+                            <label for="linkman">联&ensp;系&ensp;人：</label>
+                            <input type="text" class="detection-name" id="linkman" index="0" name="linkman" value="{$jobInfo['linkman']}" />
+                            <div class="tips1" style="position:absolute;top:5px;left:200px;top:0px;left:390px;color:#EB2626;"><span></span></div>
+                        </li>
+                        <li class="input-group">
+                            <label for="phone">电&ensp;&ensp;&ensp;&ensp;话：</label>
+                            <input type="text" id="phone" index="0" name="phone" value="{$jobInfo['phone']}"/>
+                        </li>
+
+                        <li class="input-group">
+                            <label for="qq">Q&ensp;&ensp;&ensp;&ensp;Q：</label>
+                            <input type="text" id="qq" index="0" name="qq" value="{$jobInfo['qq']}"/>
+                        </li>
+
+                        <li class="input-group pos-r">
+                            <label for="email">邮&ensp;&ensp;&ensp;&ensp;箱：</label>
+                            <input type="text" class="detection-email" id="email" index="0" name="email" value="{$jobInfo['email']}" />
+                            <div class="tips1" style="position:absolute;top:5px;left:200px;top:0px;left:390px;color:#EB2626;"><span></span></div>
+                        </li>
+
+                        <li class="input-group">
+                            <label for="weixin">微&ensp;&ensp;&ensp;&ensp;信：</label>
+                            <input type="text" id="weixin" index="0" name="weixin" value="{$jobInfo['weixin']}"/>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <!-- /职位联系方式 -->
+                <div class="submit-group">
+                    <input type="hidden" name="rocover" class="recover" index="0" value="1">
+                    <span class="submit-item ok" data-form="job" data-value="1">确定</span>
+                    <span class="submit-item cancel" data-form="job" data-value="0">待发布</span>
+                </div>
+            </form>
+            <!-- /base -->
+        </div>
+        <!-- /新建job -->
+    </section>
+</block>
+
+<block name="script">
+    <script src="__STATIC__/select/jquery.cityselect.js"></script>
+    <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <script>
+        $(document).ready(function(){
+            var time1  = null;
+            var show = function(name,val,data){
+                clearTimeout(time1);
+                if(typeof data == 'undefined'){
+                    data = {
+                        top : '200px',
+                        left : '650px'
+                    }
+                }
+                $('.input-tip').css(data).addClass('show');
+                time1 = setTimeout(function(){
+                    $('.input-tip').removeClass('show');
+                },1000*2);
+                $('.input-tip span').html(name+val);
+            };
+            var label = {$label};
+            $('.skill-label').labelSelect({
+                url     : "__STATIC__/label/zwLabel.min.js",
+                required:false,
+                data    :label,
+                label   : ['互联网','金融','语言','专业']
+            });
+
+            /* 城市 */
+            var place = {
+                    prov : <if condition="$jobInfo.prov neq ''">'{$jobInfo.prov}'<else />'江苏'</if>,
+                    city : <if condition="$jobInfo.work_place neq ''">'{$jobInfo.work_place}'<else />'南京'</if>
+            };
+            $("#city_2").citySelect({
+                prov:place.prov,
+                city:place.city,
+                nodata: "none",
+                required: false
+            });
+            /*全职函数
+             * */
+            function quanZhi(data){
+                var str = '';
+                for(key in data){
+                    str += '<div class="hy-cate-1"><span class="cl-select" data-id="'+data[key]['id']+'">'+data[key]['title']+'</span><div class="hy-cate-2">';
+                    //$oDiv.html('<span>'+data[key]['title']+'</span><div class="hy-cate-2"></div><div class="pad-bg"></div>');
+                    for(i in data[key]['_']){
+                        str += '<div class="hy-cate-3"><h3><span class="label-bg cl-select" data-id="'+data[key]['_'][i]['id']+'">'+data[key]['_'][i]['title']+'</span></h3><div class="hy-cate3-box">';
+                        for(k in data[key]['_'][i]['_']){
+                            str += '<span class="label-bg cl-select" data-id="'+data[key]['_'][i]['_'][k]['id']+'">'+data[key]['_'][i]['_'][k]['title']+'</span>';
+                        }
+                        str += '</div></div>';
+                    }
+                    //str ='<div class="hy-cate-1"><span>生活服务</span><div class="hy-cate-2"><div class="hy-cate-3"><h3><span class="label-bg">餐饮</span></h3><div class="hy-cate3-box"><span class="label-bg">123</span></div></div></div><div class="pad-bg"></div></div>';
+                    str += '</div><div class="pad-bg"></div></div>';
+                }
+                //console.log($oDiv.length);
+                $('.hy-cate').html(str).removeClass('hy-cate-j');
+                $('.cl-select').on('click',function(){
+                    var id = $(this).data('id');
+                    var htmlStr = $(this).html();
+                    $('.input-pos input').val(id);
+                    $('.input-pos>span').html(htmlStr);
+                });
+            };
+            /*兼职
+             * */
+            function jianZhi(data){
+                var str = '';
+                for(i in data){
+                    str += '<div class="hy-cate-1"><span class="cl-select" data-id="'+data[i]['id']+'">'+data[i]['title']+'</span></div>';
+                }
+                $('.hy-cate').html(str).addClass('hy-cate-j');
+                $('.cl-select').on('click',function(){
+                    var id = $(this).data('id');
+                    var htmlStr = $(this).html();
+                    $('.input-pos input').val(id);
+                    $('.input-pos>span').html(htmlStr);
+                });
+            }
+            var $model = {$jobInfo.model_id};
+            if($model == 5){
+                $.post("{:U('user/getCate')}",{'menu':1},quanZhi);
+            }else{
+                $.post("{:U('user/getCate')}",{'menu':-1},function(data){
+                    jianZhi(data[0]['_']);
+                });
+            }
+            $('.radio-item').on('click',function(){
+                $('.radio-item').removeClass('radio-selected');
+                $(this).addClass('radio-selected');
+                var menu = $(this).data('menu');
+                var value = $(this).data('value');
+                $('.jobCate').val(value);
+                $.post("{:U('user/getCate')}",{'menu':menu},function(data){
+                    if(menu == -1){
+                        jianZhi(data[0]['_']);
+                    }else if(menu == 1){
+                        quanZhi(data);
+                    }
+                    $('input[name="jobname"]').val('');
+                    $('.c_1').html('');
+                });
+            });
+
+            /* 切换类型 */
+            /* 切换函数 */
+            var tabBox =  function(listObj,contentStr1,contentStr2,idItem){
+                $(listObj).each(function(i,item){
+                    $(item).on('click',function(){
+                        var tabId = $(this).data('id');
+                        $(contentStr1).css('display','none');
+                        $(contentStr2+tabId).css('display','block');
+                    });
+                });
+                var firstTab = function(){
+                    var self = $(listObj).eq(idItem);
+                    $(listObj).removeClass('radio-selected');
+                    self.addClass('radio-selected');
+                    var tabId = self.data('id');
+                    $(contentStr2+tabId).css('display','block');
+                };
+                firstTab();
+            };
+            var $isCate = {$jobInfo.iscate};
+            tabBox('.radio-item','.pos-diff','.diff-item-',$isCate-1);
+            /* 公司行业 */
+            $('.input-div~i,.input-pos i').on({
+                click : function(e){
+                    var evt = e || window.event;
+                    evt.stopPropagation();
+
+                    if($(this).siblings('.div-content,.hy-cate').css('display') == 'block'){
+                        $(this).siblings('.div-content,.hy-cate').css('display','none');
+                    }else{
+                        $(this).siblings('.div-content,.hy-cate').css('display','block');
+                    }
+                }
+            });
+            $('.cate-content').on('click',function(e){
+                var evt = e || window.event;
+                evt.stopPropagation();
+                var name = $(this).data('val');
+                var value = $(this).data('cid');
+                var className = $(this).data('class');
+                var $obj = $('.'+className);
+                $obj.val(name);
+                var postName = $obj.attr('name');
+                $obj.siblings('.c_2').html(name);
+                $('.div-content').css('display','none');
+                $.post("{:U('user/upUcenterMember')}",{name:postName,val:value},function(data){
+                    if(data.status){
+                        show('数据','更改成功');
+                    }
+                });
+            });
+
+            /* 职位提交 */
+            $('.submit-item').on('click',function(){
+                var name  = $(this).data('form');
+                var value = $(this).data('value');
+                var $self = $('#'+name);
+                var type  = $self.find('input[name="model_id"]').val();
+                var data  = '';
+                var ajaxUrl = $self.data('action');
+                var index = 1;
+                $self.find('.recover').val(value);
+                if(type == 5){
+                    data  = $self.find('input[index="0"],input[index="1"],select[index="0"],select[index="1"],textarea[index="0"],textarea[index="1"]').serialize();
+                }else if(type == 15){
+                    ajaxUrl = $self.data('actionj');
+                    index = 2;
+                    data  = $self.find('input[index="0"],input[index="2"],select[index="0"],select[index="2"],textarea[index="0"],textarea[index="1"]').serialize();
+                }
+                //
+                //alert(ajax_submit($self,index));ajax_submit($self,index)
+                if(true){
+                    $.post(ajaxUrl, data, function(data){
+                        var time = null;
+                        if(data.status == 1){
+                            show('',data.info);
+                            time = setTimeout(function(){
+                                location.href="{:U('user/center')}";
+                            },2*1000);
+                        }else{
+                            show('',data.info);
+                        }
+                        //clearTimeout(time);
+                    });
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/user/user.js" charset="UTF-8"></script>
+</block>

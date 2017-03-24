@@ -1,0 +1,108 @@
+
+.footer a{
+    color: #999999;
+}
+.footer a:hover{
+    color: #009C63;
+}
+/* foot-header */
+.foot-head{
+    padding-top: 50px;
+}
+.ft-end p{
+    text-align: center;
+    color: #CCCCCC;
+    font-weight: 600;
+    font-size: 30px;
+    cursor: pointer;
+}
+.ft-end p:hover{
+    -webkit-animation: pcolor 5s ease-in-out;
+    -moz-animation: pcolor 5s ease-in-out;
+    animation: pcolor 5s ease-in-out;
+}
+@-webkit-keyframes pcolor{
+    from{color: #CCCCCC;}
+    20%{color: #FFFF00;}
+    40%{color: #FF00FF;}
+    60%{color: #00FFFF;}
+    80%{color: #0F0F0F;}
+    to{color: #CCCCCC;}
+}
+@-moz-keyframes pcolor{
+    from{color: #CCCCCC;}
+    20%{color: #FFFF00;}
+    40%{color: #FF00FF;}
+    60%{color: #00FFFF;}
+    80%{color: #0F0F0F;}
+    to{color: #CCCCCC;}
+}
+@keyframes pcolor{
+    from{color: #CCCCCC;}
+    20%{color: #FFFF00;}
+    40%{color: #FF00FF;}
+    60%{color: #00FFFF;}
+    80%{color: #0F0F0F;}
+    to{color: #CCCCCC;}
+}
+.yq{
+    margin-top: 30px;
+    text-indent: 1em;
+}
+.yq-line{
+    width: 1082px;
+    height: 17px;
+    margin-left: 20px;
+    border-bottom: 1px solid #CCCCCC;
+}
+.foot-head ul{
+    padding: 10px 0 0 20px;
+    overflow: hidden;
+}
+.foot-head li{
+    float: left;
+    margin: 1px 10px;
+}
+/* /foot-header */
+
+/* foot-body */
+.foot-body{
+    margin-top: 20px;
+    border-top: 6px solid #DDDDDD;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DDDDDD;
+}
+.foot-body li{
+    float: left;
+    width: 143px;
+    height: 157px;
+    padding: 30px 0 30px 57px;
+    background: url(../images/job/lis_ct.gif) no-repeat left -5px;
+}
+.foot-body li:last-child{
+    width: 343px;
+}
+.foot-body li h2 a{
+    color: #666666;
+}
+.foot-body li a{
+    display: block;
+    line-height: 30px;
+}
+/* /foot-body */
+
+/* foot-footer */
+.foot-footer{
+    padding: 30px 0 20px 0;
+    background-color: #fff;
+    text-align: center;
+}
+.foot-footer span{
+    color: #CCCCCC;
+    line-height: 30px;
+}
+.foot-footer span a{
+    padding: 1px 7px;
+    margin: 0 2px;
+}
+/* /foot-footer */

@@ -1,0 +1,149 @@
+<extend name="Base/userpcom"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/userp/userp.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/resume.css"/>
+    <style>
+        .item-content{
+            margin-top: 12px;
+            padding: 35px 30px;
+            background-color: #fff;
+        }
+        .gs-identify,.fr-identify,
+        .job-link,
+        .job-base{
+            margin: 10px 10px 0 10px;
+        }
+        .job-desc{
+            margin: 0 10px;
+        }
+        .content-group{
+            margin-left: 85px;
+        }
+        /* input */
+        .input-group{
+            width: 467px;
+            padding: 0 20px;
+            margin: 0 0 10px 0;
+            line-height: 36px;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+            color: #666666;
+            font-size: 1.1em;
+        }
+        .input-group input{
+            width: 377px;
+            border: none;
+            line-height: 36px;
+            background: #ffffff;
+            color: #666666;
+        }
+        .input-group label{
+            color: #999999;
+        }
+        /* 提交 */
+        .submit-group{
+            line-height: 28px;
+            font-size: 1.2em;
+            color: #ffffff;
+            margin-top: 2px;
+            margin-left: 257px;
+        }
+        .submit-group .submit-item {
+            display: inline-block;
+            padding: 3px 5px;
+            width: 60px;
+            margin-right: 30px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</block>
+
+<block name="body">
+    <div class="ajax-tips">
+        <span>更新失败</span>
+    </div>
+    <section class="content-box">
+        <!-- 头部背景图 -->
+        <div class="content-item content-top">
+            <div class="top-bg">
+                <div class="spin-mask">
+                    <span class="top-back" onclick="self.location=document.referrer;"><i class="fa fa-angle-left"></i></span>
+                    <span class="side-title">帐号设置</span>
+                </div>
+            </div>
+            <div class="tx_box">
+                <figure class="u_tx">
+                    <img src="{$user.u_tx|get_cover='path'}" alt=""/>
+                    <figcaption>
+                        <span>更改头像</span>
+                    </figcaption>
+                </figure>
+                <div class="u-tx-name">
+                    <span>{$userInfo.uname}</span>
+                </div>
+            </div>
+            <div class="gx_bq">
+                <span>{$userInfo.signature}</span>
+            </div>
+        </div>
+        <!-- /头部背景图 -->
+
+        <div class="item-content">
+            <form data-action="" id="user-info">
+                <div class="gs-identify">
+                    <h3>个人设置</h3>
+                    <ul class="content-group">
+
+                        <li class="input-title"><span>用户帐号</span></li>
+                        <li class="input-group">
+                            <label for="username">用户帐号：</label>
+                            <input type="text" id="username" name="username" index="0" value="{$userInfo.username}"/>
+                        </li>
+
+                        <li class="input-title"><span>昵称</span></li>
+                        <li class="input-group">
+                            <label for="nickname">昵&ensp;&ensp;&ensp;&ensp;称：</label>
+                            <input type="text" id="nickname" name="nickname" index="0" value="{$userInfo.id|get_nickname_now}"/>
+                        </li>
+
+                    </ul>
+                    <div class="submit-group">
+                        <input type="hidden" name="id" value="{$userInfo.id}"/>
+                        <span class="submit-item ok" data-form="user-info" data-url="{:U('userp/mod')}">确定</span>
+                        <span class="submit-item cancel" onclick="javascript:location.href='{:U("")}';return false;" >取消</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</block>
+
+<block name="script">
+    <script>
+        $(document).ready(function(){
+            $('.ok').on('click',function(){
+                var $self = $(this);
+                var formId = $self.data('form');
+                $form = $('#'+formId);
+                var url = $self.data('url');
+                var data = $form.serialize();
+                $.post(url,data,function(data){
+                    if(data.status != 1){
+                        $('.ajax-tips span').html('更改出错'+data.info);
+                    }else{
+                        $('.ajax-tips span').html(data.info);
+                    }
+                    $('.ajax-tips').animate({
+                        'opacity' : 1
+                    },1000).delay(1000).animate({
+                        'opacity' : 0
+                    },400,function(){
+                        //location.href = "{:U('userp/setting')}";
+                    });
+                });
+            });
+        });
+    </script>
+</block>

@@ -1,0 +1,267 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/index/slide.css"/>
+</block>
+
+<block name="header">
+    <section class="hotnav">
+        <div class="hotBox">
+            <div class="hoTitle clearfix fl"><strong>热门搜索:</strong></div>
+            <ul>
+                <volist name="hot" id="vo">
+                    <li><a href="{:U('home/zhaopin/index/pid/'.$vo['id'])}">{$vo.title}</a></li>
+                </volist>
+            </ul>
+        </div>
+    </section>
+    <section class="slideBox">
+        <div class="slideContent">
+            <div id="slide1" class="slide">
+                <div id="picList">
+                    <ul class="cl">
+                        <volist name="slide" id="vo">
+                            <li>
+                                <a href="http://www.baidu.com" title="情感化移动应用设计"><img src="{$vo.icon|get_cover='path'}" alt="情感化移动应用设计"/></a>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+                <i id="titleBg"></i>
+                <button class="btn1">1</button>
+                <button class="btn2">2</button>
+                <div id="titleBar"></div>
+            </div>
+            <!-- 公告 -->
+            <div class="noticeBox">
+                <div class="noticeContent">
+                    <div class="notice">
+                        <div class="ntheader">
+                            <i class="fa fa-bullhorn fa-lg fl" style="margin: 12px 20px 0 40px;"></i><span>最新公告</span>
+                        </div>
+                        <ul class="ntList">
+                            <volist name="notice" id="notice" offset="0" length='6'>
+                                <a href="{:U('home/article/detail/id/'.$notice['id'])}" title="{$notice.title}"><li><i class="fa fa-bell-o"></i>&emsp;{$notice.title|msubstr=0,9}<time>{$notice.update_time|time_format='m/d'}</time></li></a>
+                            </volist>
+                        </ul>
+                        <div class="fr" style="padding-right: 15px;">
+                            <a href=""><span>更多...</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hotJob">
+        <div class="hotJobBox">
+            <div class="hotLeft fl">
+                <div class="hotHead"><span>热招职位</span></div>
+                <ul>
+                    <volist name="hot1" id="vo">
+                        <eq name="vo.iscate" value="1" empty="暂时没有数据">
+                            <li><a href="{:U('home/zhaopin/detail/id/'.$vo['id'])}">
+                                <span style="width: 30%;">{$vo.title}</span>
+                                <span style="width: 35%;">赛克尔网络</span>
+                                <span style="width: 15%;">上海</span>
+                                <span style="width: 20%;">{$vo.update_time|date='m/d',###}</span>
+                            </a></li>
+                            <else/>
+                            <li><a href="{:U('home/jianzhi/detail/id/'.$vo['id'])}">
+                                <span style="width: 30%;">{$vo.title}</span>
+                                <span style="width: 35%;">赛克尔网络</span>
+                                <span style="width: 15%;">上海</span>
+                                <span style="width: 20%;">{$vo.update_time|date='m/d',###}</span>
+                            </a></li>
+                        </eq>
+
+                    </volist>
+
+
+                </ul>
+                <a href="" class="fr" style="margin-right: 15px;color: #009C63;">更多...</a>
+            </div>
+            <div class="hotRight fl">
+                <div class="hotHead"><span>急聘职位</span></div>
+                <ul>
+                    <volist name="very" id="vo">
+                        <eq name="vo.iscate" value="1" empty="暂时没有数据">
+                            <li><a href="{:U('home/zhaopin/detail/id/'.$vo['id'])}">
+                                <span style="width: 30%;">{$vo.title}</span>
+                                <span style="width: 35%;">赛克尔网络</span>
+                                <span style="width: 15%;">上海</span>
+                                <span style="width: 20%;">{$vo.update_time|date='m/d',###}</span>
+                            </a></li>
+                            <else/>
+                            <li><a href="{:U('home/jianzhi/detail/id/'.$vo['id'])}">
+                                <span style="width: 30%;">{$vo.title}</span>
+                                <span style="width: 35%;">赛克尔网络</span>
+                                <span style="width: 15%;">上海</span>
+                                <span style="width: 20%;">{$vo.update_time|date='m/d',###}</span>
+                            </a></li>
+                        </eq>
+
+                    </volist>
+
+                </ul>
+                <a href="" class="fr" style="margin-right: 15px;color: #009C63;">更多...</a>
+            </div>
+        </div>
+    </section>
+    <!-- 公司循环 -->
+    <section class="gsCard">
+        <div class="gsCardPos">
+            <div class="hotGs"><span>热门公司</span>
+                <span class="fr" style="margin-right:10px; font-size: 1.3em;">
+                    <span id="now">1</span>
+                    <span>/</span>
+                    <span id="total">6</span>
+                </span>
+            </div>
+            <div class="gsCardBox">
+                <ul class="gsCardDel clearfix">
+                    <volist name="companyList" id="vo">
+                        <li>
+                            <a href="{:U('home/user/company/id/'.$vo['id'])}">
+                                <img src="{$vo.c_picture|get_cover='path'}" alt=""/>
+
+                                <div class="gstext clearfix">
+                                    <div class="fl gsLogo"><img src="{$vo.logo|get_cover='path'}" alt=""/></div>
+                                    <div class="fl gsDel">
+                                        <p>{$vo.c_name}</p>
+                                        <p>{$vo.industry|get_category_title}&ensp;|&ensp;{$vo.step|get_step_list}&ensp;|&ensp;{$vo.c_range}人</p>
+                                        <p>联系电话:
+                                            <span>&ensp;{$vo.linkman_phone}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </volist>
+
+                    <li>
+                        <a href="">
+                            <img src="__PUBLIC__/Home/images/job/gs.jpg" alt=""/>
+                            <div class="mask">1</div>
+                            <div class="gstext clearfix">
+                                <div class="fl gsLogo"><img src="__PUBLIC__/Home/images/job/gslogo.jpg" alt=""/></div>
+                                <div class="fl gsDel">
+                                    <p>上海宏达</p>
+                                    <p>互联网&ensp;|&ensp;A轮&ensp;|&ensp;100-499人</p>
+                                    <p>热招职位:
+                                        <span>&ensp;PHP</span>
+                                        <span>&ensp;PHP程序</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="__PUBLIC__/Home/images/job/gs.jpg" alt=""/>
+                            <div class="mask">1</div>
+                            <div class="gstext clearfix">
+                                <div class="fl gsLogo"><img src="__PUBLIC__/Home/images/job/gslogo.jpg" alt=""/></div>
+                                <div class="fl gsDel">
+                                    <p>上海宏达</p>
+                                    <p>互联网&ensp;|&ensp;A轮&ensp;|&ensp;100-499人</p>
+                                    <p>热招职位:
+                                        <span>&ensp;PHP</span>
+                                        <span>&ensp;PHP程序</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src="__PUBLIC__/Home/images/job/gs.jpg" alt=""/>
+                            <div class="mask">1</div>
+                            <div class="gstext clearfix">
+                                <div class="fl gsLogo"><img src="__PUBLIC__/Home/images/job/gslogo.jpg" alt=""/></div>
+                                <div class="fl gsDel">
+                                    <p>上海宏达</p>
+                                    <p>互联网&ensp;|&ensp;A轮&ensp;|&ensp;100-499人</p>
+                                    <p>热招职位:
+                                        <span>&ensp;PHP</span>
+                                        <span>&ensp;PHP程序</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="gsBtnL fl"><i class="fa fa-chevron-left fa-lg"></i></div>
+                <div class="gsBtnR fr"><i class="fa fa-chevron-right fa-lg"></i></div>
+                <div class="gstips"><span>123</span></div>
+            </div>
+        </div>
+    </section>
+
+</block>
+
+<block name="body">
+    <include file="Public/ad1"/>
+    <volist name="category" id="vo">
+        <section class="xxxBox" data-title="{$vo.title}">
+            <div id="tab-{$vo.id}" class="m">
+                <div class="mt clearfix">
+                    <h2 class="fl"><i class="fa fa-server">{$vo.id|getI}F</i>{$vo.title}</h2>
+                    <ul class="tab">
+                        <volist name="vo['_']" id="cate1">
+                            <li class="tab-item" data-id="{$cate1.id}" data-url="{:U('index/getJobByCateId')}"><a href="">{$cate1.title}</a><span>◆</span></li>
+                        </volist>
+                    </ul>
+                </div>
+
+                <div class="mc clearfix">
+                    <div class="side">
+                        <div class="side-inner">
+                            <div class="banner">
+                                <a href=""><img src="__PUBLIC__/Home/images/job/pink.jpg" alt=""/></a>
+                            </div>
+                            <ul>
+                                <volist name="vo['_']" id="cate1" offset="0" length="6">
+                                    <li><i class="fa fa-cutlery"></i><a href="{:U('home/zhaopin/index/pid/'.$vo['id'])}">{$cate1.title}</a></li>
+                                </volist>
+                            </ul>
+                        </div>
+                    </div>
+                    <volist name="vo['_']" id="cate1">
+                        <div class="main" data-id="{$cate1.id}">
+                            <div class="main-inner">
+                                <ul id="main-{$cate1.id}">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </volist>
+                </div>
+            </div>
+        </section>
+    </volist>
+
+
+    <include file="Public/ad1"/>
+    <include file="Public/toolbar1"/>
+</block>
+
+<block name="script">
+    <script src="__JS__/tweenlite.js"></script>
+    <script src="__JS__/tween.js"></script>
+    <script src="__JS__/slide.js"></script>
+    <script src="__JS__/slidenoauto.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.tab-item').each(function(){
+                var $self  = $(this);
+                var dataId = $self.data('id');
+                var url    = $self.data('url');
+                var $ul    = $('#main-'+dataId);
+                $.post(url,{id:dataId},function(data){
+                    $ul.html(data);
+                    console.log(data);
+                });
+            });
+        });
+    </script>
+</block>

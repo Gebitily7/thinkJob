@@ -1,0 +1,518 @@
+[ 2016-05-22T19:13:39+08:00 ] 127.0.0.1 /admin.php?s=/Channel/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002986s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003744s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000740s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000894s ]
+SQL: SHOW COLUMNS FROM `sql_config` [ RunTime:0.0048s ]
+SQL: SELECT `type`,`name`,`value` FROM `sql_config` WHERE `status` = 1  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0047s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/index%' ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0007s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `sql_channel` WHERE `status` > -1 AND `pid` = 0 ORDER BY sort asc,id asc  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000250s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000394s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037469s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037620s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000715s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000852s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001128s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001348s ]
+
+[ 2016-05-22T19:13:45+08:00 ] 127.0.0.1 /admin.php?s=/Channel/setStatus/ids/7/status/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002251s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002986s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000736s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0045s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/setStatus%' ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0051s ]
+SQL: UPDATE `sql_channel` SET `status`='0' WHERE `id` IN ('7') [ RunTime:0.0004s ]
+
+[ 2016-05-22T19:13:47+08:00 ] 127.0.0.1 /admin.php?s=/Channel/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002136s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002872s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000814s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0047s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/index%' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0048s ]
+SQL: SELECT * FROM `sql_channel` WHERE `status` > -1 AND `pid` = 0 ORDER BY sort asc,id asc  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000246s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000396s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.042836s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.042987s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001038s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001255s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001659s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001948s ]
+
+[ 2016-05-22T19:13:47+08:00 ] 127.0.0.1 /admin.php?s=/Channel/setStatus/ids/8/status/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000064s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.005218s ]
+INFO: [ app_init ] --END-- [ RunTime:0.006696s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001310s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001501s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0056s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/setStatus%' ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0066s ]
+SQL: UPDATE `sql_channel` SET `status`='0' WHERE `id` IN ('8') [ RunTime:0.0005s ]
+
+[ 2016-05-22T19:13:49+08:00 ] 127.0.0.1 /admin.php?s=/Channel/setStatus/ids/9/status/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002643s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003353s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000744s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000876s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0049s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/setStatus%' ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0043s ]
+SQL: UPDATE `sql_channel` SET `status`='0' WHERE `id` IN ('9') [ RunTime:0.0003s ]
+
+[ 2016-05-22T19:13:50+08:00 ] 127.0.0.1 /admin.php?s=/Channel/setStatus/ids/10/status/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002163s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002809s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000616s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000739s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0056s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/setStatus%' ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0056s ]
+SQL: UPDATE `sql_channel` SET `status`='0' WHERE `id` IN ('10') [ RunTime:0.0004s ]
+
+[ 2016-05-22T19:13:50+08:00 ] 127.0.0.1 /admin.php?s=/Channel/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002209s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002908s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000622s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000784s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0045s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/index%' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0045s ]
+SQL: SELECT * FROM `sql_channel` WHERE `status` > -1 AND `pid` = 0 ORDER BY sort asc,id asc  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000279s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000428s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038471s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038628s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000717s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000886s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000982s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001139s ]
+
+[ 2016-05-22T19:38:19+08:00 ] 127.0.0.1 /admin.php?s=/Cate/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004072s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000818s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001011s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0043s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Cate/index%' ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0007s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0061s ]
+SQL: SELECT `id`,`name`,`title`,`sort`,`pid`,`allow_publish`,`status` FROM `sql_category` WHERE `status` > -1 AND `ismenu` = -1 ORDER BY sort  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000247s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000402s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000112s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.041389s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000117s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.051051s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.040933s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041088s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000719s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000852s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.042107s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041088s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000291s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.042651s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041088s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000057s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.001061s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000945s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001092s ]
+
+[ 2016-05-22T19:38:22+08:00 ] 127.0.0.1 /admin.php?s=/Cate/edit/id/541/pid/540.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002280s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002962s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000617s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000832s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0043s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Cate/edit%' ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 148 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0008s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0048s ]
+SQL: SELECT `id`,`name`,`title`,`status` FROM `sql_category` WHERE `id` = 540 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `id`,`name`,`title`,`pid`,`sort`,`list_row`,`meta_title`,`keywords`,`description`,`template_index`,`template_lists`,`template_detail`,`template_edit`,`model`,`model_sub`,`type`,`link_id`,`allow_publish`,`display`,`reply`,`check`,`reply_model`,`extend`,`create_time`,`update_time`,`status`,`icon`,`groups`,`ismenu`,`ishot` FROM `sql_category` WHERE `id` = 541 LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000435s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000645s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.100646s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.100803s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000631s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000841s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001145s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001370s ]
+
+[ 2016-05-22T19:43:55+08:00 ] 127.0.0.1 /admin.php?s=/Cate/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003097s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003893s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000794s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000971s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0050s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Cate/index%' ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0060s ]
+SQL: SELECT `id`,`name`,`title`,`sort`,`pid`,`allow_publish`,`status` FROM `sql_category` WHERE `status` > -1 AND `ismenu` = -1 ORDER BY sort  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000253s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000405s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000105s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.017620s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000103s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.026879s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.044376s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044526s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000741s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000885s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.045588s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044526s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000311s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.046150s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044526s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.000869s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001112s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001409s ]
+
+[ 2016-05-22T19:43:57+08:00 ] 127.0.0.1 /admin.php?s=/Menu/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002381s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003165s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000615s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000774s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0049s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Menu/index%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`title` FROM `sql_menu`  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`title`,`pid`,`sort`,`url`,`hide`,`tip`,`group`,`is_dev`,`status` FROM `sql_menu` WHERE `pid` = 0 ORDER BY sort asc,id asc  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000299s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000471s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.045542s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.045691s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000744s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000874s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000928s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001137s ]
+
+[ 2016-05-22T19:44:03+08:00 ] 127.0.0.1 /admin.php?s=/Channel/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002132s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002800s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000601s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000752s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0040s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/index%' ) LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0007s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `sql_channel` WHERE `status` > -1 AND `pid` = 0 ORDER BY sort asc,id asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000279s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000436s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.039685s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.039838s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000765s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000894s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001235s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001460s ]
+
+[ 2016-05-22T19:44:07+08:00 ] 127.0.0.1 /admin.php?s=/Channel/edit/id/5/pid/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002169s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002865s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000596s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000746s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0040s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/edit%' ) LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 76 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0046s ]
+SQL: SELECT * FROM `sql_channel` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000278s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000441s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029359s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029520s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000779s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000912s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000992s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001146s ]
+
+[ 2016-05-22T19:44:14+08:00 ] 127.0.0.1 /admin.php?s=/Channel/edit.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002715s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003588s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000760s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0044s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/edit%' ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 76 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0010s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0009s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0049s ]
+SQL: UPDATE `sql_channel` SET `pid`='0',`title`='兼职',`url`='jianzhi/index/pid/540',`target`='0',`sort`='3',`update_time`='1463917454' WHERE `id` = 5 [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_action` [ RunTime:0.0062s ]
+SQL: SELECT * FROM `sql_action` WHERE `name` = 'update_channel' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_action_log` [ RunTime:0.0054s ]
+SQL: INSERT INTO `sql_action_log` (`action_id`,`user_id`,`action_ip`,`model`,`record_id`,`create_time`,`remark`) VALUES ('9','1','2130706433','channel','5','1463917454','操作url：/admin.php?s=/Channel/edit.html') [ RunTime:0.0004s ]
+
+[ 2016-05-22T19:44:15+08:00 ] 127.0.0.1 /admin.php?s=/Channel/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002496s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003182s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000670s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000820s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0047s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/index%' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0009s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `sql_channel` WHERE `status` > -1 AND `pid` = 0 ORDER BY sort asc,id asc  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000316s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000533s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037710s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037854s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000659s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000791s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001068s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001302s ]
+
+[ 2016-05-22T19:44:39+08:00 ] 127.0.0.1 /admin.php?s=/Channel/edit/id/5/pid/0.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002061s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002806s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000601s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000752s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0045s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/edit%' ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 76 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `sql_channel` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000245s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000384s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028226s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028397s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000637s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000761s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001888s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002113s ]
+
+[ 2016-05-22T19:44:48+08:00 ] 127.0.0.1 /admin.php?s=/Channel/edit.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000061s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003479s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004755s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000705s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000835s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0042s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/edit%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 76 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0010s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0008s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0011s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0046s ]
+SQL: UPDATE `sql_channel` SET `pid`='0',`title`='兼职',`url`='jianzhi/index?pid=540',`target`='0',`sort`='3',`update_time`='1463917488' WHERE `id` = 5 [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_action` [ RunTime:0.0069s ]
+SQL: SELECT * FROM `sql_action` WHERE `name` = 'update_channel' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `sql_action_log` [ RunTime:0.0056s ]
+SQL: INSERT INTO `sql_action_log` (`action_id`,`user_id`,`action_ip`,`model`,`record_id`,`create_time`,`remark`) VALUES ('9','1','2130706433','channel','5','1463917488','操作url：/admin.php?s=/Channel/edit.html') [ RunTime:0.0004s ]
+
+[ 2016-05-22T19:44:50+08:00 ] 127.0.0.1 /admin.php?s=/Channel/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003239s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003961s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000784s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0058s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Channel/index%' ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_channel` [ RunTime:0.0061s ]
+SQL: SELECT * FROM `sql_channel` WHERE `status` > -1 AND `pid` = 0 ORDER BY sort asc,id asc  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000999s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001296s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.059363s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.059632s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001097s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001386s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001929s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002195s ]
+

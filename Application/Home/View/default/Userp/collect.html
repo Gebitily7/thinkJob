@@ -1,0 +1,168 @@
+<extend name="Base/userpcom"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/userp/userp.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/resume.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/progress.css"/>
+</block>
+
+<block name="body">
+    <section class="content-box">
+        <!-- 头部背景图 -->
+        <div class="content-item content-top">
+            <div class="top-bg">
+                <div class="spin-mask">
+                    <span class="top-back" onclick="self.location=document.referrer;"><i class="fa fa-angle-left"></i></span>
+                    <span class="side-title">收藏记录</span>
+                </div>
+            </div>
+            <div class="tx_box">
+                <figure class="u_tx">
+                    <img src="{$user.u_tx|get_cover='path'}" alt=""/>
+                    <figcaption>
+                        <span>更改头像</span>
+                    </figcaption>
+                </figure>
+                <div class="u-tx-name">
+                    <span>{$userInfo.uname}</span>
+                </div>
+            </div>
+            <div class="gx_bq">
+                <span>{$userInfo.signature}</span>
+            </div>
+        </div>
+        <!-- /头部背景图 -->
+
+
+        <div class="item-box side-2">
+
+            <div class="item-content">
+                <ul class="ul-list zw-list clearfix">
+                    <li class="li-item zw-item item-selected">我的收藏</li>
+                </ul>
+            </div>
+
+            <!-- 全部状态 -->
+            <div class="zw-content" style="display: block;">
+                <div class="job-nav clearfix num-1">
+                    <span class="job-num">共收藏了&ensp;<i>{$likeCount}</i>&ensp;个职位</span>
+                    <div class="fr">
+                        <a href="">
+                            <span class="prev-ajax"><i class="fa fa-angle-left fa-lg"></i></span>
+                        </a>
+                        <span class="all-page"><i style="color: #CB0000;font-style: normal;">1</i>&ensp;/&ensp;{$likeAllPage}</span>
+                        <a href="">
+                            <span class="next-ajax"><i class="fa fa-angle-right fa-lg"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <ul class="all">
+                    <volist name="likeList" id="vo">
+                    <li class="job-item">
+                        <eq name="vo.iscate" value="1" empty="暂时没有数据">
+                        <a class="clearfix" href="{:U('home/zhaopin/detail/id/'.$vo['jid'])}">
+                            <div class="job-left">
+                                <div>
+                                    <span><i></i>{$vo.title}</span>
+                                    <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary_range|get_salary_range}</span>
+                                </div>
+                                <div>
+                                    <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place|get_place}</span>
+                                    <span><i class="fa fa-briefcase"></i>&ensp;{$vo.y_experience|get_work_experience}</span>
+                                    <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                </div>
+                            </div>
+                            <div class="job-right">
+                                <div>
+                                    <span><i class="fa fa-building-o"></i>&ensp;{$vo.c_name}</span>
+                                </div>
+                                <div>
+                                    <span>{$vo.industry|get_category_title}</span>|
+                                    <span>{$vo.step|get_step_list}</span>|
+                                    <span>&emsp;<i class="fa fa-phone"></i>&ensp;{$vo.linkman_phone}</span>
+                                </div>
+                            </div>
+                            <div class="job-label">
+                                {$vo.skill|format_zw_label}
+                            </div>
+                            <div class="reply">
+                                <a href="" class="qx-sc" data-id=""><span>取消收藏</span></a>
+                                <span class="zw-status">职位正常</span>
+                            </div>
+                        </a>
+                            <else/>
+                            <a class="clearfix" href="{:U('home/jianzhi/detail/id/'.$vo['jid'])}">
+                                <div class="job-left">
+                                    <div>
+                                        <span><i></i>{$vo.title}</span>
+                                        <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary}{$vo.settle_type|get_settle_type_unit}</span>
+                                        <span style="color: #666666;">{$vo.update_time|get_put_time}</span>
+                                    </div>
+                                    <div>
+                                        <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place}</span>
+                                        <span><i class="fa fa-credit-card"></i>&ensp;{$vo.settle_type|get_settle_type}</span>
+                                        <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                    </div>
+                                </div>
+                                <div class="job-right">
+                                    <div>
+                                        <span><i class="fa fa-building-o"></i>&ensp;{$vo.c_name}</span>
+                                    </div>
+                                    <div>
+                                        <span>{$vo.industry|get_category_title}</span>|
+                                        <span>{$vo.step|get_step_list}</span>|
+                                        <span>&emsp;<i class="fa fa-phone"></i>&ensp;{$vo.phone}</span>
+                                    </div>
+                                </div>
+                                <div class="job-label">
+                                    {$vo.c_label|format_gs_label}
+                                </div>
+                                <div class="reply">
+                                    <a href="" class="qx-sc" data-id="{$vo.id}"><span>取消收藏</span></a>
+                                    <span class="zw-status">职位正常</span>
+                                </div>
+                            </a>
+                        </eq>
+                    </li>
+                    </volist>
+                    <li class="page" data-id="1">
+                        {$likePage}
+                    </li>
+                    <script>
+                        $(document).ready(function(){
+                            $('.page').each(function(){
+                                var num    = $(this).find('.current').html();
+                                var selfId = $(this).data('id');
+                                var prev   = $(this).find('.prev').attr('href');
+                                var next   = $(this).find('.next').attr('href');
+                                var $num   = $('.num-'+selfId);
+                                $num.find('.all-page i').html(num);
+                                $num.find('.next-ajax').parent('a').attr('href',next);
+                                $num.find('.prev-ajax').parent('a').attr('href',prev);
+                            });
+                        });
+
+                        $('.qx-sc').on('click',function(e){
+                            e.stopPropagation();
+                            e.preventDefault();
+                            var $self = $(this);
+                            var id = $self.data('id');
+                            var url = "{:U('home/userp/qxsc')}";
+                            $.post(url,{id:id,status:0},function(data){
+                                if(data.status == 1){
+
+                                }
+                                location.reload();
+                            });
+                        });
+                    </script>
+                </ul>
+
+            </div>
+            <!-- /全部状态 -->
+
+        </div>
+
+
+    </section>
+</block>

@@ -1,0 +1,151 @@
+<extend name="Base/common"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/list.css"/>
+    <link rel="stylesheet" href="__CSS__/zhaopin/detail.css"/>
+</block>
+<block name="header">
+
+</block>
+
+<block name="body">
+    <section class="fl detail detail-left">
+        <!-- top -->
+        <div class="job-detail">
+            <div class="base-info">
+                <div class="job-name"><h2>{$info.jobname}</h2></div>
+                <div class="job-salary">
+                    <span style="color: #C80000;"><i class="fa fa-rmb" style="color: #C80000;"></i>&ensp;{$vo.salary_range|get_salary_range}</span>
+                    <span><i class="fa fa-bookmark-o"></i>&ensp;{$info.jobname}</span>
+                </div>
+                <div class="job-require">
+                    <span><i class="fa fa-map-marker"></i>&ensp;{$info.work_place|get_place}</span>
+                    <span><i class="fa fa-briefcase"></i>&ensp;{$info.work_experience|get_work_experience}</span>
+                    <span><i class="fa fa-graduation-cap"></i>&ensp;{$info.academic_career|get_academic_career}</span>
+                </div>
+            </div>
+            <div class="job-label">
+                {$info.skill|format_zw_label}
+            </div>
+            <p class="update-time">更新时间:&ensp;<time>{$info.update_time|date="Y/m/d",###}</time></p>
+
+            <div class="like">
+                <div>
+                    <i class="fa fa-heart-o fa-2x"></i>
+                    <span>关注</span>
+                </div>
+                <div>
+                    <i class="fa fa-send-o fa-2x"></i>
+                    <span>发送简历</span>
+                </div>
+            </div>
+            <div class="nips">
+                <div class="arrow arrow-right">
+
+                </div>
+                <span class="fr">聘</span>
+            </div>
+        </div>
+        <!-- /top -->
+
+        <!-- link -->
+        <div class="link_man clearfix">
+            <div class="fl l-tx">
+                <img src="{$userInfo.u_tx|get_cover='path'}" alt=""/>
+            </div>
+            <div class="fl nick">
+                <p>{$userInfo.username}</p>
+                <p>{$userInfo.pos}&ensp;|&ensp;{$userInfo.c_name}&ensp;|&ensp;{$userInfo.industry|get_category_title}</p>
+                <p>
+                    <span>联系电话:{$userInfo.linkman_phone}</span>&ensp;
+                    <span>QQ:{$userInfo.c_qq}</span>
+                </p>
+            </div>
+            <div class="more-job">
+                <span><a href="{:U('home/user/company/id/'.$userInfo['id'])}">共有{$jobCount}个职位</a></span>
+            </div>
+        </div>
+        <!-- /link -->
+
+        <!-- job-desc -->
+        <div class="job-desc">
+            <div class="jd-top">
+                <i class="fa fa-file-text-o"></i>
+                <span>职位描述</span>
+            </div>
+            <div class="jb-yq"><span>性别:{$info.sex|get_sex_title}</span>&ensp;|&ensp;<span>驾照:{$info.drive|get_drive}</span></div>
+            <div class="jd-body">
+                <span>岗位职责</span>
+                <div class="duty">
+                    {$info.job_desc|format_text}
+                </div>
+                <span>任职条件</span>
+                <div class="pre-job">
+                    {$info.job_condition|format_text}
+                </div>
+            </div>
+        </div>
+        <!-- /job-desc -->
+
+        <!-- team -->
+        <div class="team">
+            <div class="team-top">
+                <i class="fa fa-flag-o"></i>
+                <span>公司介绍</span>
+            </div>
+            <div class="team-body">
+                邮箱: {$userInfo.email}<br/>
+                {$userInfo.intro}
+            </div>
+            <div class="team-label">
+                {$userInfo.c_label|format_gs_label}
+            </div>
+        </div>
+        <!-- /team -->
+
+    </section>
+
+    <section class="fl detail detail-right">
+        <div class="gs-desc">
+            <div class="re-mid clearfix">
+                <a href="{:U('home/user/company/id/'.$userInfo['id'])}">
+                    <div>
+                        <img src="{$userInfo.logo|get_cover='path'}" alt=""/>
+                    </div>
+                    <eq name="userInfo.identify" value="2">
+                        <span class="cert"><i class="fa fa-diamond"></i>已认证</span>
+                    <else />
+                        <span class="uncert"><i class="fa fa-diamond"></i>未认证</span>
+                    </eq>
+
+                    <div>
+                        <p>{$userInfo.c_name}</p>
+                        <p>{$userInfo.username}<span>&ensp;|&ensp;</span>{$userInfo.pos}</p>
+                        <p>公司规模:&ensp;{$userInfo.c_range}人</p>
+                    </div>
+                </a>
+            </div>
+            <ul>
+                <li><i class="fa fa-bars"></i><span>{$userInfo.c_range}人</span></li>
+                <li><i class="fa fa-globe"></i><a href="{$userInfo.link}">{$userInfo.link}</a></li>
+                <li><i class="fa fa-map-marker"></i><span>{$userInfo.c_place_detail}</span></li>
+                <li><i class="fa fa-play-circle-o"></i><a href="{$userInfo.c_link}">公司视频宣传</a></li>
+            </ul>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <div class="comment">
+        {:hook('documentDetailAfter',$info)}
+    </div>
+</block>
+
+<block name="script">
+    <script>
+        $(document).ready(function(){
+            $('#sidBar,#sidBarMain').hover(function(){
+                $('#sidBarMain').css('display','block');
+            },function(){
+                $('#sidBarMain').css('display','none');
+            });
+        });
+    </script>
+</block>

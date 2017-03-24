@@ -1,0 +1,1184 @@
+[ 2016-06-05T00:14:46+08:00 ] 127.0.0.1 /admin.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.004151s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005028s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001120s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001296s ]
+
+[ 2016-06-05T00:14:46+08:00 ] 127.0.0.1 /admin.php?s=/Public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003792s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000827s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000980s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000268s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000432s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.045820s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.045992s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000664s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000796s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000859s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000996s ]
+
+[ 2016-06-05T00:14:46+08:00 ] 127.0.0.1 /admin.php?s=/Public/verify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002816s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003539s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000866s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001019s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001172s ]
+
+[ 2016-06-05T00:15:02+08:00 ] 127.0.0.1 /admin.php?s=/Public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003603s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004474s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000892s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001034s ]
+NOTIC: [8] Undefined index: lite H:\docs\job\ThinkPHP\Library\Think\Db.class.php 第 37 行.
+SQL: SHOW COLUMNS FROM `sql_member` [ RunTime:0.0049s ]
+SQL: SELECT `uid`,`nickname`,`sex`,`birthday`,`qq`,`score`,`login`,`reg_ip`,`reg_time`,`last_login_ip`,`last_login_time`,`status`,`toux`,`pos`,`hot` FROM `sql_member` WHERE `uid` = 1 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `sql_action` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `sql_action` WHERE `name` = 'user_login' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: info H:\docs\job\Application\Common\Common\function.php 第 493 行.
+NOTIC: [8] Undefined variable: info H:\docs\job\Application\Common\Common\function.php 第 493 行.
+SQL: SHOW COLUMNS FROM `sql_action_log` [ RunTime:0.0041s ]
+SQL: INSERT INTO `sql_action_log` (`action_id`,`user_id`,`action_ip`,`model`,`record_id`,`create_time`,`remark`) VALUES ('1','1','2130706433','member','1','1465056902','在2016-06-05 00:15登录了后台') [ RunTime:0.0006s ]
+SQL: SELECT * FROM `sql_action` WHERE `name` = 'user_login' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined offset: 1 H:\docs\job\Application\Common\Common\function.php 第 765 行.
+NOTIC: [2] array_key_exists() expects parameter 2 to be array, null given H:\docs\job\Application\Common\Common\function.php 第 765 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_action_log` WHERE `action_id` = 1 AND `user_id` = 1 AND `create_time` > 1464970502 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `sql_member` [ RunTime:0.0042s ]
+SQL: UPDATE `sql_member` SET `score`=score+10 WHERE ( uid=1 AND status>-1 ) [ RunTime:0.0004s ]
+SQL: UPDATE `sql_member` SET `login`=`login`+1,`last_login_time`='1465056902',`last_login_ip`='2130706433' WHERE `uid` = 1 [ RunTime:0.0003s ]
+
+[ 2016-06-05T00:15:03+08:00 ] 127.0.0.1 /admin.php?s=/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002702s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003390s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000806s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000989s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0043s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0007s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Index/index%' ) LIMIT 1   [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000216s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000361s ]
+INFO: [ AdminIndex ] --START--
+SQL: SHOW COLUMNS FROM `sql_addons` [ RunTime:0.0045s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'SiteStat' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_member` [ RunTime:0.0051s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_member` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_action_log` [ RunTime:0.0042s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_action_log` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_document` [ RunTime:0.0047s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_document` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0051s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_category` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_model` [ RunTime:0.0046s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_model` LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000090s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.141456s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004574s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004743s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000683s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000813s ]
+INFO: Run Addons\SiteStat\SiteStatAddon [ RunTime:0.060835s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'SystemInfo' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000095s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.369973s ]
+SQL: select version() as v; [ RunTime:0.0215s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.063583s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.223304s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.286219s ]
+INFO: Run Addons\SystemInfo\SystemInfoAddon [ RunTime:0.286299s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'DevTeam' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000093s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.435957s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014867s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.290118s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.304325s ]
+INFO: Run Addons\DevTeam\DevTeamAddon [ RunTime:0.018049s ]
+INFO: [ AdminIndex ] --END-- [ RunTime:0.365466s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015530s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.290118s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000032s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.304956s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001177s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001357s ]
+
+[ 2016-06-05T00:15:14+08:00 ] 127.0.0.1 /admin.php?s=/Config/group.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002618s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003306s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000837s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000998s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0075s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0008s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Config/group%' ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0010s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0007s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0009s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `sql_config` [ RunTime:0.0065s ]
+SQL: SELECT `id`,`name`,`title`,`extra`,`value`,`remark`,`type` FROM `sql_config` WHERE `status` = 1 AND `group` = 1 ORDER BY sort  [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000291s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000559s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.072179s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.072387s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000668s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000799s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001217s ]
+
+[ 2016-06-05T00:16:35+08:00 ] 127.0.0.1 /admin.php?s=/Category/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.003354s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004218s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000815s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000979s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0067s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Category/index%' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0060s ]
+SQL: SELECT `id`,`name`,`title`,`sort`,`pid`,`allow_publish`,`status` FROM `sql_category` WHERE `status` > -1 AND `ismenu` = 1 ORDER BY sort  [ RunTime:0.0038s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001479s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001745s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000257s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.017686s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000105s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.028199s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000285s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.045942s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.054146s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.054360s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000721s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000872s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000452s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.098720s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027647s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.003854s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.030731s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000111s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.128807s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037562s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.034366s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.071166s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.168585s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023007s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.074312s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.096539s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000106s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.194779s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024301s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.100043s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.123564s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000101s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.222363s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013377s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.127499s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000050s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.140087s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000098s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.237745s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015404s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.143527s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.158143s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015884s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.143527s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000081s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.158673s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000093s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.256569s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000194s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.266028s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032299s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.171402s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.202915s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000110s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.300921s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017591s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.206061s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.222858s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.321208s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021531s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.226632s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.247480s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022016s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.226632s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.247965s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.345832s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000106s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.355096s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032164s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.260982s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.292378s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000098s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.389831s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016097s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.295578s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000095s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.311008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.408950s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017057s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.314807s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.331090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.428453s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023897s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.334240s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.357419s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000103s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.455346s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016616s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.361014s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.376860s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000108s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.474288s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020793s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.380157s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.400164s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021269s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.380157s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.400637s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000106s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.499133s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.508492s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024248s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.414393s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.437858s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000099s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.535752s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023410s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.441027s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000040s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.463746s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.561467s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021011s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.467162s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000049s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.487425s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021564s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.467162s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.487932s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000278s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.585853s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.595851s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.046962s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.501570s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.547755s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000096s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.644895s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027736s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.550862s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000047s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.577819s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000098s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.675263s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023743s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.581008s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.603994s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000102s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.701508s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020491s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.607164s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.626871s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000104s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.725627s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016408s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.631180s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000049s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.646871s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000096s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.744251s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030541s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.650137s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000048s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.679896s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031038s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.650137s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.680400s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000106s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.777891s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000105s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.788482s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038721s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.693585s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.731606s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.828858s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016522s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.734781s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.750522s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000107s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.848603s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018050s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.754028s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.771372s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018588s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.754028s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.771894s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000103s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.869466s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000105s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.879265s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015500s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.784598s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.799377s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.897024s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025210s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.802823s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.827249s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000099s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.925362s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022579s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.831168s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.852966s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000114s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.951590s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020037s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.856089s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.875350s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020525s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.856089s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000046s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.875831s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000106s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.973077s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000106s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.983898s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023708s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.887977s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.910901s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000115s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.008251s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031609s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.914034s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.944868s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000188s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.042740s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023524s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.948081s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.970860s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024045s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.948081s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.971351s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000102s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.069540s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000106s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.079331s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026817s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.985058s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.011090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000102s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.109271s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013380s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.014684s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.027292s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.124538s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020435s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.030391s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.050044s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020915s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.030391s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.050519s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000099s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.148002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000104s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.158071s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029546s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.063525s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000048s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.092341s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.189611s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014198s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.095487s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000092s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.108900s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000112s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.207355s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019375s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.112646s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.131247s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000107s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.229482s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009801s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.134553s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.143566s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-1.240833s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012735s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.146681s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000070s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.158624s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013234s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.146681s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.159121s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013701s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.146681s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.159774s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014649s ]
+INFO: [ view_parse ] --END-- [ RunTime:-1.146681s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000031s ]
+INFO: [ view_filter ] --END-- [ RunTime:-1.160565s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003179s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003541s ]
+
+[ 2016-06-05T00:16:39+08:00 ] 127.0.0.1 /admin.php?s=/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002190s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002836s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001757s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001917s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0043s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0007s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Index/index%' ) LIMIT 1   [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000213s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000360s ]
+INFO: [ AdminIndex ] --START--
+SQL: SHOW COLUMNS FROM `sql_addons` [ RunTime:0.0042s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'SiteStat' AND `status` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_member` [ RunTime:0.0048s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_member` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_action_log` [ RunTime:0.0042s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_action_log` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `sql_document` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_document` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_category` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_model` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_model` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000099s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.046047s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004047s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004206s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000566s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000701s ]
+INFO: Run Addons\SiteStat\SiteStatAddon [ RunTime:0.042084s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'SystemInfo' AND `status` = 1 LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.181380s ]
+SQL: select version() as v; [ RunTime:0.0003s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005785s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.130756s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.135973s ]
+INFO: Run Addons\SystemInfo\SystemInfoAddon [ RunTime:0.136039s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'DevTeam' AND `status` = 1 LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000088s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.189710s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003596s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.139788s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.142828s ]
+INFO: Run Addons\DevTeam\DevTeamAddon [ RunTime:0.006779s ]
+INFO: [ AdminIndex ] --END-- [ RunTime:0.185181s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004196s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.139788s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000031s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.143395s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001005s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001200s ]
+
+[ 2016-06-05T17:34:49+08:00 ] 127.0.0.1 /admin.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002681s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000747s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000975s ]
+
+[ 2016-06-05T17:34:50+08:00 ] 127.0.0.1 /admin.php?s=/Public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002153s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003158s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000599s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000744s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000172s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000317s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038237s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038398s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000577s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000708s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000742s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000879s ]
+
+[ 2016-06-05T17:34:50+08:00 ] 127.0.0.1 /admin.php?s=/Public/verify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002098s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002737s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000598s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000758s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000821s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000990s ]
+
+[ 2016-06-05T17:35:08+08:00 ] 127.0.0.1 /admin.php?s=/Public/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002388s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003065s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000576s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000704s ]
+NOTIC: [8] Undefined index: lite H:\docs\job\ThinkPHP\Library\Think\Db.class.php 第 37 行.
+SQL: SHOW COLUMNS FROM `sql_member` [ RunTime:0.0046s ]
+SQL: SELECT `uid`,`nickname`,`sex`,`birthday`,`qq`,`score`,`login`,`reg_ip`,`reg_time`,`last_login_ip`,`last_login_time`,`status`,`toux`,`pos`,`hot` FROM `sql_member` WHERE `uid` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_action` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `sql_action` WHERE `name` = 'user_login' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: info H:\docs\job\Application\Common\Common\function.php 第 493 行.
+NOTIC: [8] Undefined variable: info H:\docs\job\Application\Common\Common\function.php 第 493 行.
+SQL: SHOW COLUMNS FROM `sql_action_log` [ RunTime:0.0043s ]
+SQL: INSERT INTO `sql_action_log` (`action_id`,`user_id`,`action_ip`,`model`,`record_id`,`create_time`,`remark`) VALUES ('1','1','2130706433','member','1','1465119307','在2016-06-05 17:35登录了后台') [ RunTime:0.0004s ]
+SQL: SELECT * FROM `sql_action` WHERE `name` = 'user_login' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined offset: 1 H:\docs\job\Application\Common\Common\function.php 第 765 行.
+NOTIC: [2] array_key_exists() expects parameter 2 to be array, null given H:\docs\job\Application\Common\Common\function.php 第 765 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_action_log` WHERE `action_id` = 1 AND `user_id` = 1 AND `create_time` > 1465032907 LIMIT 1   [ RunTime:0.8154s ]
+SQL: UPDATE `sql_member` SET `login`=`login`+1,`last_login_time`='1465119307',`last_login_ip`='2130706433' WHERE `uid` = 1 [ RunTime:0.0006s ]
+
+[ 2016-06-05T17:35:08+08:00 ] 127.0.0.1 /admin.php?s=/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001985s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000778s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0413s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0191s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Index/index%' ) LIMIT 1   [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000203s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000365s ]
+INFO: [ AdminIndex ] --START--
+SQL: SHOW COLUMNS FROM `sql_addons` [ RunTime:0.0047s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'SiteStat' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_member` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_member` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_action_log` [ RunTime:0.0046s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_action_log` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_document` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_document` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0051s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_category` LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_model` [ RunTime:0.0394s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_model` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000137s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.154095s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004811s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004985s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000507s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000649s ]
+INFO: Run Addons\SiteStat\SiteStatAddon [ RunTime:0.089988s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'SystemInfo' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000095s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.379808s ]
+SQL: select version() as v; [ RunTime:0.0269s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032470s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.220217s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000043s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.252243s ]
+INFO: Run Addons\SystemInfo\SystemInfoAddon [ RunTime:0.252410s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'DevTeam' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.429067s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004714s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.269774s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000040s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.274006s ]
+INFO: Run Addons\DevTeam\DevTeamAddon [ RunTime:0.021614s ]
+INFO: [ AdminIndex ] --END-- [ RunTime:0.364286s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005350s ]
+INFO: [ view_parse ] --END-- [ RunTime:-0.269774s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.274606s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001139s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001318s ]
+
+[ 2016-06-05T17:36:22+08:00 ] 127.0.0.1 /admin.php?s=/Zhaopin/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002872s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003569s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000579s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000747s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0048s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Zhaopin/index%' ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `sql_auth_group_access` [ RunTime:0.0207s ]
+SQL: SELECT `extend_id` FROM sql_auth_group_access g INNER JOIN sql_auth_extend c on g.group_id=c.group_id  WHERE ( g.uid='1' and c.type='1' and !isnull(extend_id) )  [ RunTime:0.0486s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0059s ]
+SQL: SELECT `id`,`title`,`pid`,`allow_publish` FROM `sql_category` WHERE `status` = 1 AND `ismenu` = 1 ORDER BY pid,sort  [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `sql_model` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `sql_model` WHERE `name` = 'document' LIMIT 1   [ RunTime:0.0114s ]
+SQL: SHOW COLUMNS FROM `sql_document` [ RunTime:0.0053s ]
+SQL: SELECT COUNT(*) AS tp_count FROM sql_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `iscate` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `id`,`title`,`type`,`update_time`,`status`,`view`,`category_id`,`model_id`,`pid` FROM sql_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `iscate` = 1 ORDER BY level DESC,DOCUMENT.id DESC LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT `extend` FROM `sql_model` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_attribute` [ RunTime:0.0358s ]
+SQL: SELECT `id`,`name`,`type`,`extra` FROM `sql_attribute` WHERE `model_id` = 1  [ RunTime:0.0091s ]
+NOTIC: [8] Undefined variable: groups H:\docs\job\Application\Admin\Controller\ZhaopinController.class.php 第 240 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000480s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000632s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.294539s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.294767s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000674s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000804s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001207s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001758s ]
+
+[ 2016-06-05T17:36:29+08:00 ] 127.0.0.1 /admin.php?s=/Zhaopin/index/p/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002356s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002965s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000707s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000876s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0069s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Zhaopin/index%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `sql_auth_group_access` [ RunTime:0.0036s ]
+SQL: SELECT `extend_id` FROM sql_auth_group_access g INNER JOIN sql_auth_extend c on g.group_id=c.group_id  WHERE ( g.uid='1' and c.type='1' and !isnull(extend_id) )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0049s ]
+SQL: SELECT `id`,`title`,`pid`,`allow_publish` FROM `sql_category` WHERE `status` = 1 AND `ismenu` = 1 ORDER BY pid,sort  [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `sql_model` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `sql_model` WHERE `name` = 'document' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_document` [ RunTime:0.0047s ]
+SQL: SELECT COUNT(*) AS tp_count FROM sql_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `iscate` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `id`,`title`,`type`,`update_time`,`status`,`view`,`category_id`,`model_id`,`pid` FROM sql_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `iscate` = 1 ORDER BY level DESC,DOCUMENT.id DESC LIMIT 10,10   [ RunTime:0.0005s ]
+SQL: SELECT `extend` FROM `sql_model` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_attribute` [ RunTime:0.0046s ]
+SQL: SELECT `id`,`name`,`type`,`extra` FROM `sql_attribute` WHERE `model_id` = 1  [ RunTime:0.0008s ]
+NOTIC: [8] Undefined variable: groups H:\docs\job\Application\Admin\Controller\ZhaopinController.class.php 第 240 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000474s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000632s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.180758s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.180903s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000755s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000898s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002120s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002792s ]
+
+[ 2016-06-05T17:36:33+08:00 ] 127.0.0.1 /admin.php?s=/Zhaopin/index/p/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002558s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003278s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000646s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000806s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0046s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Zhaopin/index%' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `sql_auth_group_access` [ RunTime:0.0056s ]
+SQL: SELECT `extend_id` FROM sql_auth_group_access g INNER JOIN sql_auth_extend c on g.group_id=c.group_id  WHERE ( g.uid='1' and c.type='1' and !isnull(extend_id) )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0060s ]
+SQL: SELECT `id`,`title`,`pid`,`allow_publish` FROM `sql_category` WHERE `status` = 1 AND `ismenu` = 1 ORDER BY pid,sort  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `sql_model` [ RunTime:0.0057s ]
+SQL: SELECT * FROM `sql_model` WHERE `name` = 'document' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_document` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM sql_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `iscate` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `id`,`title`,`type`,`update_time`,`status`,`view`,`category_id`,`model_id`,`pid` FROM sql_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `iscate` = 1 ORDER BY level DESC,DOCUMENT.id DESC LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT `extend` FROM `sql_model` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_attribute` [ RunTime:0.0050s ]
+SQL: SELECT `id`,`name`,`type`,`extra` FROM `sql_attribute` WHERE `model_id` = 1  [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: groups H:\docs\job\Application\Admin\Controller\ZhaopinController.class.php 第 240 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000484s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000635s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.195799s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.195960s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000734s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000878s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001310s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001492s ]
+
+[ 2016-06-05T17:36:37+08:00 ] 127.0.0.1 /admin.php?s=/Article/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002578s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003266s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000775s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000927s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0068s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Article/index%' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 2 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 2  [ RunTime:0.0086s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 2 AND `hide` = 0  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '内容' AND `pid` = 2 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_auth_group_access` [ RunTime:0.0044s ]
+SQL: SELECT `extend_id` FROM sql_auth_group_access g INNER JOIN sql_auth_extend c on g.group_id=c.group_id  WHERE ( g.uid='1' and c.type='1' and !isnull(extend_id) )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_category` [ RunTime:0.0047s ]
+SQL: SELECT `id`,`title`,`pid`,`allow_publish` FROM `sql_category` WHERE `status` = 1 AND `ismenu` > 1 ORDER BY pid,sort  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `sql_model` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `sql_model` WHERE `name` = 'document' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_document` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM sql_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `iscate` = 3 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `id`,`title`,`type`,`update_time`,`status`,`view`,`category_id`,`model_id`,`pid` FROM sql_document DOCUMENT WHERE `status` IN ('0','1','2') AND `pid` = 0 AND `iscate` = 3 ORDER BY level DESC,DOCUMENT.id DESC LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT `extend` FROM `sql_model` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `sql_attribute` [ RunTime:0.0044s ]
+SQL: SELECT `id`,`name`,`type`,`extra` FROM `sql_attribute` WHERE `model_id` = 1  [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: groups H:\docs\job\Application\Admin\Controller\ArticleController.class.php 第 233 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000475s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000630s ]
+NOTIC: [8] Undefined index: _child H:\docs\job\Runtime\Cache\Admin\7a4184ffe8f804b12b2e7f8851dd8f7d.php 第 79 行.
+NOTIC: [8] Undefined index: _child H:\docs\job\Runtime\Cache\Admin\7a4184ffe8f804b12b2e7f8851dd8f7d.php 第 79 行.
+NOTIC: [8] Undefined index: _child H:\docs\job\Runtime\Cache\Admin\7a4184ffe8f804b12b2e7f8851dd8f7d.php 第 79 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.101685s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.101864s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000717s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000848s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001008s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001216s ]
+
+[ 2016-06-05T17:36:54+08:00 ] 127.0.0.1 /admin.php?s=/User/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002368s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002988s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000686s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000828s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0061s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%User/index%' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 16  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 16 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '用户管理' AND `pid` = 16 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '行为管理' AND `pid` = 16 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '用户认证' AND `pid` = 16 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_member` [ RunTime:0.0045s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `sql_member` WHERE `status` >= 0 AND `nickname` LIKE '%%' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT `uid`,`nickname`,`sex`,`birthday`,`qq`,`score`,`login`,`reg_ip`,`reg_time`,`last_login_ip`,`last_login_time`,`status`,`toux`,`pos`,`hot` FROM `sql_member` WHERE `status` >= 0 AND `nickname` LIKE '%%' ORDER BY uid desc LIMIT 0,10   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000274s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000420s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.054352s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.054524s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000717s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000850s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000951s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001128s ]
+
+[ 2016-06-05T17:37:42+08:00 ] 127.0.0.1 /admin.php?s=/Addons/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002346s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002964s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001178s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001485s ]
+SQL: SHOW COLUMNS FROM `sql_addons` [ RunTime:0.0081s ]
+SQL: SELECT `title`,`name` FROM `sql_addons` WHERE ( status=1 AND has_adminlist=1 )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0057s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Addons/index%' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 43 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 43  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 43 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '扩展' AND `pid` = 43 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`name`,`title`,`description`,`status`,`config`,`author`,`version`,`create_time`,`has_adminlist` FROM `sql_addons` WHERE `name` IN ('Attachment','BaiduMap','ChinaCity','DevTeam','Editor','EditorForAdmin','SiteStat','SocialComment','SystemInfo')  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000392s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000706s ]
+SQL: SHOW COLUMNS FROM `sql_addons` [ RunTime:0.0053s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'SocialComment' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'BaiduMap' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'ChinaCity' AND `status` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'Attachment' AND `status` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'Editor' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'SiteStat' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'DevTeam' AND `status` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'SystemInfo' AND `status` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `config` FROM `sql_addons` WHERE `name` = 'EditorForAdmin' AND `status` = 1 LIMIT 1   [ RunTime:0.0004s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.160068s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.160227s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000583s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000717s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000815s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000979s ]
+
+[ 2016-06-05T17:37:46+08:00 ] 127.0.0.1 /admin.php?s=/Config/group.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.002189s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002962s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000703s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000858s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0066s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Config/group%' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0005s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `sql_config` [ RunTime:0.0048s ]
+SQL: SELECT `id`,`name`,`title`,`extra`,`value`,`remark`,`type` FROM `sql_config` WHERE `status` = 1 AND `group` = 1 ORDER BY sort  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000284s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000432s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035624s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035771s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000767s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000898s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000951s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001140s ]
+
+[ 2016-06-05T17:38:07+08:00 ] 127.0.0.1 /admin.php?s=/Config/group/id/5.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: Run Common\Behavior\InitHookBehavior [ RunTime:0.001900s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002515s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000692s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000858s ]
+SQL: SHOW COLUMNS FROM `sql_menu` [ RunTime:0.0043s ]
+SQL: SELECT `id`,`title`,`url` FROM `sql_menu` WHERE `pid` = 0 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SELECT `pid` FROM `sql_menu` WHERE ( pid !=0 AND url like '%Config/group%' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `sql_menu` WHERE `id` = 68 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT DISTINCT  `group` FROM `sql_menu` WHERE `group` <> '' AND `pid` = 68  [ RunTime:0.0010s ]
+SQL: SELECT `id`,`url` FROM `sql_menu` WHERE `pid` = 68 AND `hide` = 0  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '系统设置' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0006s ]
+SQL: SELECT `id`,`pid`,`title`,`url`,`tip` FROM `sql_menu` WHERE `group` = '数据备份' AND `pid` = 68 AND `hide` = 0 ORDER BY sort asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `sql_config` [ RunTime:0.0059s ]
+SQL: SELECT `id`,`name`,`title`,`extra`,`value`,`remark`,`type` FROM `sql_config` WHERE `status` = 1 AND `group` = 5 ORDER BY sort  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000357s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000596s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.039894s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.040054s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000860s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001149s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001425s ]
+

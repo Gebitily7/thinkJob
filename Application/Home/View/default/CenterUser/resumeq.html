@@ -1,0 +1,103 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/center.css"/>
+    <link rel="stylesheet" href="__STATIC__/uploadify/uploadify.css"/>
+    <link rel="stylesheet" href="__STATIC__/uptx/css/style.css"/>
+</block>
+
+<block name="body">
+    <!-- 左侧目录 -->
+    <section class="sid-bar fl">
+        <div class="user-base">
+            <!-- 公司基本 -->
+            <div class="gs-desc">
+                <div class="re-mid clearfix">
+                    <a href="{:U('home/user/company/id/'.$userInfo['id'])}" target="_blank">
+                        <div>
+                            <if condition="$userInfo.id neq ''">
+                                <img src="{$userInfo.u_tx|get_cover='path'}" alt=""/>
+                                <else/>
+                                <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                            </if>
+                        </div>
+                        <if condition="$userInfo.identify eq 2">
+                            <span class="cert"><i class="fa fa-diamond"></i>已认证</span>
+                            <else />
+                            <span class="uncert"><i class="fa fa-diamond"></i>未认证</span>
+                        </if>
+                        <div>
+                            <p>{$userInfo.c_name}</p>
+                            <p>{$userInfo.username}<span>&ensp;|&ensp;</span>{$userInfo.pos}</p>
+                            <p>公司规模:&ensp;{$userInfo.c_range}人</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="gs-base clearfix">
+                <div>
+                    <p>职位数</p>
+                    <span>{$nowAll}</span>
+                </div>
+                <div>
+                    <p>收到的简历</p>
+                    <span>12</span>
+                </div>
+                <div>
+                    <p>已回复</p>
+                    <span>12</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- user-list -->
+        <div class="user-list">
+            <div>
+                <ul class="list-setting">
+                    <li class="side-item" data-side="1" data-title="公司管理"><i class="fa fa-building-o"></i>公司管理</li>
+                    <li class="side-item" data-side="2" data-title="职位管理"><i class="fa fa-pencil-square-o"></i>职位管理</li>
+                    <li class="side-item" data-side="3" data-title="简历管理"><i class="fa fa-file-text-o"></i>简历管理</li>
+                    <li class="side-item" data-side="4" data-title="企业认证"><i class="fa fa-diamond"></i>企业认证</li>
+                    <li class="side-item" data-side="5" data-title="个人设置"><i class="fa fa-cog"></i>个人设置</li>
+                </ul>
+            </div>
+        </div>
+        <!-- user-list -->
+
+    </section>
+    <!-- /左侧目录 -->
+
+    <!-- 右侧内容 -->
+    <section class="content fl">
+        <div>
+            <div class="item-top">
+                <div class="item-top-mask item-title">
+                    <span>公司管理</span>
+                </div>
+            </div>
+            <div class="mask"></div>
+            <div class="input-tip"><span></span></div>
+        </div>
+
+
+        <!-- 简历管理 -->
+        <eq name="userInfo.identify" value="2">
+            <div class="item-box side-3">
+                <div class="item-content">
+                    2
+                </div>
+            </div>
+            <else/>
+            <div class="item-box side-3">
+                <div class="item-content">
+                    <span>你还没有认证</span>
+                </div>
+            </div>
+        </eq>
+        <!-- /简历管理 -->
+
+
+    </section>
+
+
+</block>

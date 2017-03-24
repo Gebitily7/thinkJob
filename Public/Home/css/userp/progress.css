@@ -1,0 +1,199 @@
+/* item-box */
+.item-box{
+    width: 750px;
+    margin-top: 3px;
+}
+.item-content{
+    padding: 10px 20px 5px 20px;
+    background: #FFFFFF;
+}
+
+/* content中的切换 */
+.ul-list{
+    font-size: 1.2em;
+    border-bottom: 2px solid #009C63;
+}
+.li-item{
+    float: left;
+}
+.li-item{
+    width: 68px;
+    padding: 3px 5px;
+    margin-right: 1px;
+    cursor: pointer;
+    color: #009C63;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+}
+/* 选中的状态 */
+.item-selected{
+    background: rgba(0, 156, 99, 1);
+    color: #ffffff;
+}
+
+.job-nav{
+    height: 40px;
+    background: #ffffff;
+    margin-bottom: 2px;
+    padding: 0 20px 0 22px;
+    line-height: 40px;
+}
+.prev-ajax,.next-ajax{
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+}
+.prev-ajax:hover,.next-ajax:hover{
+    background: rgba(0,0,0,.1);
+}
+.job-nav .job-num{
+    font-size: 1.1em;
+    padding-left: 15px;
+}
+.job-num i{
+    font-size: 1.1em;
+    font-style: normal;
+    color: #009C63;
+}
+.zw-content{
+    display: none;
+}
+
+/* 职位列表 */
+/* 职位列表 */
+.job-list{
+    margin-top: 14px;
+}
+.job-list ul{
+    float: left;
+}
+.job-tab{
+    width: 75%;
+    margin-right: 12px;
+}
+.job-item{
+    position: relative;
+    margin-bottom: 10px;
+    background: #FFFFFF;
+}
+.job-item>a{
+    display: block;
+    height: 100px;
+    padding: 10px 15px;
+    border-left: 7px solid #B1A190;
+    color: #999999;
+}
+.job-item div{
+    line-height: 28px;
+}
+.job-item div span{
+    display: inline-block;
+    margin-right: 44px;
+}
+.job-right div span{
+    margin-right: 4px;
+}
+.job-left div:first-child{
+    font-size: 1.2em;
+    color: #009C63;
+}
+.job-right span i,
+.job-left span i{
+    color: #009C63;
+}
+.job-left > div{
+    height: 28px;
+    overflow: hidden;
+}
+.job-left,.job-right{
+    float: left;
+    width: 50%;
+}
+.job-right div:first-child{
+    font-size: 1.2em;
+}
+/* 标签 */
+.job-label{
+    clear: both;
+    padding-top: 5px;
+}
+.job-label span{
+    line-height: 22px;
+    margin-top: 5px;
+    margin-right: 10px !important;
+    padding: 0 5px;
+    background: rgba(0, 156, 99, .4);
+    color: #009C63;
+}
+/* 列表hover */
+.job-item>a:hover{
+    border-color: #00AAA1;
+    -webkit-animation: bgcolor 7s ease-in-out;
+    -moz-animation: bgcolor 7s ease-in-out;
+    animation: bgcolor 7s ease-in-out;
+    transition: border-color 2s ease;
+}
+.reply{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+.reply span{
+    margin-right: 5px !important;
+    padding: 3px 4px;
+}
+
+.job-left span{
+    margin-right: 10px !important;
+}
+
+.reply-box{
+    display: none;
+    position: absolute;
+    width: 300px;
+    border: 1px solid #CCCCCC;
+    background-color: #fff;
+    color: #666666;
+    right: -42px;
+    z-index: 999;
+}
+.reply-top{
+    line-height: 30px;
+    background-color: #009c60;
+    text-align: center;
+    color: #fff;
+}
+.reply-body{
+    padding: 2px 7px;
+}
+.close-r{
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, .2);
+    color: #ffffff;
+    font-style: normal;
+    border-radius: 50%;
+    right: 0;
+}
+.reply-top:hover .close-r{
+    background: rgba(255, 255, 255, .6);
+    color: #000000;
+}
+.btn-ck{
+    padding: 4px 10px !important;
+    color: #009c60;
+    z-index: 999;
+}
+.btn-ck:hover{
+    color: #333333;
+}
+
+/* 取消收藏 */
+.qx-sc{
+    color: #009c60;
+}
+.qx-sc:hover,.zw-status{
+    color: #999999;
+}

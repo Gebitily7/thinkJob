@@ -1,0 +1,565 @@
+<extend name="Base/common"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/list.css"/>
+    <link rel="stylesheet" href="__CSS__/zhaopin/index.css"/>
+    <style>
+        .like-o{
+            color: #C80000;
+        }
+        .send-o{
+            color: #FFA248;
+        }
+    </style>
+</block>
+
+<block name="header">
+    <!-- 当前位置 -->
+    <section class="now-pos">
+        <div class="box">
+            <span>
+                <b>当前位置:&emsp;</b>
+                <a href="http://www.job.com">首页</a>
+                <volist name="pcate" id="vo">
+                    <i class="fa fa-angle-right fa-lg"></i>
+                    <a href="{:U('home/zhaopin/index/pid/'.$vo[0]['id'])}">{$vo[0].title}</a>
+                </volist>
+            </span>
+        </div>
+    </section>
+    <!-- /当前位置 -->
+</block>
+
+<block name="body">
+    <!-- 筛选 -->
+    <section class="filtrate">
+        <div class="filtrate-box">
+            <div class="industry select-del clearfix">
+                <span>行&emsp;&emsp;业&ensp;:</span>
+                <ul class="fl clearfix">
+                    <li class='radio-item js-url <eq name="cid" value="">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">全部</li>
+                    <volist name="childCate" id="cate">
+                        <li class='radio-item js-url <if condition="$cate.id eq $cid">radio-selected</if>'data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cate['id'],'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">{$cate.title}</li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="industry select-del clearfix">
+                <span>类&emsp;&emsp;别&ensp;:</span>
+                <ul class="fl clearfix">
+                    <a href="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}"><li class='radio-item <eq name="oid" value="">radio-selected</eq>' >全部</li></a>
+                    <volist name="oCate" id="vo">
+                        <li class='radio-item js-url <if condition="$vo.id eq $oid">radio-selected</if>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$vo['id'],'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">{$vo.title}</li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="industry select-del clearfix">
+                <span>公司性质&ensp;:</span>
+                <ul class="fl clearfix">
+                    <li class='radio-item js-url <eq name="pty" value="">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm))}">全部</li>
+                    <li class='radio-item js-url <eq name="pty" value="0">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>0,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">国企</li>
+                    <li class='radio-item js-url <eq name="pty" value="1">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>1,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">外商融资</li>
+                    <li class='radio-item js-url <eq name="pty" value="2">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>2,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">代表处</li>
+                    <li class='radio-item js-url <eq name="pty" value="3">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>3,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">合资</li>
+                    <li class='radio-item js-url <eq name="pty" value="4">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>4,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">民营</li>
+                    <li class='radio-item js-url <eq name="pty" value="5">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>5,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">股份制企业</li>
+                    <li class='radio-item js-url <eq name="pty" value="6">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>6,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">国家机关</li>
+                    <li class='radio-item js-url <eq name="pty" value="7">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>7,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">事业单位</li>
+                    <li class='radio-item js-url <eq name="pty" value="8">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>8,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">其他</li>
+                </ul>
+            </div>
+            <div class="industry select-del clearfix">
+                <span>公司阶段&ensp;:</span>
+                <ul class="fl clearfix">
+                    <li class='radio-item js-url <eq name="step" value="">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">全部</li>
+                    <li class='radio-item js-url <eq name="step" value="0">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>0,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">初创性</li>
+                    <li class='radio-item js-url <eq name="step" value="1">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>1,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">未融资</li>
+                    <li class='radio-item js-url <eq name="step" value="2">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>2,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">A轮</li>
+                    <li class='radio-item js-url <eq name="step" value="3">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>3,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">B轮</li>
+                    <li class='radio-item js-url <eq name="step" value="4">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>4,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">C轮</li>
+                    <li class='radio-item js-url <eq name="step" value="5">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>5,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">D轮</li>
+                    <li class='radio-item js-url <eq name="step" value="6">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>6,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">E轮</li>
+                    <li class='radio-item js-url <eq name="step" value="7">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>7,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">已上市</li>
+                    <li class='radio-item js-url <eq name="step" value="8">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>8,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">其他</li>
+                </ul>
+            </div>
+            <div class="industry select-del clearfix">
+                <span>薪&emsp;&emsp;资&ensp;:</span>
+                <ul class="fl clearfix">
+                    <li class='radio-item js-url <eq name="sa" value="">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">不限</li>
+                    <li class='radio-item js-url <eq name="sa" value="0">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>0,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">面议</li>
+                    <li class='radio-item js-url <eq name="sa" value="1">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>1,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">1000及以下</li>
+                    <li class='radio-item js-url <eq name="sa" value="2">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>2,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">1000-2000</li>
+                    <li class='radio-item js-url <eq name="sa" value="3">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>3,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">2000-4000</li>
+                    <li class='radio-item js-url <eq name="sa" value="4">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>4,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">4000-6000</li>
+                    <li class='radio-item js-url <eq name="sa" value="5">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>5,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">6000-8000</li>
+                    <li class='radio-item js-url <eq name="sa" value="6">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>6,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">8000-10000</li>
+                    <li class='radio-item js-url <eq name="sa" value="7">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>7,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">10000-15000</li>
+                    <li class='radio-item js-url <eq name="sa" value="8">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>8,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">15000-20000</li>
+                    <li class='radio-item js-url <eq name="sa" value="9">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>9,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">20000-30000</li>
+                    <li class='radio-item js-url <eq name="sa" value="10">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>10,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">30000-50000</li>
+                    <li class='radio-item js-url <eq name="sa" value="11">radio-selected</eq>' data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>11,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>$time))}">50000以上</li>
+                </ul>
+            </div>
+            <div class="sel-else select-del clearfix">
+                <span>其&emsp;&emsp;他&ensp;:</span>
+                <div class="clearfix sel-else-box">
+                    <div class="fl">工作经验</div>
+                    <div class="fl father">
+                        <span><eq name="wep" value="">不限<else/>{$wep|get_work_experience}</eq></span><i class="fa fa-caret-down"></i>
+                        <ul class="clickChild">
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'acm'=>$acm,'time'=>$time))}">不限</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>1,'acm'=>$acm,'time'=>$time))}">应届毕业生</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>2,'acm'=>$acm,'time'=>$time))}">1年以下</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>3,'acm'=>$acm,'time'=>$time))}">1-3年</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>4,'acm'=>$acm,'time'=>$time))}">3-5年</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>5,'acm'=>$acm,'time'=>$time))}">5-7年</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>6,'acm'=>$acm,'time'=>$time))}">7-10年</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>7,'acm'=>$acm,'time'=>$time))}">10年以上</li>
+                        </ul>
+                    </div>
+                    <div class="fl">学历要求</div>
+                    <div class="fl father">
+                        <span><eq name="acm" value="">不限<else/>{$acm|get_academic_career}</eq></span><i class="fa fa-caret-down"></i>
+                        <ul class="clickChild">
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'time'=>$time))}">不限</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>1,'time'=>$time))}">初中</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>2,'time'=>$time))}">高中及同等</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>3,'time'=>$time))}">大专及同等</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>4,'time'=>$time))}">本科及同等</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>5,'time'=>$time))}">硕士及同等</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>6,'time'=>$time))}">博士及以上</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>7,'time'=>$time))}">其他</li>
+                        </ul>
+                    </div>
+                    <div class="fl">发布时间</div>
+                    <div class="fl father">
+                        <span><eq name="time" value="">不限<else/>{$time|get_time_list}</eq></span><i class="fa fa-caret-down"></i>
+                        <ul class="clickChild">
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm))}">不限</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>0))}">今天</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>1))}">3天内</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>2))}">1周内</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>3))}">2周内</li>
+                            <li class="js-url" data-url="{:U('Zhaopin/index',array('pid'=>$pid,'cid'=>$cid,'oid'=>$oid,'pty'=>$pty,'sa'=>$sa,'step'=>$step,'wep'=>$wep,'acm'=>$acm,'time'=>4))}">1个月内</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /筛选 -->
+
+    <!-- 职位列表详情 -->
+    <section class="job-list clearfix">
+        <!-- 职位大概数量和分页 -->
+        <div class="job-top">
+            <div class="fl job-nav num-1">
+                <span class="job-num">为你找到&ensp;<i>{$pageNum}</i>&ensp;个职位</span>
+                <div class="fr">
+                    <a href="">
+                        <span class="prev-ajax"><i class="fa fa-angle-left fa-lg"></i></span>
+                    </a>
+                    <span class="all-page"><i style="color: #CB0000;font-style: normal;">1</i>&ensp;/&ensp;{$pageCount}</span>
+                    <a href="">
+                        <span class="next-ajax"><i class="fa fa-angle-right fa-lg"></i></span>
+                    </a>
+                </div>
+            </div>
+            <div class="fl re-job">
+                <span>推荐职位</span>
+            </div>
+        </div>
+        <!-- /职位大概数量和分页 -->
+
+        <!-- 职位列表 -->
+        <ul class="job-tab">
+            <volist name="job" id="vo" empty="暂时没有数据">
+            <li class="job-item">
+                <a class="clearfix" href="{:U('home/zhaopin/detail/id/'.$vo['id'])}">
+                    <div class="job-left">
+                        <div>
+                            <span><i></i>{$vo.jobname}</span>
+                            <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary_range|get_salary_range}</span>
+                            <span style="color: #666666;">{$vo.update_time|get_put_time}</span>
+                        </div>
+                        <div>
+                            <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place|get_place}</span>
+                            <span><i class="fa fa-briefcase"></i>&ensp;{$vo.work_experience|get_work_experience}</span>
+                            <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                        </div>
+                    </div>
+                    <div class="job-right">
+                        <div>
+                            <span><i class="fa fa-building-o"></i>&ensp;{$vo.c_name}</span>
+                            <span class="job-fa" style="display: none;float: right; color: #008803; font-size: .8em;"><i class="fa fa-check-circle fa-lg"></i>已发送</span>
+                        </div>
+                        <div>
+                            <span>{$vo.industry|get_category_title}</span>|
+                            <span>{$vo.step|get_step_list}</span>|
+                            <span>&emsp;<i class="fa fa-phone"></i>&ensp;{$vo.linkman_phone}</span>
+                        </div>
+                    </div>
+                    <div class="job-label">
+                        {$vo.skill|format_zw_label}
+                    </div>
+                </a>
+                <if condition="is_login() and session('user_type') eq 1">
+                    <div class="job-tip">
+                        <if condition="$vo.is_like eq 1">
+                            <div class="fl tip like" data-ajax="1" data-jid="{$vo.id}" data-gid="{$vo.uid}" data-name="{$vo.title}" data-status="0">
+                                <i class="fa fa-heart fa-3x like-o"></i>
+                                <span style="color: #C80000">已关注</span>
+                            </div>
+                            <else/>
+                            <div class="fl tip like" data-ajax="0" data-jid="{$vo.id}" data-gid="{$vo.uid}" data-name="{$vo.title}" data-status="1">
+                                <i class="fa fa-heart-o fa-3x"></i>
+                                <span>关注</span>
+                            </div>
+                        </if>
+                        <if condition="$vo.is_send eq 1">
+                            <div class="fl tip send-o" data-ajax="1">
+                                <i class="fa fa-send fa-3x" style="color: #FFA248;"></i>
+                                <span style="color: #FFA248;">已发送</span>
+                            </div>
+                            <else/>
+                            <div class="fl tip send" data-ajax="0"  data-jid="{$vo.id}" data-gid="{$vo.uid}" data-name="{$vo.title}" data-status="0">
+                                <i class="fa fa-send-o fa-3x"></i>
+                                <span>发送简历</span>
+                            </div>
+                        </if>
+                    </div>
+                </if>
+            </li>
+            </volist>
+            <li class="page" data-id="1">
+                {$page}
+            </li>
+            <script>
+                $(document).ready(function(){
+                    $('.page').each(function(){
+                        var num    = $(this).find('.current').html();
+                        var selfId = $(this).data('id');
+                        var prev   = $(this).find('.prev').attr('href');
+                        var next   = $(this).find('.next').attr('href');
+                        var $num   = $('.num-'+selfId);
+                        $num.find('.all-page i').html(num);
+                        $num.find('.next-ajax').parent('a').attr('href',next);
+                        $num.find('.prev-ajax').parent('a').attr('href',prev);
+                    });
+                });
+            </script>
+        </ul>
+        <!-- /职位列表 -->
+
+        <!-- 职位推荐 -->
+        <ul class="gs-tab">
+            <li class="gs-item" data-src="http://www.baidu.com">
+                <div class="re-top">
+                    <h3>Web前段研发工程师</h3>
+                    <span style="color: #C80000;"><i class="fa fa-rmb" style="color: #C80000;"></i>&ensp;3K-5K</span>
+                    <span><i class="fa fa-map-marker"></i>&ensp;上海</span>
+                    <span><i class="fa fa-briefcase"></i>&ensp;应届生</span>
+                    <span><i class="fa fa-graduation-cap"></i>&ensp;本科</span>
+                </div>
+                <div class="re-mid clearfix">
+                    <div>
+                        <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    </div>
+                    <span class="cert"><i class="fa fa-diamond"></i>已认证</span>
+                    <div>
+                        <p>焦作市赛克尔网络科技</p>
+                        <p>Gebitily7<span>&ensp;|&ensp;</span>CEO</p>
+                        <p>公司规模0-20人</p>
+                    </div>
+                </div>
+                <div class="re-bottom">
+                    <span>发布日期:&ensp;</span><time>04/07</time>
+                </div>
+            </li>
+            <li class="gs-item" data-src="http://www.baidu.com">
+                <div class="re-top">
+                    <h3>Web前段研发工程师</h3>
+                    <span style="color: #C80000;"><i class="fa fa-rmb" style="color: #C80000;"></i>&ensp;3K-5K</span>
+                    <span><i class="fa fa-map-marker"></i>&ensp;上海</span>
+                    <span><i class="fa fa-briefcase"></i>&ensp;应届生</span>
+                    <span><i class="fa fa-graduation-cap"></i>&ensp;本科</span>
+                </div>
+                <div class="re-mid clearfix">
+                    <div>
+                        <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    </div>
+                    <span class="cert"><i class="fa fa-diamond"></i>已认证</span>
+                    <div>
+                        <p>焦作市赛克尔网络科技</p>
+                        <p>Gebitily7<span>&ensp;|&ensp;</span>CEO</p>
+                        <p>公司规模0-20人</p>
+                    </div>
+                </div>
+                <div class="re-bottom">
+                    <span>发布日期:&ensp;</span><time>04/07</time>
+                </div>
+            </li>
+            <li class="gs-item" data-src="http://www.baidu.com">
+                <div class="re-top">
+                    <h3>Web前段研发工程师</h3>
+                    <span style="color: #C80000;"><i class="fa fa-rmb" style="color: #C80000;"></i>&ensp;3K-5K</span>
+                    <span><i class="fa fa-map-marker"></i>&ensp;上海</span>
+                    <span><i class="fa fa-briefcase"></i>&ensp;应届生</span>
+                    <span><i class="fa fa-graduation-cap"></i>&ensp;本科</span>
+                </div>
+                <div class="re-mid clearfix">
+                    <div>
+                        <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    </div>
+                    <span class="cert"><i class="fa fa-diamond"></i>已认证</span>
+                    <div>
+                        <p>焦作市赛克尔网络科技</p>
+                        <p>Gebitily7<span>&ensp;|&ensp;</span>CEO</p>
+                        <p>公司规模0-20人</p>
+                    </div>
+                </div>
+                <div class="re-bottom">
+                    <span>发布日期:&ensp;</span><time>04/07</time>
+                </div>
+            </li>
+            <li class="gs-item" data-src="http://www.baidu.com">
+                <div class="re-top">
+                    <h3>Web前段研发工程师</h3>
+                    <span style="color: #C80000;"><i class="fa fa-rmb" style="color: #C80000;"></i>&ensp;3K-5K</span>
+                    <span><i class="fa fa-map-marker"></i>&ensp;上海</span>
+                    <span><i class="fa fa-briefcase"></i>&ensp;应届生</span>
+                    <span><i class="fa fa-graduation-cap"></i>&ensp;本科</span>
+                </div>
+                <div class="re-mid clearfix">
+                    <div>
+                        <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    </div>
+                    <span class="cert"><i class="fa fa-diamond"></i>已认证</span>
+                    <div>
+                        <p>焦作市赛克尔网络科技</p>
+                        <p>Gebitily7<span>&ensp;|&ensp;</span>CEO</p>
+                        <p>公司规模0-20人</p>
+                    </div>
+                </div>
+                <div class="re-bottom">
+                    <span>发布日期:&ensp;</span><time>04/07</time>
+                </div>
+            </li>
+            <li class="gs-item" data-src="http://www.baidu.com">
+                <div class="re-top">
+                    <h3>Web前段研发工程师</h3>
+                    <span style="color: #C80000;"><i class="fa fa-rmb" style="color: #C80000;"></i>&ensp;3K-5K</span>
+                    <span><i class="fa fa-map-marker"></i>&ensp;上海</span>
+                    <span><i class="fa fa-briefcase"></i>&ensp;应届生</span>
+                    <span><i class="fa fa-graduation-cap"></i>&ensp;本科</span>
+                </div>
+                <div class="re-mid clearfix">
+                    <div>
+                        <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    </div>
+                    <span class="uncert"><i class="fa fa-diamond"></i>未认证</span>
+                    <div>
+                        <p>焦作市赛克尔网络科技</p>
+                        <p>Gebitily7<span>&ensp;|&ensp;</span>CEO</p>
+                        <p>公司规模0-20人</p>
+                    </div>
+                </div>
+                <div class="re-bottom">
+                    <span>发布日期:&ensp;</span><time>04/07</time>
+                </div>
+            </li>
+            <li class="gs-item" data-src="http://www.baidu.com">
+                <div class="re-top">
+                    <h3>Web前段研发工程师</h3>
+                    <span style="color: #C80000;"><i class="fa fa-rmb" style="color: #C80000;"></i>&ensp;3K-5K</span>
+                    <span><i class="fa fa-map-marker"></i>&ensp;上海</span>
+                    <span><i class="fa fa-briefcase"></i>&ensp;应届生</span>
+                    <span><i class="fa fa-graduation-cap"></i>&ensp;本科</span>
+                </div>
+                <div class="re-mid clearfix">
+                    <div>
+                        <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    </div>
+                    <span class="cert"><i class="fa fa-diamond"></i>已认证</span>
+                    <div>
+                        <p>焦作市赛克尔网络科技</p>
+                        <p>Gebitily7<span>&ensp;|&ensp;</span>CEO</p>
+                        <p>公司规模0-20人</p>
+                    </div>
+                </div>
+                <div class="re-bottom">
+                    <span>发布日期:&ensp;</span><time>04/07</time>
+                </div>
+            </li>
+            <li class="gs-item" data-src="http://www.baidu.com">
+                <div class="re-top">
+                    <h3>Web前段研发工程师</h3>
+                    <span style="color: #C80000;"><i class="fa fa-rmb" style="color: #C80000;"></i>&ensp;3K-5K</span>
+                    <span><i class="fa fa-map-marker"></i>&ensp;上海</span>
+                    <span><i class="fa fa-briefcase"></i>&ensp;应届生</span>
+                    <span><i class="fa fa-graduation-cap"></i>&ensp;本科</span>
+                </div>
+                <div class="re-mid clearfix">
+                    <div>
+                        <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    </div>
+                    <span class="cert"><i class="fa fa-diamond"></i>已认证</span>
+                    <div>
+                        <p>焦作市赛克尔网络科技</p>
+                        <p>Gebitily7<span>&ensp;|&ensp;</span>CEO</p>
+                        <p>公司规模0-20人</p>
+                    </div>
+                </div>
+                <div class="re-bottom">
+                    <span>发布日期:&ensp;</span><time>04/07</time>
+                </div>
+            </li>
+            <li class="gs-item" data-src="http://www.baidu.com">
+                <div class="re-top">
+                    <h3>Web前段研发工程师</h3>
+                    <span style="color: #C80000;"><i class="fa fa-rmb" style="color: #C80000;"></i>&ensp;3K-5K</span>
+                    <span><i class="fa fa-map-marker"></i>&ensp;上海</span>
+                    <span><i class="fa fa-briefcase"></i>&ensp;应届生</span>
+                    <span><i class="fa fa-graduation-cap"></i>&ensp;本科</span>
+                </div>
+                <div class="re-mid clearfix">
+                    <div>
+                        <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    </div>
+                    <span class="cert"><i class="fa fa-diamond"></i>已认证</span>
+                    <div>
+                        <p>焦作市赛克尔网络科技</p>
+                        <p>Gebitily7<span>&ensp;|&ensp;</span>CEO</p>
+                        <p>公司规模0-20人</p>
+                    </div>
+                </div>
+                <div class="re-bottom">
+                    <span>发布日期:&ensp;</span><time>04/07</time>
+                </div>
+            </li>
+        </ul>
+        <!-- /职位推荐 -->
+    </section>
+    <!-- /职位列表详情 -->
+</block>
+
+
+
+
+
+
+
+
+<block name="script">
+    <script>
+        $(document).ready(function(){
+            $('#sidBar,#sidBarMain').hover(function(){
+                $('#sidBarMain').css('display','block');
+            },function(){
+                $('#sidBarMain').css('display','none');
+            });
+
+            // 选择框的显示与否(common.js)
+            showList.init($('.father'));
+
+            /* 单选切换 */
+
+
+            // 关注与发送的状态
+            $('.job-tip div:first-child').each(function(){
+
+                $(this).hover(function(){
+                    if($(this).data('ajax') == 0) {
+                        $(this).css('color', '#C80000');
+                        $(this).children('i').removeClass('fa-heart-o');
+                        $(this).children('i').addClass('fa-heart');
+                    }
+                },function(){
+                    if($(this).data('ajax') == 0) {
+                        $(this).css('color', '#FFFFFF');
+                        $(this).children('i').removeClass('fa-heart');
+                        $(this).children('i').addClass('fa-heart-o');
+                    }
+                });
+
+                $(this).on('click',function(){
+                    if($(this).data('ajax') == 0){
+                        $(this).data('ajax','1');
+                        $(this).css('color', '#C80000');
+                        $(this).children('i').removeClass('fa-heart-o');
+                        $(this).children('i').addClass('fa-heart');
+                        $(this).children('span').html('已关注');
+                    }else{
+                        $(this).data('ajax','0');
+                        $(this).css('color', '#FFFFFF');
+                        $(this).children('i').removeClass('fa-heart');
+                        $(this).children('i').addClass('fa-heart-o');
+                        $(this).children('span').html('关注');
+                    }
+                });
+            });
+            $('.job-tip div:last-child').each(function(){
+                $(this).hover(function(){
+                    if($(this).data('ajax') == 0) {
+                        $(this).css('color', '#FFA248');
+                        $(this).children('i').removeClass('fa-send-o');
+                        $(this).children('i').addClass('fa-send');
+                    }
+                },function(){
+                    if($(this).data('ajax') == 0) {
+                        $(this).css('color', '#FFFFFF');
+                        $(this).children('i').removeClass('fa-send');
+                        $(this).children('i').addClass('fa-send-o');
+                    }
+                });
+                $(this).on('click',function(){
+                    if($(this).data('ajax') == 0){
+                        $(this).data('ajax','1');
+                        $(this).css('color', '#FFA248');
+                        $(this).children('i').removeClass('fa-heart-o');
+                        $(this).children('i').addClass('fa-heart');
+                        $(this).children('span').html('简历已发送');
+                        $(this).parent().parent('.job-item').find('.job-fa').css('display','block');
+                    }
+                });
+            });
+
+            /* like */
+
+            $('.like').on('click',function(){
+                var $self = $(this);
+                var jid   = $self.data('jid');
+                var gid   = $self.data('gid');
+                var name  = $self.data('name');
+                var status= $self.data('status');
+                var url   = "{:U('home/userp/ulike')}";
+                $.post(url,{jid:jid,gid:gid,status:status},function(data){
+                    if(data.status == 1){
+                        location.reload();
+                    }
+                });
+
+            });
+            $('.send').on('click',function(){
+                var $self = $(this);
+                var jid   = $self.data('jid');
+                var gid   = $self.data('gid');
+                var name  = $self.data('name');
+                var status= $self.data('status');
+                var url   = "{:U('home/userp/usend')}";
+                $.post(url,{jid:jid,cid:gid,status:status},function(data){
+                    if(data.status == 1){
+                        location.reload();
+                    }
+                });
+            });
+
+            // 推荐职位
+            $('.gs-item').each(function(){
+                $(this).on('click',function(){
+                    var src = $(this).data('src');
+                    location.href=src;
+                });
+            });
+        });
+    </script>
+</block>

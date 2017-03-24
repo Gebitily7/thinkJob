@@ -1,0 +1,22 @@
+<!-- 导航条
+================================================== -->
+<header class="header nav">
+    <div class="content">
+        <ul>
+            <li style="margin-left: 0"><a href="{:U('index/index')}" style="color:#666666"><span>焦作市赛克尔网络科技</span></a></li>
+            <if condition="is_login()">
+                <li class="mgl">欢迎您,<a style="display: inline-block;" <if condition="session('user_type') eq 1">href="{:U('userp/center')}"<elseif condition="session('user_type') eq 2" />href="{:U('user/center')}"<else />href=""</if>>{:session('user_auth.nickname')}</a></li>
+                <li><a href="{:U('user/logout')}">[退出]</a></li>
+                <else/>
+                <li class="mgl"><a href="{:U('user/login')}" title="请登录">请登录</a></li>
+                <li><a href="{:U('user/register')}" title="免费注册">免费注册</a></li>
+            </if>
+            <div class="head-bar fr">
+                <li><a href="{:U('index/index')}" title="首页">首页</a></li>
+                <li><span>|</span></li>
+                <li><span></span></li>
+                <li><span class="font" title="13203912762">服务热线:&ensp;13203912762</span></li>
+            </div>
+        </ul>
+    </div>
+</header>

@@ -1,0 +1,259 @@
+<extend name="Base/common"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/list.css"/>
+    <link rel="stylesheet" href="__CSS__/user/company.css"/>
+</block>
+
+<block name="body">
+    <section class="content clearfix">
+        <!-- 公司 -->
+        <div class="content-item company-base">
+            <figure class="c_picture">
+                <img src="{$userInfo.c_picture|get_cover='path'}" alt=""/>
+            </figure>
+            <div class="pos-r">
+                <figure class="pos-a c_logo" data-bg="{$userInfo.logo|get_cover='path'}">
+                    <figcaption>logo</figcaption>
+                </figure>
+            </div>
+            <div class="company-text">
+                <div class="company_name"><span>{$userInfo.c_name}</span></div>
+                <div class="company_link"><span>{$userInfo.link}</span></div>
+                <div class="company_dy clearfix">
+                    <span><i class="fa fa-flag-o"></i>&ensp;{$userInfo.industry|get_category_title}</span>
+                    <span><i class="fa fa-line-chart">&ensp;</i>{$userInfo.step}</span>
+                    <span><i class="fa fa-users"></i>&ensp;{$userInfo.c_range}人</span>
+                </div>
+            </div>
+        </div>
+        <!-- /公司 -->
+
+        <div class="content-item company-intro">
+            <h3 class="company-title">公司介绍</h3>
+            <div class="intro-content">
+            {$userInfo.intro|format_text}
+            </div>
+            <div class="team-label">
+                {$userInfo.c_label|format_gs_label}
+            </div>
+        </div>
+
+        <div class="job-nav">
+            <h3 class="company-title">公司所有职位</h3>
+            <div class="clearfix"></div>
+            <span class="job-num">当前共有&ensp;<i>{$jobCount}</i>&ensp;个职位</span>
+            <div class="fr page-ajax1">
+                <a class="a-prev" href="">
+                    <span class="prev-ajax"><i class="fa fa-angle-left fa-lg"></i></span>
+                </a>
+                <span class="s-num"><i style="color: #CB0000;font-style: normal;">1</i>&ensp;/&ensp;{$pageAll}</span>
+                <a class="a-next" href="">
+                    <span class="next-ajax"><i class="fa fa-angle-right fa-lg"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 职位列表 -->
+        <ul class="job-tab">
+            <volist name="list" id="vo">
+            <eq name="vo.iscate" value="1">
+            <li class="job-item">
+                <a class="clearfix" href="{:U('home/zhaopin/detail/id/'.$vo.id)}">
+                    <div class="job-left">
+                        <div>
+                            <span><i></i>{$vo.jobname}</span>
+                            <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary_range|get_salary_range}</span>
+                            <span style="color: #666666;">{$vo.update_time|get_put_time}</span>
+                        </div>
+                        <div>
+                            <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place|get_place}</span>
+                            <span><i class="fa fa-briefcase"></i>&ensp;{$vo.work_experience|get_work_experience}</span>
+                            <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                        </div>
+                    </div>
+                    <div class="job-right">
+                        <div>
+                            <span><i class="fa fa-building-o"></i>&ensp;{$vo.uid|get_company_name}</span>
+                            <span class="job-fa" style="display: none;float: right; color: #008803; font-size: .8em;"><i class="fa fa-check-circle fa-lg"></i>已发送</span>
+                        </div>
+                        <div>
+                            <span>{$vo.uid|get_industry_name}</span>|
+                            <span>{$vo.uid|get_step}</span>|
+                            <span>{$vo.uid|get_company_range}人</span>
+                            <span>&emsp;<i class="fa fa-phone"></i>&ensp;{$vo.phone_num}</span>
+                        </div>
+                    </div>
+                    <div class="job-label">
+                        {$vo.skill|format_zw_label}
+                    </div>
+                </a>
+                <div class="job-tip">
+                    <div class="fl tip" data-ajax="0">
+                        <i class="fa fa-heart-o fa-3x"></i>
+                        <span>关注</span>
+                    </div>
+                    <div class="fl tip" data-ajax="0">
+                        <i class="fa fa-send-o fa-3x"></i>
+                        <span>发送简历</span>
+                    </div>
+                </div>
+                <div class="job-type">
+                    <div class="arrow arrow-right arrow-right-type"></div>
+                    <span>全</span>
+                </div>
+            </li>
+            <else />
+                <li class="job-item">
+                    <a class="clearfix" href="{:U('home/zhaopin/detail/id/'.$vo.id)}">
+                        <div class="job-left">
+                            <div>
+                                <span><i></i>{$vo.jobname}</span>
+                                <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary}{$vo.settle_type|get_settle_type_unit}</span>
+                                <span style="color: #666666;">{$vo.update_time|get_put_time}</span>
+                            </div>
+                            <div>
+                                <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place}</span>
+                                <span><i class="fa fa-credit-card"></i>&ensp;{$vo.settle_type|get_settle_type}</span>
+                                <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                            </div>
+                        </div>
+                        <div class="job-right">
+                            <div>
+                                <span><i class="fa fa-building-o"></i>&ensp;{$vo.uid|get_company_name}</span>
+                                <span class="job-fa" style="display: none;float: right; color: #008803; font-size: .8em;"><i class="fa fa-check-circle fa-lg"></i>已发送</span>
+                            </div>
+                            <div>
+                                <span>{$vo.uid|get_industry_name}</span>|
+                                <span>{$vo.uid|get_step}</span>|
+                                <span>{$vo.uid|get_company_range}人</span>
+                                <span>&emsp;<i class="fa fa-phone"></i>&ensp;13203912762</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <span>工作时间：{$vo.work_day}</span>
+                        </div>
+                        <div class="job-type">
+                            <div class="arrow arrow-right arrow-right-type"></div>
+                            <span>兼</span>
+                        </div>
+                    </a>
+                    <div class="job-tip">
+                        <div class="fl tip" data-ajax="0">
+                            <i class="fa fa-heart-o fa-3x"></i>
+                            <span>关注</span>
+                        </div>
+                        <div class="fl tip" data-ajax="0">
+                            <i class="fa fa-send-o fa-3x"></i>
+                            <span>发送简历</span>
+                        </div>
+                    </div>
+                </li>
+            </eq>
+            </volist>
+        </ul>
+        <div class="page" data-class="page-ajax1">
+            {$page}
+        </div>
+        <!-- /职位列表 -->
+
+    </section>
+</block>
+
+<block name="script">
+    <script>
+        $(document).scrollTop(localStorage.getItem('c_scroll'));
+        $(document).ready(function(){
+
+            $(document).on('scroll',function(){
+                var scroll = $(this).scrollTop();
+                localStorage.setItem('c_scroll',scroll);
+            });
+
+            var bg_url =  $('.c_logo').data('bg');
+            $('.c_logo').css({
+                background : 'url('+bg_url+') 53% 45%'
+            });
+
+            $('.page').each(function(){
+                var className = $(this).data('class');
+                var prev = $(this).find('.prev').attr('href');
+                var next = $(this).find('.next').attr('href');
+                var num  = $(this).find('.current').html();
+                $('.'+className).find('.a-prev').attr('href',prev);
+                $('.'+className).find('.a-next').attr('href',next);
+                $('.'+className).find('.s-num i').html(num);
+            });
+
+
+
+            // 关注与发送的状态
+            $('.job-tip div:first-child').each(function(){
+                $(this).hover(function(){
+                    if($(this).data('ajax') == 0) {
+                        $(this).css('color', '#C80000');
+                        $(this).children('i').removeClass('fa-heart-o');
+                        $(this).children('i').addClass('fa-heart');
+                    }
+                },function(){
+                    if($(this).data('ajax') == 0) {
+                        $(this).css('color', '#FFFFFF');
+                        $(this).children('i').removeClass('fa-heart');
+                        $(this).children('i').addClass('fa-heart-o');
+                    }
+                });
+                $(this).on('click',function(){
+                    if($(this).data('ajax') == 0){
+                        $(this).data('ajax','1');
+                        $(this).css('color', '#C80000');
+                        $(this).children('i').removeClass('fa-heart-o');
+                        $(this).children('i').addClass('fa-heart');
+                        $(this).children('span').html('已关注');
+                    }else{
+                        $(this).data('ajax','0');
+                        $(this).css('color', '#FFFFFF');
+                        $(this).children('i').removeClass('fa-heart');
+                        $(this).children('i').addClass('fa-heart-o');
+                        $(this).children('span').html('关注');
+                    }
+                });
+            });
+            $('.job-tip div:last-child').each(function(){
+                $(this).hover(function(){
+                    if($(this).data('ajax') == 0) {
+                        $(this).css('color', '#FFA248');
+                        $(this).children('i').removeClass('fa-send-o');
+                        $(this).children('i').addClass('fa-send');
+                    }
+                },function(){
+                    if($(this).data('ajax') == 0) {
+                        $(this).css('color', '#FFFFFF');
+                        $(this).children('i').removeClass('fa-send');
+                        $(this).children('i').addClass('fa-send-o');
+                    }
+                });
+                $(this).on('click',function(){
+                    if($(this).data('ajax') == 0){
+                        $(this).data('ajax','1');
+                        $(this).css('color', '#FFA248');
+                        $(this).children('i').removeClass('fa-heart-o');
+                        $(this).children('i').addClass('fa-heart');
+                        $(this).children('span').html('简历已发送');
+                        $(this).parent().parent('.job-item').find('.job-fa').css('display','block');
+                    }else{
+                        $(this).data('ajax','0');
+                        $(this).css('color', '#FFFFFF');
+                        $(this).children('i').removeClass('fa-heart');
+                        $(this).children('i').addClass('fa-heart-o');
+                        $(this).children('span').html('发送简历');
+                        $(this).parent().parent('.job-item').find('.job-fa').css('display','none');
+                    }
+                });
+            });
+
+            $(document).on('scroll',function(){
+                console.log($(this).scrollTop());
+            });
+
+        });
+    </script>
+</block>

@@ -1,0 +1,677 @@
+<extend name="Base/userpcom"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/userp/userp.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/center.css"/>
+    <link rel="stylesheet" href="__STATIC__/uptx/css/style.css"/>
+</block>
+
+<block name="body">
+    <script type="text/javascript" src="__STATIC__/uptx/cropbox.js"></script>
+    <div class="mask"></div>
+    <div class="upload-content">
+        <div class="container_tx pos-r" id="up-picture">
+            <div class="imageBox">
+                <div class="thumbBox"></div>
+                <div class="spinner" style="display: none">Loading...</div>
+            </div>
+            <div class="action">
+                <!-- <input type="file" id="file" style=" width: 200px">-->
+                <div class="new-contentarea tc"> <a href="javascript:void(0)" class="upload-img">
+                    <label for="upload-file">上传图像</label>
+                </a>
+                    <input type="file" class="upload-file" name="upload-file" id="upload-file" />
+                </div>
+                <input type="button" id="btnCrop"  class="Btnsty_peyton btnCrop" value="裁切">
+                <input type="button" id="btnZoomIn" class="Btnsty_peyton btnZoomIn" value="+"  >
+                <input type="button" id="btnZoomOut" class="Btnsty_peyton btnZoomOut" value="-" >
+                <input type="button" class="Btnsty_peyton ajax-post" value="确定">
+                <input type="button" class="Btnsty_peyton p-cancel" value="取消">
+            </div>
+            <div class="cropped"></div>
+        </div>
+    </div>
+    <section class="content-box">
+        <div class="content-item content-top">
+            <div class="top-bg">
+                <div class="spin-mask">
+                    <span class="top-back js-url" data-url="{:U('userp/center')}"><i class="fa fa-angle-left"></i></span>
+                    <span class="side-title">个人中心</span>
+                </div>
+            </div>
+            <div class="tx_box">
+                <figure class="u_tx">
+                    <neq name="user.u_tx" value="">
+                        <img src="{$user.u_tx|get_cover='path'}" alt=""/>
+                    <else/>
+                        <img src="__PUBLIC__/Home/images/user/01.jpg" alt=""/>
+                    </neq>
+
+                    <figcaption class = "g_tx_item">
+                        <span>更改头像</span>
+                    </figcaption>
+                </figure>
+                <div class="u-tx-name">
+                    <span>{$userInfo.uname}</span>
+                </div>
+            </div>
+            <div class="gx_bq">
+                <span>{$userInfo.signature}</span>
+            </div>
+        </div>
+        <div class="content-body clearfix">
+            <div class="body-item">
+                <ul>
+                    <li class="li-item">
+                        <i class="fa fa-user"></i>
+                        <div class="em-item">
+                            <p>
+                                <eq name="userInfo.sex" value="1">
+                                    <em>男</em>
+                                    <else/>
+                                    <em>女</em>
+                                </eq>
+                                <em>{$userInfo.birthday|get_age}岁</em>
+                            </p>
+                            <p>
+                                <em>身高：{$userInfo.height}cm</em>
+                                <eq name="userInfo.marry" value="1">
+                                    <em>已婚</em>
+                                    <else/>
+                                    <em>未婚</em>
+                                </eq>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-briefcase"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>{$userInfo.max_edu|get_max_edu}</em>
+                                <em>{$userInfo.work_experience|get_user_experience}</em>
+                            </p>
+                           <p>
+                                <em>驾照：{$userInfo.driver|get_user_drive}</em>
+                           </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-tags"></i>
+                        <div class="skill-label-box">
+                            {$userInfo.skill|format_zw_label}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="body-item">
+                <ul>
+                    <li class="li-item">
+                        <i class="fa fa-bookmark"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>状态：{$userInfo.now_status|get_status}</em>
+                            </p>
+                            <p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-map-marker"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>现居：{$userInfo.present_addr|format_place}</em>
+                            </p>
+                            <p>
+                                <em>户口：{$userInfo.birth_place|format_place}</em>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-mobile fa-lg"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>{$userInfo.phone}</em>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-globe"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>Email：{$userInfo.email}</em>
+                            </p>
+                            <p>
+                                <em>QQ：{$userInfo.u_qq}</em>
+                            </p>
+                            <p>
+                                <em>微信：{$userInfo.u_weixin}</em>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="edit-tool" data-class="content-body-edit"  title="点击修改">
+                <i class="fa fa-pencil-square-o btn-item" data-type="qx" data-class1="content-body" data-class2="content-body-edit"></i>
+            </div>
+        </div>
+        <div class="content-body-edit">
+            <div class="user-edit">
+                <form id="userBase" data-action="{:U('userp/updateInfo')}">
+                    <ul class="from-box">
+                        <li class="clearfix">
+                            <div class="input-item">
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>姓名</span>
+                                </div>
+                                <div class="i-mar">
+                                    <input type="text" name="uname" value="{$userInfo.uname}"/>
+                                </div>
+                            </div>
+                            <div class="input-item">
+                                <input type="hidden" class="sex" name="sex" value="{$userInfo.sex}"/>
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>性别</span>
+                                </div>
+                                <div class="i-mar radio-box" data-class="sex">
+                                    <span class='radio-item <eq name="userInfo.sex" value="1">radio-item-selected</eq>' data-val="1"><i class="fa fa-mars"></i>&ensp;男</span>
+                                    <span class='radio-item <eq name="userInfo.sex" value="0">radio-item-selected</eq>' data-val="0"><i class="fa fa-venus"></i>&ensp;女</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="input-item">
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>出生日期</span>
+                                </div>
+                                <div class="i-mar">
+                                    <input type="text" class="date" autocomplete="off" name="birthday" value="{$userInfo.birthday|date='Y-m-d',###}"/>
+                                </div>
+                            </div>
+                            <div class="input-item">
+                                <div class="input-title">
+                                    <em>&ensp;</em>
+                                    <span>身高</span>
+                                </div>
+                                <div class="i-mar">
+                                    <input type="text" name="height" autocomplete="off" value="{$userInfo.height}"/>
+                                    <i class="cm">CM</i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="input-item">
+                                <input type="hidden" class="max_edu" name="max_edu" value="{$userInfo.max_edu}"/>
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>最高学历</span>
+                                </div>
+                                <div class="i-mar select-box pos-r">
+                                    <span class="ipt-span degree click-span" data-type="max_edu">{$userInfo.max_edu|get_max_edu}</span>
+                                    <ul class="select-content">
+                                        <li class='select-item <eq name="userInfo.max_edu" value="0">item-on</eq>' data-val="0" data-title="初中">初中</li>
+                                        <li class='select-item <eq name="userInfo.max_edu" value="1">item-on</eq>' data-val="1" data-title="高中">高中及同等</li>
+                                        <li class='select-item <eq name="userInfo.max_edu" value="2">item-on</eq>' data-val="2" data-title="大专">大专及同等</li>
+                                        <li class='select-item <eq name="userInfo.max_edu" value="3">item-on</eq>' data-val="3" data-title="本科">本科及同等</li>
+                                        <li class='select-item <eq name="userInfo.max_edu" value="4">item-on</eq>' data-val="4" data-title="硕士">硕士及同等</li>
+                                        <li class='select-item <eq name="userInfo.max_edu" value="5">item-on</eq>' data-val="5" data-title="博士">博士及以上</li>
+                                        <li class='select-item <eq name="userInfo.max_edu" value="6">item-on</eq>' data-val="6" data-title="其他">其他</li>
+                                    </ul>
+                                    <i class="fa fa-angle-down select-down-icon"></i>
+                                </div>
+                            </div>
+                            <div class="input-item">
+                                <input type="hidden" class="marry" name="marry" value="{$userInfo.marry}"/>
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>婚姻状况</span>
+                                </div>
+                                <div class="i-mar radio-box" data-class="marry">
+                                    <span class='radio-item <eq name="userInfo.marry" value="0">radio-item-selected</eq>' data-val="0">未婚</span>
+                                    <span class='radio-item <eq name="userInfo.marry" value="1">radio-item-selected</eq>' data-val="1">已婚</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="input-item">
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>目前居住地</span>
+                                </div>
+                                <div class="i-mar pos-r">
+                                    <input type="text" class="place" name="present_addr" value="{$userInfo.present_addr}"/>
+                                    <div class="city-box">
+                                        <div class="city_1 city-content">
+                                            <select class="prov"  index="1" data-url=""></select>
+                                            <select class="city"  index="1" data-url="" disabled="disabled"></select>
+                                            <select class="dist"  index="1" data-url="" disabled="disabled"></select>
+                                        </div>
+                                        <div class="btn_city">
+                                            <span class="qr">确定</span>
+                                            <span class="qx">取消</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-item">
+                                <div class="input-title">
+                                    <em>&ensp;</em>
+                                    <span>户口所在地</span>
+                                </div>
+                                <div class="i-mar pos-r">
+                                    <input type="text" class="place" name="birth_place" value="{$userInfo.birth_place}"/>
+                                    <div class="city-box">
+                                        <div class="city_1 city-content">
+                                            <select class="prov"  index="1" data-url=""></select>
+                                            <select class="city"  index="1" data-url="" disabled="disabled"></select>
+                                            <select class="dist"  index="1" data-url="" disabled="disabled"></select>
+                                        </div>
+                                        <div class="btn_city">
+                                            <span class="qr">确定</span>
+                                            <span class="qx">取消</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="input-item">
+                                <input type="hidden" class="work_experience" name="work_experience" value="{$userInfo.work_experience}"/>
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>工作经验</span>
+                                </div>
+                                <div class="i-mar select-box pos-r">
+                                    <span class="ipt-span degree click-span" data-type="work_experience">{$userInfo.work_experience|get_user_experience}</span>
+                                    <ul class="select-content">
+                                        <li class='select-item <eq name="userInfo.work_experience" value="0">item-on</eq>' data-val="0" data-title="暂无工作经验">暂无工作经验</li>
+                                        <li class='select-item <eq name="userInfo.work_experience" value="1">item-on</eq>' data-val="1" data-title="应届毕业生">应届毕业生</li>
+                                        <li class='select-item <eq name="userInfo.work_experience" value="2">item-on</eq>' data-val="2" data-title="1年">1年</li>
+                                        <li class='select-item <eq name="userInfo.work_experience" value="3">item-on</eq>' data-val="3" data-title="1-3年">1-3年</li>
+                                        <li class='select-item <eq name="userInfo.work_experience" value="4">item-on</eq>' data-val="4" data-title="3-5年">3-5年</li>
+                                        <li class='select-item <eq name="userInfo.work_experience" value="5">item-on</eq>' data-val="5" data-title="7年">5-7年</li>
+                                        <li class='select-item <eq name="userInfo.work_experience" value="6">item-on</eq>' data-val="6" data-title="10年">7-10年</li>
+                                        <li class='select-item <eq name="userInfo.work_experience" value="7">item-on</eq>' data-val="7" data-title="10年以上">10年以上</li>
+                                    </ul>
+                                    <i class="fa fa-angle-down select-down-icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="input-item">
+                                <input type="hidden" class="overseas" name="overseas" value="{$userInfo.overseas}"/>
+                                <div class="input-title">
+                                    <em>&ensp;</em>
+                                    <span>海外工作经验</span>
+                                </div>
+                                <div class="i-mar radio-box" data-class="overseas">
+                                    <span class='radio-item <eq name="userInfo.overseas" value="0">radio-item-selected</eq>' data-val="0">无</span>
+                                    <span class='radio-item <eq name="userInfo.overseas" value="1">radio-item-selected</eq>' data-val="1">有</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="clearfix">
+                            <div class="input-item">
+                                <input type="hidden" class="driver" name="driver" value="{$userInfo.driver}"/>
+                                <div class="input-title">
+                                    <em>&ensp;</em>
+                                    <span>驾驶证</span>
+                                </div>
+                                <div class="i-mar select-box pos-r">
+                                    <span class="ipt-span driver click-span" data-type="driver">{$userInfo.driver|get_user_drive}</span>
+                                    <ul class="select-content">
+                                        <li class='select-item <eq name="userInfo.driver" value="0">item-on</eq>' data-val="0" data-title="暂无">暂无</li>
+                                        <li class='select-item <eq name="userInfo.driver" value="1">item-on</eq>' data-val="1" data-title="A照">A照</li>
+                                        <li class='select-item <eq name="userInfo.driver" value="2">item-on</eq>' data-val="2" data-title="B照">B照</li>
+                                        <li class='select-item <eq name="userInfo.driver" value="3">item-on</eq>' data-val="3" data-title="C照">C照</li>
+                                    </ul>
+                                    <i class="fa fa-angle-down select-down-icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="input-item">
+                                <input type="hidden" class="now_status" name="now_status" value="{$userInfo.now_status}"/>
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>现在状态</span>
+                                </div>
+                                <div class="i-mar select-box pos-r">
+                                    <span class="ipt-span degree click-span" data-type="now_status">{$userInfo.now_status|get_status}</span>
+                                    <ul class="select-content">
+                                        <li class='select-item <eq name="userInfo.now_status" value="0">item-on</eq>' data-val="0" data-title="应届毕业">应届毕业</li>
+                                        <li class='select-item <eq name="userInfo.now_status" value="1">item-on</eq>' data-val="1" data-title="在职考虑其他">在职考虑其他</li>
+                                        <li class='select-item <eq name="userInfo.now_status" value="2">item-on</eq>' data-val="2" data-title="离职">离职</li>
+                                        <li class='select-item <eq name="userInfo.now_status" value="3">item-on</eq>' data-val="3" data-title="在职不考虑">在职不考虑</li>
+                                    </ul>
+                                    <i class="fa fa-angle-down select-down-icon"></i>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="clearfix">
+                            <div class="input-item">
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>电话</span>
+                                </div>
+                                <div class="i-mar">
+                                    <input type="text" name="phone" value="{$userInfo.phone}"/>
+                                </div>
+                            </div>
+                            <div class="input-item">
+                                <div class="input-title">
+                                    <em>*</em>
+                                    <span>邮箱</span>
+                                </div>
+                                <div class="i-mar">
+                                    <input type="text" name="email" value="{$userInfo.email}"/>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="clearfix">
+                            <div class="input-item">
+                                <div class="input-title">
+                                    <em>&ensp;</em>
+                                    <span>QQ</span>
+                                </div>
+                                <div class="i-mar">
+                                    <input type="text" name="u_qq" value="{$userInfo.u_qq}"/>
+                                </div>
+                            </div>
+                            <div class="input-item">
+                                <div class="input-title">
+                                    <em>&ensp;</em>
+                                    <span>微信</span>
+                                </div>
+                                <div class="i-mar">
+                                    <input type="text" name="u_weixin" value="{$userInfo.u_weixin}"/>
+                                </div>
+                            </div>
+                        </li>
+                        <div class="clearfix skill-label pos-r">
+                            <div class="input-title">
+                                <em>&ensp;</em>
+                                <span>技能标签</span>
+                            </div>
+                            <div class="showtagcheck input_check gs-label-box"></div>
+
+                            <div class="clear"></div>
+                            <i class="tagAdd fa fa-pencil-square-o" title="点击修改"></i>
+                            <input type="hidden" name="skill" id="nature" class="nature" data-url="" index="1" value="" >
+                            <div class="tagBox" id="tagBox">
+                                <div class="resume_tc">
+                                    <div class="resume_tc_header">
+                                        <h3>请选择技能</h3>
+                                        <a class="close wd_close" href="javascript:;" title="关闭"><i class="fa fa-times"></i></a>
+                                    </div>
+                                    <div class="sx-yx">
+                                        <span class="fnt-b">已选: </span>
+                                        <span id="box_checkedTag" class="box_checkedTag"></span>
+                                    </div>
+                                    <div class="showTag">
+                                        <div class="sx-cnt sx-cnt2">
+                                            <div style="padding-bottom: 0;" class="sx-normal">
+                                                <ul style="width:760px;" class="cf label_0"></ul>
+                                                <ul style="width:760px;" class="cf label_1"></ul>
+                                                <ul style="width:760px;" class="cf label_2"></ul>
+                                                <ul style="width:760px;" class="cf label_3"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sx-action clearfix">
+                                        <a id="btn_tagsave" class="btn-label">确定</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                    <div class="text-area">
+                        <div class="input-title">
+                            <em>&ensp;</em>
+                            <span>一句话介绍自己</span>
+                        </div>
+                        <div class="textarea-group">
+                            <textarea class="text-area1" name="signature" id="" cols="66" rows="5">{$userInfo.signature}</textarea>
+                            <div class="num-limit"><span>{$userInfo.signature|mb_strlen='UTF8'}</span>/100</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="angle">
+
+            </div>
+            <div class="edit-tool" data-class="content-body" title="点击修改">
+                <i class="fa fa-pencil-square-o btn-item" data-type="qx" data-class1="content-body-edit" data-class2="content-body"></i>
+            </div>
+            <div class="btn-group">
+                <span class="btn-item" data-type="submit" data-form="userBase" data-class1="content-body-edit" data-class2="content-body">确定</span>
+                <span class="btn-item" data-type="qx" data-class1="content-body-edit" data-class2="content-body">取消</span>
+            </div>
+        </div>
+    </section>
+</block>
+
+<block name="script">
+    <script src="__STATIC__/select/jquery.cityselect.js"></script>
+    <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <script src="__JS__/user/userp.js"></script>
+    <script>
+        (function($){
+            $.fn.uploadPic = function(settings){
+                if(this.length < 1){
+                    return ;
+                }
+                // 默认值
+                var options = $.extend({
+                    thumbBox: '.thumbBox',
+                    spinner: '.spinner',
+                    imgSrc: "__STATIC__/uptx/images/avatar.png",
+                    gUrl  : "{:U('user/upPicture')}",
+                    urlPost: "{:U('userp/upUser')}",
+                    uName  : 'u_tx',
+                    refresh : false,
+                    imgClass  : '.u_tx'
+                }, settings);
+
+                var box = this;
+                var imgBox = box.find('.imageBox');
+                var action = box.find('.action');
+                var cropped = box.find('.cropped');
+
+                var uploadFile = action.find('.upload-file');
+                var btnCrop = action.find('.btnCrop');
+                var btnZoomIn = action.find('.btnZoomIn');
+                var btnZoomOut = action.find('.btnZoomOut');
+                var ajaxPost   = action.find('.ajax-post');
+
+                var img = '';
+
+                var cropper = imgBox.cropbox(options);
+
+                /* 初始化 */
+                var init = function(){
+                    uploadFile.on('change',function(){
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            options.imgSrc = e.target.result;
+                            cropper = $('.imageBox').cropbox(options);
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                        $(this).files = [];
+                    });
+                    btnCrop.on('click', function(){
+                        img = cropper.getDataURL();
+                        cropped.html('');
+                        cropped.append('<img src="'+img+'" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>64px*64px</p>');
+                        cropped.append('<img src="'+img+'" align="absmiddle" style="width:80px;margin-top:4px;border-radius:80px;box-shadow:0px 0px 12px #7E7E7E;"><p>80px*80px</p>');
+                        cropped.append('<img src="'+img+'" align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');
+                    });
+                    btnZoomIn.on('click', function(){
+                        cropper.zoomIn();
+                    });
+                    btnZoomOut.on('click', function(){
+                        cropper.zoomOut();
+                    });
+                    ajaxPost.on('click',function(){
+                        if(img == ''){
+                            alert('还没有裁剪');
+                        }else{
+                            $.post(options.gUrl,{'img':img},function(data){
+                                if(data.status != 0){
+                                    $.post(options.urlPost,{name : options.uName,val : data.id});
+                                    box.parent('.upload-content').css('display','none');
+
+                                    $(options.imgClass).find('img').attr('src',data.path);
+
+//                                    if(options.refresh){
+//                                        location.href = "{:U('')}";
+//                                    }
+                                }
+                            });
+                        }
+                    });
+                };
+                init();
+            }
+        })(jQuery);
+    </script>
+    <script>
+
+        /* 时间 */
+        $('.date').datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:"zh-CN",
+            minView:2,
+            autoclose:true
+        });
+
+        $('.select-box').each(function(){
+            $(this).clickRadio();
+        });
+        $(".city_1").each(function(){
+            $(this).citySelect({
+                prov  : '北京',
+                city  : '西城区',
+                nodata: "none",
+                required: false
+            });
+        });
+        var label = {$label};
+        $('.skill-label').labelSelect({
+            url     : "__STATIC__/label/zwLabel.min.js",
+            required:false,
+            data    : label,
+            length  : 5,
+            label   : ['互联网','金融','语言','专业']
+        });
+
+        /* 城市 */
+        $('.place').each(function(){
+            var $self = $(this);
+            var $box = $(this).siblings('.city-box');
+            var $qr  = $box.find('.qr');
+            var $qx  = $box.find('.qx');
+            var $select = $box.find('select');
+            var place = [];
+            $(this).on('focus',function(e){
+                var evt = e || window.event;
+                evt.stopPropagation();
+                $box.css('display','block');
+            });
+            $qx.on('click',function(e){
+                var evt = e || window.event;
+                evt.stopPropagation();
+                $box.css('display','none');
+            });
+            $qr.on('click',function(e){
+                var evt = e || window.event;
+                evt.stopPropagation();
+                $select.each(function(i,item){
+                    if(item.value != ''){
+                        place[i] = item.value;
+                    }
+                });
+                var str = place.join(',');
+                $self.val(str);
+                $box.css('display','none');
+            });
+        });
+
+        /* 单选 为input赋值 */
+        $('.radio-box').each(function(){
+            var $click = $(this).find('.radio-item');
+            var input = $(this).data('class');
+            $click.on('click',function(){
+                var value = $(this).data('val');
+                $('.'+input).val(value);
+                $click.removeClass('radio-item-selected');
+                $(this).addClass('radio-item-selected');
+            });
+        });
+
+        /* 确认键 */
+        $('.btn-item').on('click',function(){
+            var hidden = $(this).data('class1');
+            var display = $(this).data('class2');
+            var type = $(this).data('type');
+
+            if(type == 'submit'){
+                var formId = $(this).data('form');
+                var $form = $('#'+formId);
+                var url = $form.data('action');
+                var data = $form.serialize();
+                $.post(url,data,function(data){
+                    if(data == null ||data.status){
+                        $('.'+hidden).css('display','none');
+                        $('.'+display).css('display','block');
+                        location.href = "{:U('')}";
+                    }else{
+                        alert('更改错误');
+                    }
+                });
+            }else{
+                $('.'+hidden).css('display','none');
+                $('.'+display).css('display','block');
+            }
+        });
+
+        /* teatarea */
+        $('.textarea-group').find('.text-area1').on('click keydown keyup',function(){
+            var self = $(this);
+            var str = self.val();
+            var $num = self.siblings('.num-limit').find('span');
+            $num.html(str.length);
+
+            if(str.length <= 80){
+                $num.css('color','#0066CC');
+                self.css('border-color','#0066CC');
+            }else if(str.length <= 85 && str.length >= 95){
+                $num.css('color','#F0D00B');
+                self.css('border-color','#F0D00B');
+            } else if(str.length >= 95 && str.length <= 100){
+                $num.css('color','#EB2626');
+                self.css('border-color','#EB2626');
+            }else{
+                str = self.val(str.substr(0,99));
+            }
+        }).blur(function(){
+            var self = $(this);
+            self.css('border-color','#CCCCCC');
+            var str = self.val();
+        });
+
+        /* 上传头像 */
+        $('#up-picture').uploadPic();
+        $('.p-cancel').on('click',function(e){
+            e.stopPropagation();
+            $('.upload-content').css('display','none');
+        });
+        $('.g_tx_item').on('click',function(){
+            $('.upload-content').css('display','block');
+        });
+    </script>
+</block>

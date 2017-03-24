@@ -1,0 +1,419 @@
+<extend name="Base/userpcom"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/userp/userp.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/resume.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/progress.css"/>
+</block>
+
+<block name="body">
+    <section class="content-box">
+        <!-- 头部背景图 -->
+        <div class="content-item content-top">
+            <div class="top-bg">
+                <div class="spin-mask">
+                    <span class="top-back" onclick="self.location=document.referrer;"><i class="fa fa-angle-left"></i></span>
+                    <span class="side-title">求职进展</span>
+                </div>
+            </div>
+            <div class="tx_box">
+                <figure class="u_tx">
+                    <img src="{$user.u_tx|get_cover='path'}" alt=""/>
+                    <figcaption>
+                        <span>更改头像</span>
+                    </figcaption>
+                </figure>
+                <div class="u-tx-name">
+                    <span>{$userInfo.uname}</span>
+                </div>
+            </div>
+            <div class="gx_bq">
+                <span>{$userInfo.signature}</span>
+            </div>
+        </div>
+        <!-- /头部背景图 -->
+
+        <div class="item-box side-2">
+            <div class="item-content">
+                <ul class="ul-list zw-list clearfix">
+                    <li class="li-item progress-item item-selected js-url" data-url="{:U('')}" data-id="1">全部状态</li>
+                    <li class="li-item progress-item js-url" data-url="{:U('')}" data-id="2">投递成功</li>
+                    <li class="li-item progress-item js-url" data-url="{:U('')}" data-id="3">已查看</li>
+                    <li class="li-item progress-item js-url" data-url="{:U('')}" data-id="4">不合适</li>
+                </ul>
+            </div>
+
+            <!-- 全部状态 -->
+            <div class="zw-content progress-item-1">
+                <div class="job-nav clearfix num-1">
+                    <span class="job-num">全部状态共有&ensp;<i>{$resumeCount}</i>&ensp;个</span>
+                    <div class="fr">
+                        <a href="">
+                            <span class="prev-ajax"><i class="fa fa-angle-left fa-lg"></i></span>
+                        </a>
+                        <span class="all-page"><i style="color: #CB0000;font-style: normal;">1</i>&ensp;/&ensp;{$resumeAllPage}</span>
+                        <a href="">
+                            <span class="next-ajax"><i class="fa fa-angle-right fa-lg"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <ul class="all">
+                    <volist name="resumeList" id="vo">
+                        <li class="job-item">
+                            <a class="clearfix" target="_blank" <eq name="vo.iscate" value="1">href="{:U('home/zhaopin/detail/id/'.$vo['jid'])}"<else/>href="{:U('home/jianzhi/detail/id/'.$vo['jid'])}"</eq>>
+                                <div class="job-left">
+                                    <div>
+                                        <span><i></i>{$vo.title}</span>
+                                        <eq name="vo.iscate" value="1">
+                                            <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary_range|get_salary_range}</span>
+                                            <else/>
+                                            <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary}{$vo.settle_type|get_settle_type_unit}</span>
+                                        </eq>
+                                    </div>
+                                    <div>
+                                        <eq name="vo.iscate" value="1">
+                                            <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place|get_place}</span>
+                                            <span><i class="fa fa-briefcase"></i>&ensp;{$vo.y_experience|get_work_experience}</span>
+                                            <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                            <else/>
+                                            <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place}</span>
+                                            <span><i class="fa fa-credit-card"></i>&ensp;{$vo.settle_type|get_settle_type}</span>
+                                            <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                        </eq>
+                                    </div>
+                                </div>
+                                <div class="job-right">
+                                    <div>
+                                        <span><i class="fa fa-building-o"></i>&ensp;{$vo.c_name}</span>
+                                        <span class="job-fa" style="display: none;float: right; color: #008803; font-size: .8em;"><i class="fa fa-check-circle fa-lg"></i>已发送</span>
+                                    </div>
+                                    <div>
+                                        <span>{$vo.industry|get_category_title}</span>|
+                                        <span>{$vo.step}</span>|
+                                        <span>{$vo.c_range}人</span>
+                                        <span>&emsp;<i class="fa fa-phone"></i>&ensp;{$vo.phone_num}</span>
+                                    </div>
+                                </div>
+                                <div class="job-label">
+                                    {$vo.job_skill|format_zw_label}
+                                </div>
+                                <div class="reply">
+                                    <span class="time">{$vo.create_time|date='Y-m-d',###}</span>
+                                    <eq name="vo['is_read']" value="0">
+                                        <span class="reason">未读</span>
+                                    <else/>
+                                        <span class="reason">{$vo.cj_status|get_cj_ustatus}</span>
+                                    </eq>
+                                </div>
+                            </a>
+                        </li>
+                    </volist>
+                </ul>
+                <div class="pagej" data-id="1">
+                    {$resumePage}
+                </div>
+            </div>
+            <!-- /全部状态 -->
+
+            <!-- 投递成功 -->
+            <div class="zw-content progress-item-2">
+                <div class="job-nav clearfix num-2">
+                    <span class="job-num">投递成功了&ensp;<i>{$treatedCount}</i>&ensp;个职位</span>
+                    <div class="fr">
+                        <a href="">
+                            <span class="prev-ajax"><i class="fa fa-angle-left fa-lg"></i></span>
+                        </a>
+                        <span class="all-page"><i style="color: #CB0000;font-style: normal;">1</i>&ensp;/&ensp;{$treatedAllPage}</span>
+                        <a href="">
+                            <span class="next-ajax"><i class="fa fa-angle-right fa-lg"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <ul class="all">
+                    <volist name="treatedList" id="vo">
+                    <li class="job-item">
+                        <a class="clearfix" target="_blank" <eq name="vo.iscate" value="1">href="{:U('home/zhaopin/detail/id/'.$vo['jid'])}"<else/>href="{:U('home/jianzhi/detail/id/'.$vo['jid'])}"</eq>>
+                            <div class="job-left">
+                                <div>
+                                    <span><i></i>{$vo.title}</span>
+                                    <eq name="vo.iscate" value="1">
+                                        <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary_range|get_salary_range}</span>
+                                        <else/>
+                                        <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary}{$vo.settle_type|get_settle_type_unit}</span>
+                                    </eq>
+                                </div>
+                                <div>
+                                    <eq name="vo.iscate" value="1">
+                                        <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place|get_place}</span>
+                                        <span><i class="fa fa-briefcase"></i>&ensp;{$vo.y_experience|get_work_experience}</span>
+                                        <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                        <else/>
+                                        <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place}</span>
+                                        <span><i class="fa fa-credit-card"></i>&ensp;{$vo.settle_type|get_settle_type}</span>
+                                        <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                    </eq>
+                                </div>
+                            </div>
+                            <div class="job-right">
+                                <div>
+                                    <span><i class="fa fa-building-o"></i>&ensp;{$vo.c_name}</span>
+                                    <span class="job-fa" style="display: none;float: right; color: #008803; font-size: .8em;"><i class="fa fa-check-circle fa-lg"></i>已发送</span>
+                                </div>
+                                <div>
+                                    <span>{$vo.industry|get_category_title}</span>|
+                                    <span>{$vo.step|get_step_list}</span>|
+                                    <span>{$vo.c_range}人</span>
+                                    <span>&emsp;<i class="fa fa-phone"></i>&ensp;{$vo.phone_num}</span>
+                                </div>
+                            </div>
+                            <div class="job-label">
+                                {$vo.job_skill|format_zw_label}
+                            </div>
+                            <div class="reply">
+                                <span class="time">{$vo.reply_time|date='Y-m-d',###}</span>
+                                <span class="reason btn-ck" data-class="success-{$vo.id}">查看</span>
+                            </div>
+                            <div class="reply-box success-{$vo.id}">
+                                <div class="reply-top pos-r">
+                                    来自<b>&ensp;{$vo.c_name}</b>&ensp;公司
+                                    <i class="close-r" data-class="success-{$vo.id}">X</i>
+                                </div>
+                                <div class="reply-body">
+                                    <p>回复时间：{$vo.reply|date='Y-m-d',###}</p>
+                                    <p>面试地点：{$vo.place}</p>
+                                    <p>面试时间：{$vo.ms_time|date='Y-m-d',###}</p>
+                                    <p>附加内容：{$vo.content}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    </volist>
+                </ul>
+                <div class="pagej" data-id="2">
+                    {$treatedPage}
+                </div>
+            </div>
+            <!-- /投递成功 -->
+
+            <!-- 已查看 -->
+            <div class="zw-content progress-item-3">
+                <div class="job-nav clearfix num-3">
+                    <span class="job-num">已被查看的有&ensp;<i>{$readCount}</i>&ensp;个职位</span>
+                    <div class="fr">
+                        <a href="">
+                            <span class="prev-ajax"><i class="fa fa-angle-left fa-lg"></i></span>
+                        </a>
+                        <span class="all-page"><i style="color: #CB0000;font-style: normal;">1</i>&ensp;/&ensp;{$readAllPage}</span>
+                        <a href="">
+                            <span class="next-ajax"><i class="fa fa-angle-right fa-lg"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <ul class="all">
+                    <volist name="readList" id="vo">
+                    <li class="job-item">
+                        <a class="clearfix" target="_blank" <eq name="vo.iscate" value="1">href="{:U('home/zhaopin/detail/id/'.$vo['jid'])}"<else/>href="{:U('home/jianzhi/detail/id/'.$vo['jid'])}"</eq> >
+                            <div class="job-left">
+                                <div>
+                                    <span><i></i>{$vo.title}</span>
+                                    <eq name="vo.iscate" value="1">
+                                        <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary_range|get_salary_range}</span>
+                                        <else/>
+                                        <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary}{$vo.settle_type|get_settle_type_unit}</span>
+                                    </eq>
+                                </div>
+                                <div>
+                                    <eq name="vo.iscate" value="1">
+                                        <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place|get_place}</span>
+                                        <span><i class="fa fa-briefcase"></i>&ensp;{$vo.y_experience|get_work_experience}</span>
+                                        <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                        <else/>
+                                        <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place}</span>
+                                        <span><i class="fa fa-credit-card"></i>&ensp;{$vo.settle_type|get_settle_type}</span>
+                                        <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                    </eq>
+                                </div>
+                            </div>
+                            <div class="job-right">
+                                <div>
+                                    <span><i class="fa fa-building-o"></i>&ensp;{$vo.c_name}</span>
+                                    <span class="job-fa" style="display: none;float: right; color: #008803; font-size: .8em;"><i class="fa fa-check-circle fa-lg"></i>已发送</span>
+                                </div>
+                                <div>
+                                    <span>{$vo.industry|get_category_title}</span>|
+                                    <span>{$vo.step}</span>|
+                                    <span>{$vo.c_range}人</span>
+                                    <span>&emsp;<i class="fa fa-phone"></i>&ensp;{$vo.phone_num}</span>
+                                </div>
+                            </div>
+                            <div class="job-label">
+                                <eq name="vo.iscate" value="1">
+                                    {$vo.job_skill|format_zw_label}
+                                    <else/>
+                                    {$vo.c_label|format_gs_label}
+                                </eq>
+                            </div>
+                            <div class="reply">
+                                <span class="time">{$vo.reply_time|date='Y-m-d',###}</span>
+                                <span class="reason">已查看</span>
+                            </div>
+                        </a>
+                    </li>
+                    </volist>
+                </ul>
+                <div class="pagej" data-id="3">
+                    {$readPage}
+                </div>
+            </div>
+            <!-- /已查看 -->
+
+            <!-- 不适合 -->
+            <div class="zw-content progress-item-4">
+                <div class="job-nav clearfix num-4">
+                    <span class="job-num">不合适的有&ensp;<i>{$rejectCount}</i>&ensp;个职位</span>
+                    <div class="fr">
+                        <a href="">
+                            <span class="prev-ajax"><i class="fa fa-angle-left fa-lg"></i></span>
+                        </a>
+                        <span class="all-page"><i style="color: #CB0000;font-style: normal;">1</i>&ensp;/&ensp;{$rejectAllPage}</span>
+                        <a href="">
+                            <span class="next-ajax"><i class="fa fa-angle-right fa-lg"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <ul class="all">
+                    <volist name="rejectList" id="vo">
+                    <li class="job-item">
+                        <a class="clearfix" target="_blank" <eq name="vo.iscate" value="1">href="{:U('home/zhaopin/detail/id/'.$vo['jid'])}"<else/>href="{:U('home/jianzhi/detail/id/'.$vo['jid'])}"</eq>>
+                            <div class="job-left">
+                                <div>
+                                    <span><i></i>{$vo.title}</span>
+                                    <eq name="vo.iscate" value="1">
+                                        <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary_range|get_salary_range}</span>
+                                        <else/>
+                                        <span style="font-weight: 600;"><i class="fa fa-rmb"></i>&ensp;{$vo.salary}{$vo.settle_type|get_settle_type_unit}</span>
+                                    </eq>
+                                </div>
+                                <div>
+                                    <eq name="vo.iscate" value="1">
+                                        <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place|get_place}</span>
+                                        <span><i class="fa fa-briefcase"></i>&ensp;{$vo.y_experience|get_work_experience}</span>
+                                        <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                        <else/>
+                                        <span><i class="fa fa-map-marker"></i>&ensp;{$vo.work_place}</span>
+                                        <span><i class="fa fa-credit-card"></i>&ensp;{$vo.settle_type|get_settle_type}</span>
+                                        <span><i class="fa fa-graduation-cap"></i>&ensp;{$vo.academic_career|get_academic_career}</span>
+                                    </eq>
+                                </div>
+                            </div>
+                            <div class="job-right">
+                                <div>
+                                    <span><i class="fa fa-building-o"></i>&ensp;{$vo.c_name}</span>
+                                    <span class="job-fa" style="display: none;float: right; color: #008803; font-size: .8em;"><i class="fa fa-check-circle fa-lg"></i>已发送</span>
+                                </div>
+                                <div>
+                                    <span>{$vo.industry|get_category_title}</span>|
+                                    <span>{$vo.step}</span>|
+                                    <span>{$vo.c_range}人</span>
+                                    <span>&emsp;<i class="fa fa-phone"></i>&ensp;{$vo.phone_num}</span>
+                                </div>
+                            </div>
+                            <div class="job-label">
+                                {$vo.job_skill|format_zw_label}
+                            </div>
+                            <div class="reply">
+                                <span class="time">{$vo.reply_time|date='Y-m-d',###}</span>
+                                <span class="reason btn-ck" data-class="success-{$vo.id}">查看</span>
+                            </div>
+                            <div class="reply-box success-{$vo.id}">
+                                <div class="reply-top pos-r">
+                                    来自<b>&ensp;{$vo.c_name}</b>&ensp;公司
+                                    <i class="close-r" data-class="success-{$vo.id}">X</i>
+                                </div>
+                                <div class="reply-body">
+                                    <p>回复时间：{$vo.reply|date='Y-m-d',###}</p>
+                                    <p>被拒理由：{$vo.content}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    </volist>
+                </ul>
+                <div class="pagej" data-id="4">
+                    {$rejectPage}
+                </div>
+            </div>
+            <!-- /不适合 -->
+        </div>
+
+    </section>
+</block>
+
+<block name="script">
+    <script>
+        if(localStorage.getItem('scroll') != ''){
+            $(document).scrollTop(localStorage.getItem('scroll'));
+        }
+        (function($){
+            if(localStorage.getItem('proList') == null){
+                localStorage.setItem('proList',-1);
+            }
+            $(document).on('scroll',function(){
+                var scroll = $(this).scrollTop();
+                localStorage.setItem('scroll',scroll);
+            });
+            /* 切换函数 */
+            var tabBox =  function(listObj,contentStr1,contentStr2,idItem){
+                $(listObj).each(function(i,item){
+                    $(item).on('click',function(){
+                        var tabId = $(this).data('id');
+                        if(listObj == '.progress-item'){
+                            $(listObj).removeClass('item-selected');
+                            localStorage.setItem('proList',tabId-1);
+                            $(this).addClass('item-selected');
+                        }
+                        $(contentStr1).css('display','none');
+                        $(contentStr2+tabId).css('display','block');
+                    });
+                });
+                var firstTab = function(){
+                    var self = $(listObj).eq(idItem);
+                    if(listObj == '.progress-item'){
+                        $(listObj).removeClass('item-selected');
+                        self.addClass('item-selected');
+                    }
+                    var tabId = self.data('id');
+                    $(contentStr2+tabId).css('display','block');
+                };
+                firstTab();
+            };
+            if(localStorage.getItem('proList') == -1){
+                tabBox('.progress-item','.zw-content','.progress-item-',0);
+            }else{
+                tabBox('.progress-item','.zw-content','.progress-item-',localStorage.getItem('proList'));
+            }
+
+            /* 关闭函数 */
+            $('.close-r').on('click',function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                var className = $(this).data('class');
+                $('.'+className).css('display','none');
+            });
+            $('.btn-ck').on('click',function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                var className = $(this).data('class');
+                $('.'+className).css('display','block');
+            });
+
+        }(jQuery));
+
+        $(document).ready(function(){
+
+        });
+    </script>
+</block>

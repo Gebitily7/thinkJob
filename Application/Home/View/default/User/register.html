@@ -1,0 +1,252 @@
+<extend name="Base/usercom" />
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/user/register.css"/>
+</block>
+<block name="header">
+<header class="jumbotron subhead" id="overview">
+  <div class="container clearfix">
+    <h2>用户注册</h2>
+    <p><span><span class="pull-left"><span>已经有账号? <a href="{:U('User/login')}">点此登录</a> </span> </span></p>
+  </div>
+</header>
+</block>
+
+<block name="body">
+
+<section class="main-wrap">
+    <div class="form-bar">
+        <div class="bar bar-left bar-checked" data-type="front">个人用户</div>
+        <span>|</span>
+        <div class="bar bar-right" data-type="back">企业用户</div>
+    </div>
+	<div class="container">
+        <form autocomplete="off" class="login-form" actionp="{:U('userp/register')}" action="__SELF__" method="post">
+            <div class="register-box">
+                <!-- 一般用户注册 -->
+                <div class="scene-cell scene-front">
+                    <div class="register-contents register-1">
+                        <div class="control-group">
+                            <label class="control-label" for="inputName">用户名</label>
+                            <div class="controls">
+                                <input type="text" id="inputName" tabindex="1" class="span3" placeholder="请输入用户名" ajaxurl="{:U('userp/checkUserNameUnique')}" errormsg="请填写1-16位用户名" nullmsg="请填写用户名" datatype="*1-16" value="" name="username">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputPassword">密码</label>
+                            <div class="controls">
+                                <input type="password" id="inputPassword" tabindex="1" ajaxurl="{:U('userp/checkPassword')}" class="span3" placeholder="请输入密码"  errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputRePassword">确认密码</label>
+                            <div class="controls">
+                                <input type="password" id="inputRePassword" tabindex="1" class="span3" ajaxurl="{:U('userp/checkRePassword')}" placeholder="请再次输入密码" recheck="password" errormsg="您两次输入的密码不一致" nullmsg="请填确认密码" datatype="*" name="repassword">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail">邮箱</label>
+                            <div class="controls">
+                                <input type="text" id="inputEmail" class="span3" tabindex="1" placeholder="请输入电子邮件"  ajaxurl="{:U('userp/checkEmail')}" errormsg="请填写正确格式的邮箱" nullmsg="请填写邮箱" datatype="e" value="" name="email">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputPhone">手机</label>
+                            <div class="controls">
+                                <input type="text" id="inputPhone" tabindex="1" class="span3" placeholder="请输入手机号码"  ajaxurl="{:U('userp/checkMobile')}" errormsg="请填写正确格式的手机号码" nullmsg="请填写手机号码" datatype="" value="" name="mobile">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group yzm">
+                            <label class="control-label" for="inputYzm">验证码</label>
+                            <div class="controls">
+                                <input type="text" id="inputYzm" tabindex="1" class="span3" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
+                            </div>
+                            <div class="control-cap">
+                                <div class="controls">
+                                    <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                                </div>
+                                <div class="controls Validform_checktip text-warning" style="color:#EB2626; line-height: 40px;"></div>
+                            </div>
+                        </div>
+                        <div class="login-switch">
+                            <div class="button-wrap">
+                                <a href="javascript:;" class="button" id="js-submit" data-type="1">注册</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /一般用户注册 -->
+
+                <!-- 企业用户注册 -->
+                <div class="scene-cell scene-back">
+                    <div class="register-contents register-1">
+                        <div class="control-group">
+                            <label class="control-label" for="inputName1">用户名</label>
+                            <div class="controls">
+                                <input type="text" id="inputName1" class="span3" tabindex="2" placeholder="请输入用户名" ajaxurl="{:U('user/checkUserNameUnique')}" errormsg="请填写1-16位用户名" nullmsg="请填写用户名" datatype="*1-16" value="" name="username">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputPassword1">密码</label>
+                            <div class="controls">
+                                <input type="password" id="inputPassword1" tabindex="2"  class="span3" placeholder="请输入密码" ajaxurl="{:U('user/checkPassword')}"  errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputRePassword1">确认密码</label>
+                            <div class="controls">
+                                <input type="password" id="inputRePassword1" tabindex="2" class="span3" placeholder="请再次输入密码" ajaxurl="{:U('user/checkRePassword')}" recheck="password" errormsg="您两次输入的密码不一致" nullmsg="请填确认密码" datatype="*" name="repassword">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputCname">企业名称</label>
+                            <div class="controls">
+                                <input type="text" id="inputCname" class="span3" tabindex="2" placeholder="请输入企业名称" ajaxurl="{:U('user/checkCname')}" nullmsg="请填写企业名" datatype="*1-16" value="" name="c_name">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail1">邮箱</label>
+                            <div class="controls">
+                                <input type="text" id="inputEmail1" class="span3" tabindex="2" placeholder="请输入电子邮件"  ajaxurl="{:U('user/checkEmail')}" errormsg="请填写正确格式的邮箱" nullmsg="请填写邮箱" datatype="e" value="" name="email">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputMobile">手机</label>
+                            <div class="controls">
+                                <input type="text" id="inputMobile" class="span3" tabindex="2" placeholder="请输入手机"  ajaxurl="{:U('user/checkMobile')}" errormsg="请填写正确格式的手机" nullmsg="请填写手机" datatype="e" value="" name="phone">
+                            </div>
+                            <div class="tips"></div>
+                        </div>
+
+                        <div class="control-group yzm">
+                            <label class="control-label" for="inputYzm1">验证码</label>
+                            <div class="controls">
+                                <input type="text" id="inputYzm1" tabindex="2" class="span3" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
+                            </div>
+                            <div class="control-cap">
+                                <div class="controls">
+                                    <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;">
+                                </div>
+                                <div class="controls Validform_checktip text-warning" style="color: #EB2626;"></div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="login-switch">
+                            <div class="button-wrap">
+                                <a href="javascript:;" class="button" id="js-submit" data-type="2">注册</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /企业用户注册 -->
+            </div>
+        </form>
+	</div>
+</section>
+
+</block>
+
+<block name="side"> </block>
+<block name="script">
+	<script type="text/javascript">
+    	$(document)
+	    	.ajaxStart(function(){
+	    		$("button:submit").addClass("log-in").attr("disabled", true);
+	    	})
+	    	.ajaxStop(function(){
+	    		$("button:submit").removeClass("log-in").attr("disabled", false);
+	    	});
+
+        $('input').on('blur',function(){
+            var self = $(this);
+            var oP   = self.parent().parent().find('.tips');
+            var index = self.attr('tabindex');
+            var url   = self.attr('ajaxurl');
+            if(typeof url != 'undefined'){
+                var data = {
+                    'username' : self.val(),
+                    'password' : $('#inputPassword').val()
+                };
+                $.post(url, data, success, "json");
+            }
+            return false;
+            function success(data){
+                switch (data.type){
+                    case 1:
+                        oP.css('color','#41B91E');
+                        oP.html('<i class="fa fa-check-circle"></i>');
+                        break;
+                    default :
+                        oP.css('color','#EB2626');
+                        oP.html('<i class="fa fa-exclamation-circle"></i>'+data.info);
+                        break;
+                }
+            }
+        });
+
+    	$(".button").click(function(){
+            var index = $(this).data('type');
+
+    		var self = $('form');
+            var data = self.find('input[tabindex="'+index+'"]').serialize();
+            if(index == 1){
+                $.post(self.attr("actionp"), data, success, "json");
+            }else if(index == 2){
+                $.post(self.attr("action"), data, success, "json");
+            }
+    		return false;
+
+    		function success(data){
+    			if(data.status){
+    				window.location.href = data.url;
+    			} else {
+    				self.find(".Validform_checktip").text(data.info);
+    				//刷新验证码
+    				$(".reloadverify").click();
+    			}
+    		}
+    	});
+
+		$(function(){
+			var verifyimg = $(".verifyimg").attr("src");
+            $(".reloadverify").click(function(){
+                if( verifyimg.indexOf('?')>0){
+                    $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+                }else{
+                    $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                }
+            });
+		});
+
+        $(function(){
+            $('.bar').on('click',function(){
+                var index = $(this).data('type');
+                $(this).siblings().removeClass('bar-checked');
+                $(this).addClass('bar-checked');
+                $('.scene-front,.scene-back').css('display','none');
+                $('.scene-'+index).css('display','block');
+            });
+        });
+	</script>
+</block>

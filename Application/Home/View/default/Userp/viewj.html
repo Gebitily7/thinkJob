@@ -1,0 +1,350 @@
+<extend name="Base/viewcom"/>
+<block name="style">
+    <link rel="stylesheet" href="__CSS__/userp/userp.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/resume.css"/>
+    <link rel="stylesheet" href="__CSS__/userp/edit.css"/>
+    <style>
+        .content-box{
+            float: none;
+            width: 750px;
+            margin: 0 auto;
+        }
+    </style>
+</block>
+
+<block name="body">
+    <section class="content-box">
+        <!-- 头部背景图 -->
+        <div class="content-item content-top">
+            <div class="top-bg">
+                <div class="spin-mask">
+                    <span class="top-back" onclick="self.location=document.referrer;"><i class="fa fa-angle-left"></i></span>
+                    <span class="side-title">简历预览</span>
+                </div>
+            </div>
+            <div class="tx_box">
+                <figure class="u_tx">
+                    <img src="{$userInfo.u_tx|get_cover='path'}" alt=""/>
+                    <figcaption>
+                        <span>更改头像</span>
+                    </figcaption>
+                </figure>
+                <div class="u-tx-name">
+                    <span>{$userInfo.uname}</span>
+                </div>
+            </div>
+            <div class="gx_bq">
+                <span>{$userInfo.signature}</span>
+            </div>
+        </div>
+        <!-- /头部背景图 -->
+
+        <!-- 简介 -->
+        <div class="content-body clearfix">
+            <div class="body-item">
+                <ul>
+                    <li class="li-item">
+                        <i class="fa fa-user"></i>
+                        <div class="em-item">
+                            <p>
+                                <eq name="userInfo.sex" value="1">
+                                    <em>男</em>
+                                    <else/>
+                                    <em>女</em>
+                                </eq>
+                                <em>{$userInfo.birthday|get_age}岁</em>
+                            </p>
+                            <p>
+                                <em>身高：{$userInfo.height}cm</em>
+                                <eq name="userInfo.marry" value="1">
+                                    <em>已婚</em>
+                                    <else/>
+                                    <em>未婚</em>
+                                </eq>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-briefcase"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>{$userInfo.max_edu|get_max_edu}</em>
+                                <em>{$userInfo.work_experience|get_user_experience}</em>
+                            </p>
+                            <p>
+                                <em>驾照：{$userInfo.driver|get_user_drive}</em>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-tags"></i>
+                        <div class="skill-label-box">
+                            {$userInfo.skill|format_zw_label}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="body-item">
+                <ul>
+                    <li class="li-item">
+                        <i class="fa fa-bookmark"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>状态：{$userInfo.now_status|get_status}</em>
+                            </p>
+                            <p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-map-marker"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>现居：{$userInfo.present_addr|format_place}</em>
+                            </p>
+                            <p>
+                                <em>户口：{$userInfo.birth_place|format_place}</em>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-mobile fa-lg"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>{$userInfo.phone}</em>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="li-item">
+                        <i class="fa fa-globe"></i>
+                        <div class="em-item">
+                            <p>
+                                <em>Email：{$userInfo.email}</em>
+                            </p>
+                            <p>
+                                <em>QQ：{$userInfo.u_qq}</em>
+                            </p>
+                            <p>
+                                <em>微信：{$userInfo.u_weixin}</em>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 简介 -->
+
+        <!-- 工作经历 -->
+        <div class="re-item work-exp">
+            <!-- 分隔条 -->
+            <div class="del">
+                <div class="dashed"></div>
+                <span>工作经历</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <volist name="work" id="vo">
+                <!-- content -->
+                <div class="exp-box work-box-{$vo.id}">
+                    <div class="minCir circle"></div>
+                    <div class="mods">
+                        <div class="exp-content">
+
+                            <div class="title-name">
+                                <h3>{$vo.u_pos}</h3>
+                            </div>
+                            <div class="detail-box">
+                                <div class="maxCir">
+                                    <span class="circle"></span>
+                                </div>
+                                <div class="detail-content">
+                                    <div class="detail-time"><time>{$vo.start_time|date='Y.m.d',###}</time>&ensp;&ensp;-&ensp;&ensp;<time>{$vo.end_time|date='Y.m.d',###}</time></div>
+                                    <div class="detail-detail">
+                                        <p class="bor-em">
+                                            <em>{$vo.company}</em>
+                                            <em>{$vo.property|get_work_property}</em>
+                                            <em>{$vo.range|get_work_range}</em>
+                                        </p>
+                                        <p>
+                                            <em>所属行业：{$vo.industry}</em>
+                                            <em>{$vo.pos_cate}</em>
+                                        </p>
+                                        <p class="bor-em">
+                                            <em>{$vo.department}</em>
+                                            <em>{$vo.u_pos}</em>
+                                        </p>
+                                        <p>
+                                            <em>月薪：{$vo.salary}</em>
+                                        </p>
+                                    </div>
+                                    <div class="detail-desc">
+                                        {$vo.work_content}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="minCir circle"></div>
+                </div>
+                <!-- /content -->
+            </volist>
+        </div>
+        <!-- /工作经历 -->
+
+        <!-- 教育经历 -->
+        <div class="re-item education-exp">
+            <!-- 分隔条 -->
+            <div class="del">
+                <div class="dashed"></div>
+                <span>教育经历</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <volist name="edu" id="vo">
+                <!-- content -->
+                <div class="exp-box education-box-{$vo.id}">
+                    <div class="minCir circle"></div>
+                    <div class="mods">
+                        <div class="exp-content">
+                            <div class="title-name">
+                                <h3>{$vo.school}</h3>
+                            </div>
+                            <div class="detail-box">
+                                <div class="maxCir">
+                                    <span class="circle"></span>
+                                </div>
+                                <div class="detail-content">
+                                    <div class="detail-time"><time>{$vo.start_time|date='Y.m.d',###}</time>&ensp;&ensp;-&ensp;&ensp;<time>{$vo.end_time|date='Y.m.d',###}</time></div>
+                                    <div class="detail-detail">
+                                        <p class="pad-em">
+                                            <em>{$vo.academic|get_max_edu}</em>
+                                            <em>{$vo.major}</em>
+                                        </p>
+                                    </div>
+                                    <div class="detail-desc">
+                                        {$vo.school_exp}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="minCir circle"></div>
+                </div>
+                <!-- /content -->
+            </volist>
+        </div>
+
+        <!-- /教育经历 -->
+
+        <!-- 项目经验 -->
+        <div class="re-item project-exp">
+            <!-- 分隔条 -->
+            <div class="del">
+                <div class="dashed"></div>
+                <span>项目经验</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <volist name="pro" id="vo">
+                <!-- content -->
+                <div class="exp-box project-box-{$vo.id}">
+                    <div class="minCir circle"></div>
+                    <div class="mods">
+                        <div class="exp-content">
+                            <div class="title-name">
+                                <h3>{$vo.pro_name}</h3>
+                            </div>
+                            <div class="detail-box">
+                                <div class="maxCir">
+                                    <span class="circle"></span>
+                                </div>
+                                <div class="detail-content">
+                                    <div class="detail-time"><time>{$vo.start_time|date='Y.m.d',###}</time>&ensp;&ensp;-&ensp;&ensp;<time>{$vo.end_time|date='Y.m.d',###}</time></div>
+                                    <div class="detail-desc">
+                                        {$vo.pro_pos}
+                                    </div>
+                                    <div class="detail-desc">
+                                        {$vo.pro_desc}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="minCir circle"></div>
+                </div>
+                <!-- /content -->
+            </volist>
+        </div>
+        <!-- /项目经验 -->
+
+        <!-- 培训经历 -->
+        <div class="re-item train-exp">
+            <!-- 分隔条 -->
+            <div class="del">
+                <div class="dashed"></div>
+                <span>培训经历</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <volist name="train" id="vo">
+                <!-- content -->
+                <div class="exp-box train-box">
+                    <div class="minCir circle"></div>
+                    <div class="mods">
+                        <div class="exp-content">
+                            <div class="title-name">
+                                <h3>{$vo.train_name}</h3>
+                            </div>
+                            <div class="detail-box">
+                                <div class="maxCir">
+                                    <span class="circle"></span>
+                                </div>
+                                <div class="detail-content">
+                                    <div class="detail-time"><time>{$vo.start_time|date='Y-m-d',###}</time>&ensp;&ensp;-&ensp;&ensp;<time>{$vo.end_time|date='Y-m-d',###}</time></div>
+                                    <div class="detail-detail">
+                                        <p>
+                                            <em>{$vo.train_company}</em>
+                                        </p>
+                                    </div>
+                                    <div class="detail-desc">
+                                        {$vo.train_content}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="minCir circle"></div>
+                </div>
+                <!-- /content -->
+            </volist>
+        </div>
+        <!-- /培训经历 -->
+
+        <!-- 自我评价 -->
+        <div class="re-item self-exp">
+            <!-- 分隔条 -->
+            <div class="del self-del">
+                <div class="dashed"></div>
+                <span>自我评价</span>
+            </div>
+            <!-- 分隔条 -->
+
+            <!-- content -->
+            <div class="exp-box self-box">
+                <div class="mods">
+                    <div class="exp-content">
+                        <div class="detail-box">
+                            <div class="detail-content" style="border-color: transparent;">
+                                <div class="self-desc">
+                                    {$userInfo.self}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /content -->
+        </div>
+        <!-- /自我评价 -->
+
+    </section>
+</block>
